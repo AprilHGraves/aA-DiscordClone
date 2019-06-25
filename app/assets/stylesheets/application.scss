@@ -13,19 +13,10 @@
  *= require_self
  */
 
-//  @import "./reset.scss";
+ @import "./reset.scss"; 
  @import "./splash.scss";
+ @import "./login.scss";
 
- a {
-   text-decoration: none;
- }
 
- body {
-   background-color: #2b292f;
- }
-
- button:hover {
-   cursor: pointer;
- }
 
 

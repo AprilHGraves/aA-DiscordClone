@@ -43,7 +43,12 @@ class UserForm extends React.Component {
       <Link to="/login">Already have an account?</Link>
     );
     return (
-      <div id="user-form">
+      <div id="login-page">
+        <div id="login-logo">
+          <img src="/assets/logo.png" className="logo" />
+          <img src="/assets/logo_text.png" className="logo-txt" />
+        </div>
+        
         <section>
           <h1>{formType === "login" ? "Welcome Back!" : "Create an account"}</h1>
           {formType === "login" && <p>We're so excited to see you again!</p>}

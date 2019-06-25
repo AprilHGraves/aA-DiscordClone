@@ -14,9 +14,9 @@ const Splash = (props) => {
   };
 
   const link1 = props.currentUserId ? (
-    <Link to="/channels/@me" id="header-right">Open</Link>
+    <Link to="/channels/@me">Open</Link>
   ) : (
-    <Link to="/login" id="header-right">Login</Link>
+    <Link to="/login">Login</Link>
   );
 
   const link2 = props.currentUserId ? (
@@ -36,7 +36,7 @@ const Splash = (props) => {
   }
 
   return (
-    <div className="splash">
+    <div id="splash-page">
       <nav>
         <Link id="header-left" to="/">
           <img src="/assets/logo.png" className="logo" />
@@ -45,15 +45,28 @@ const Splash = (props) => {
         <section id="header-middle">
           <button onClick={placeholder}>Placeholder 1</button>
           <button onClick={placeholder}>Placeholder 2</button>
-        </section>     
-        {link1}
+        </section>
+        <section id="header-right">
+          <i class='fab fa-twitter'></i>
+          <i class='fab fa-facebook'></i>
+          <i class='fab fa-instagram'></i>
+          {link1}
+        </section>
       </nav>
       <section id="splash-about">
         <h1>It's time to ditch face-to-face interaction.</h1>
         <p>Text chat app for recluses.</p>
         {link2}
       </section>
-      <img id="splash-graphic" src="/assets/splash_background.png"></img>
+      <div id="splash-graphic">
+        <img id="splash-disk" src="/assets/disk.png"></img>
+        <img id="splash-image" src="/assets/splash_background.png"></img>
+        <img id="splash-coin-1" src="/assets/coin.png"></img>
+        <img id="splash-coin-2" src="/assets/coin.png"></img>
+        <img id="splash-bomb" src="/assets/bomb.png"></img>
+      </div>
+      
+      
       <section id="splash-info">
         <Link to="/" >
           <img src="/assets/logo.png"/>
@@ -66,7 +79,7 @@ const Splash = (props) => {
         </div>
         <div>
           <h3>Developers</h3>
-          <span>Main: April Graves</span>
+          <span>Student: April Graves</span>
           <span>Advisor: Carly Schaaf</span>
         </div>
         <div>
@@ -87,7 +100,7 @@ const Splash = (props) => {
         </div>
         <div>
           <h3>Assets</h3>
-          <span>placeholder</span>
+          <a href="http://fontawesome.com">Font Awesome</a>
           <span>placeholder</span>
         </div>
       </section>

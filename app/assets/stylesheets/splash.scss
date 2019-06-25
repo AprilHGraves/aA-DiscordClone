@@ -1,64 +1,72 @@
-.splash {
-
+#splash-page {
+  background-color: #2b292f;
   nav {
     display: flex;
     justify-content: space-between;
     align-content: center;
-    padding: 15px 100px;
+    padding: 17px 110px;
 
     #header-left {
       display: flex;
       align-items: center;
       img:first-of-type {
         border: 0;
-        background-size: 45px;
-        width: 50px;
-        height: 50px;
+        width: 47px;
+        height: 42px;
       }
 
       img:last-of-type {
-        margin-left: 5px;
-        background-size: 100px 20px;
-        background-repeat: no-repeat;
-        width: 100px;
-        height: 18px;
+        margin-left: 1px;
+        width: 90px;
+        height: 17px;
       }
     }
 
     #header-middle {
       display:flex;
-      padding-left: 5px;
-      width: 80%;
-        button {
-          border: none;
-          background-color: inherit;
-          color: lightgray;
-          margin: 0 5px;
-        }
+      padding-left: 15px;
+      width: 75%;
+      font-size: 14px;
+      button {
+        border: none;
+        background-color: inherit;
+        color: lightgray;
+        margin: 0 10px;
+      }
     }
 
     #header-right {
-      margin-right: 90px;
-      width: 40px;
-      height: 20px;
-      border: 2px solid lightgray;
-      border-radius: 20px;
-      padding: 4px 10px;
-      padding-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 83px;    
       color: lightgray;
-      font-size: 14px;
       text-align: center;
+      i {
+        margin-right: 18px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      a {
+        border: 2px solid lightgray;
+        border-radius: 20px;
+        padding: 4px 10px;
+        padding-top: 6px;
+        height: 18px;
+        width: 45px;
+        font-size: 14px;
+      }
+      a:hover {
+        color: white;
+        border-color: white;
+      }
     }
 
-    #header-right:hover {
-      color: white;
-      border-color: white;
-    }
   }
 
   #splash-about {
     position: absolute;
-    top: 13%;
+    top: 15%;
     left: 32%;
     margin: 0 auto;
     h1 {
@@ -68,12 +76,13 @@
       text-align: center;
     }
     p {
-      color: lightgray;
+      margin-top: 25px;
+      color: gray;
       text-align: center;
     }
     [id*="center-"] {
       position: relative;
-      background-color: #7e65dd;
+      background-color: #7289da;
       color: white;
       top: 30px;
       left: 31%;
@@ -82,20 +91,61 @@
       font-size: 16px;
     }
     #center-button {
-      top: 15px;
+      top: 40px;
       font-family: inherit;
+      font-size: 14px;
     }
 
   }
 
   #splash-graphic {
-    display: block;
-    margin: 30px auto;
-    margin-top: 13%;
+    position: relative;
+    img[id="splash-image"] {
+      display: block;
+      margin: 30px auto;
+      margin-top: 250px;
 
-    width: 72%;
-    height: auto;
+      width: 72%;
+      height: auto;
+    }
+    img[id="splash-disk"] {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 140px;
+      right: 565px;
+    }
+
+    img[id*="splash-coin"] {
+      position: absolute;
+
+      width: 70px;
+      height: 70x;
+    }
+    
+    img[id="splash-coin-1"] {
+      top: 30px;
+      right: 770px;
+      
+    }
+    img[id="splash-bomb"] {
+      position: absolute;
+      z-index: 2;
+      width: 80px;
+      height: 80px;
+      top: 220px;
+      left: 450px;
+    }
+    img[id="splash-coin-2"] {
+      z-index: 3;
+      top: 250px;
+      left: 500px;
+    }
+
+    
+    
   }
+
   hr {
     border: 1px solid 	rgba(211,211,211, .05);
     width: 83%;
@@ -109,9 +159,8 @@
     justify-content: space-between;
     img {
       border: 0;
-      background-size: 45px;
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
     }
     div {
       h3 {
@@ -141,15 +190,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 150px;
-    padding-bottom: 25px;
+    padding: 30px 150px;
+    padding-bottom: 44px;
 
     div {
       width: 500px;
       h2 {
         color: white;
         font-weight: 400;
-        font-size: 24px;
+        font-size: 28px;
         margin-bottom: 5px;
       }
       p {
@@ -159,7 +208,7 @@
       }
     }
     a {
-      background-color: #7e65dd;
+      background-color: #7289da;
       color: white;
       padding: 15px 15px;
       border: 0;
