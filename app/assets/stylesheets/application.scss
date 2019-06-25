@@ -13,6 +13,7 @@
  *= require_self
  */
 
+//  @import "./reset.scss";
  @import "./splash.scss";
 
  a {
@@ -20,5 +21,11 @@
  }
 
  body {
-     background-color: #2b292f;
+   background-color: #2b292f;
  }
+
+ button:hover {
+   cursor: pointer;
+ }
+
+

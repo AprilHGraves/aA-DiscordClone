@@ -29,18 +29,12 @@
       display:flex;
       padding-left: 5px;
       width: 80%;
-      li {
-        margin: 0 5px;
-        list-style: none;
         button {
           border: none;
           background-color: inherit;
           color: lightgray;
+          margin: 0 5px;
         }
-        button:focus {
-          -webkit-writing-mode: inherit;
-        }
-      }
     }
 
     #header-right {
@@ -55,5 +49,124 @@
       font-size: 14px;
       text-align: center;
     }
+
+    #header-right:hover {
+      color: white;
+      border-color: white;
+    }
+  }
+
+  #splash-about {
+    position: absolute;
+    top: 13%;
+    left: 32%;
+    margin: 0 auto;
+    h1 {
+      color: white;
+      font-size: 36px;
+      font-weight: 700px;
+      text-align: center;
+    }
+    p {
+      color: lightgray;
+      text-align: center;
+    }
+    [id*="center-"] {
+      position: relative;
+      background-color: #7e65dd;
+      color: white;
+      top: 30px;
+      left: 31%;
+      padding: 15px 75px;
+      border: 0;
+      font-size: 16px;
+    }
+    #center-button {
+      top: 15px;
+      font-family: inherit;
+    }
+
+  }
+
+  #splash-graphic {
+    display: block;
+    margin: 30px auto;
+    margin-top: 13%;
+
+    width: 72%;
+    height: auto;
+  }
+  hr {
+    border: 1px solid 	rgba(211,211,211, .05);
+    width: 83%;
+  }
+
+  #splash-info {
+    width: 83%;
+    margin: 30px auto;
+    margin-top: 125px;
+    display: flex;
+    justify-content: space-between;
+    img {
+      border: 0;
+      background-size: 45px;
+      width: 40px;
+      height: 40px;
+    }
+    div {
+      h3 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      
+      span,a {
+        color: gray;
+        display:block;
+      }
+      a:hover {
+        color: white;
+        cursor: pointer;
+      }
+
+      
+    }
+    
+
+  }
+
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 150px;
+    padding-bottom: 25px;
+
+    div {
+      width: 500px;
+      h2 {
+        color: white;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+      p {
+        margin-top: 0px;
+        color: lightgray;
+        font-size: 14px;
+      }
+    }
+    a {
+      background-color: #7e65dd;
+      color: white;
+      padding: 15px 15px;
+      border: 0;
+      font-size: 16px;
+      font-family: inherit;
+      height: 15px;
+    }
+
   }
 }
