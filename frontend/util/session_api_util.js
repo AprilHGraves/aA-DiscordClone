@@ -15,7 +15,6 @@ export const patchUser = user => {
 }
 
 export const deleteUser = user => {
-  debugger;
   return $.ajax({
     method: `DELETE`,
     url: `/api/users/${user.id}`
