@@ -13,4 +13,12 @@
  *= require_self
  */
 
- @import "./splash.scss"
+ @import "./splash.scss";
+
+ a {
+   text-decoration: none;
+ }
+
+ body {
+     background-color: #2b292f;
+ }

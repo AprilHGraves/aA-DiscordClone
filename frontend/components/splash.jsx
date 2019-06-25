@@ -3,14 +3,22 @@ import { Link } from 'react-router-dom';
 
 const Splash = (props) => {
   const link = props.currentUserId ? (
-    <Link to="/channels/@me">Open</Link>
+    <Link to="/channels/@me" id="header-right">Open</Link>
   ) : (
-    <Link to="/login">Login</Link>
+    <Link to="/login" id="header-right">Login</Link>
   );
+
   return (
     <div className="splash">
       <nav>
-        <Link to="/">Discord Clone</Link>
+        <Link id="header-left" to="/">
+          <img src="/assets/logo.png" className="logo" />
+          <img src="/assets/logo_text.png" className="logo-txt" />
+        </Link>
+        <ul id="header-middle">
+          <li><button>Placeholder 1</button></li>
+          <li><button>Placeholder 2</button></li>
+        </ul>     
         {link}
       </nav>
       <section>
