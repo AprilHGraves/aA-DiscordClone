@@ -50,6 +50,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'faker'
   gem 'binding_of_caller'
   gem 'better_errors'
 end
