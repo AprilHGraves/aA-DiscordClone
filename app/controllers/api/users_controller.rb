@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
     if current_user && params[:id].to_i == current_user.id
       @user = current_user
       if @user.update_attributes(user_params)
-        render :show
+        render :show 
       else
         render json: @user.errors.full_messages, status:422 
       end

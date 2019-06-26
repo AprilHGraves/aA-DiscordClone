@@ -67,7 +67,7 @@
   #splash-about {
     position: absolute;
     top: 15%;
-    left: 32%;
+    left: 33%;
     margin: 0 auto;
     h1 {
       color: white;
@@ -85,7 +85,7 @@
       background-color: #7289da;
       color: white;
       top: 30px;
-      left: 31%;
+      left: 31.5%;
       padding: 15px 75px;
       border: 0;
       font-size: 16px;
@@ -100,46 +100,58 @@
 
   #splash-graphic {
     position: relative;
-    img[id="splash-image"] {
-      display: block;
-      margin: 30px auto;
-      margin-top: 250px;
-
-      width: 72%;
-      height: auto;
+    width: 72%;
+    height: 800px;
+    @keyframes float {
+      0% { transform: translate3d(0,-5px,0); }
+      100% { transform: translate3d(0,5px,0); }
     }
     img[id="splash-disk"] {
       position: absolute;
-      width: 100px;
-      height: 100px;
-      top: 140px;
-      right: 565px;
+      width: 95px;
+      height: 95px;
+      top: 397px;
+      right: 60px;
+    }
+    img[id="splash-image"] {
+      position: absolute;
+      display: block;
+      top: 243px;
+      left: 263px;
     }
 
+    .animate-float {
+      animation-name: float;
+      animation-delay: .5s;
+      animation-duration: 1.5s;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+    
     img[id*="splash-coin"] {
       position: absolute;
-
-      width: 70px;
-      height: 70x;
+      width: 80px;
+      height: 80x;
     }
     
     img[id="splash-coin-1"] {
-      top: 30px;
-      right: 770px;
+      top: 270px;
+      right: 245px;
       
     }
     img[id="splash-bomb"] {
       position: absolute;
       z-index: 2;
-      width: 80px;
-      height: 80px;
-      top: 220px;
-      left: 450px;
+      width: 92px;
+      height: 82px;
+      top: 470px;
+      left: 438px;
+      animation-delay: s;
     }
     img[id="splash-coin-2"] {
       z-index: 3;
-      top: 250px;
-      left: 500px;
+      top: 500px;
+      left: 490px;
     }
 
     
@@ -219,3 +231,4 @@
 
   }
 }
+

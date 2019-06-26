@@ -39,8 +39,8 @@ const Splash = (props) => {
     <div id="splash-page">
       <nav>
         <Link id="header-left" to="/">
-          <img src="/assets/logo.png" className="logo" />
-          <img src="/assets/logo_text.png" className="logo-txt" />
+          <img src={window.logoImg} className="logo" />
+          <img src={window.logoTxtImg} className="logo-txt" />
         </Link>
         <section id="header-middle">
           <button onClick={placeholder}>Placeholder 1</button>
@@ -59,17 +59,17 @@ const Splash = (props) => {
         {link2}
       </section>
       <div id="splash-graphic">
-        <img id="splash-disk" src="/assets/disk.png"></img>
-        <img id="splash-image" src="/assets/splash_background.png"></img>
-        <img id="splash-coin-1" src="/assets/coin.png"></img>
-        <img id="splash-coin-2" src="/assets/coin.png"></img>
-        <img id="splash-bomb" src="/assets/bomb.png"></img>
+        <img className="animate-float" id="splash-disk" src="https://discordapp.com/assets/215346366a9a7d50924fc245ddb048d2.svg"></img>
+        <img id="splash-image" src={window.splashImg}></img>
+        <img className="animate-float" id="splash-coin-1" src="https://discordapp.com/assets/9e05338bd66e0985fceb83317cb94b9c.svg"></img>
+        <img className="animate-float" id="splash-coin-2" src="https://discordapp.com/assets/9e05338bd66e0985fceb83317cb94b9c.svg"></img>
+        <img className="animate-float" id="splash-bomb" src="https://discordapp.com/assets/eb301f28da3199edbd3ef19690d61674.svg"></img>
       </div>
       
       
       <section id="splash-info">
         <Link to="/" >
-          <img src="/assets/logo.png"/>
+          <img src={window.logoImg}/>
         </Link>
         
         <div>
@@ -101,7 +101,7 @@ const Splash = (props) => {
         <div>
           <h3>Assets</h3>
           <a href="http://fontawesome.com">Font Awesome</a>
-          <span>placeholder</span>
+          <a href="http://discordapp.com">Discord Images</a>
         </div>
       </section>
       <hr />

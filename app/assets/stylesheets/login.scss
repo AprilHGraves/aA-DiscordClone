@@ -1,12 +1,8 @@
 #login-page {
-  // background-color: #2b292f;
-  background: url(asset_path("login_background.png"));
+  background-image: image-url("login_background.png");
   background-size: cover;
-  height: 949px; 
-  // height: 100%;
-  /* Center and scale the image nicely */
+  height: 949px;
   background-repeat: no-repeat;
-  // background-size: cover;
 
   #login-logo {
     position: absolute;

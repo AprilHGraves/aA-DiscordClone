@@ -21,6 +21,11 @@
         });
       </script>
     <% end %>
+    <script type="text/javascript">
+      window.splashImg = "<%= image_url('splash_bg.png') %>"
+      window.logoImg = "<%= image_url('logo.png') %>"
+      window.logoTxtImg = "<%= image_url('logo_text.png') %>"
+    </script>
     <%= yield %>
   </body>
 </html>

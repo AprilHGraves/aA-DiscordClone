@@ -45,8 +45,8 @@ class UserForm extends React.Component {
     return (
       <div id="login-page">
         <div id="login-logo">
-          <img src="/assets/logo.png" className="logo" />
-          <img src="/assets/logo_text.png" className="logo-txt" />
+          <img src={window.logoImg} className="logo" />
+          <img src={window.logoTxtImg} className="logo-txt" />
         </div>
         
         <section>

@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
         login(@user)
         render 'api/users/show'
     else
-        render json: ["Wrong email and/or password combination"], status: 401
+        render json: ["Password does not match"], status: 401
     end
 
   end
