@@ -20,9 +20,9 @@ const Splash = (props) => {
   );
 
   const link2 = props.currentUserId ? (
-    <Link to="/channels/@me" id="center-link">Open Conflict</Link>
+    <Link to="/channels/@me" className="center">Open Conflict</Link>
   ) : (
-    <button onClick={demoLogin} id="center-button">Demo Login</button>
+    <button onClick={demoLogin} className="center button">Demo Login</button>
   );
 
   const link3 = props.currentUserId ? (
@@ -35,6 +35,22 @@ const Splash = (props) => {
     event.preventDefault();
   }
 
+  const scrollDown = event => {
+    event.preventDefault();
+    window.scrollBy(0, document.body.scrollHeight);    
+  }
+
+  const addShow = event => {
+    const el = document.querySelector(".about-me");
+    el.classList.add("show");
+  }
+
+  const removeShow = event => {
+    const el = document.querySelector(".about-me");
+    el.classList.remove("show");
+  }
+
+
   return (
     <div id="splash-page">
       <nav>
@@ -43,20 +59,34 @@ const Splash = (props) => {
           <img src={window.logoTxtImg} className="logo-txt" />
         </Link>
         <section id="header-middle">
-          <button onClick={placeholder}>Placeholder 1</button>
-          <button onClick={placeholder}>Placeholder 2</button>
+          <button onClick={scrollDown}>About Conflict</button>
+          <span onMouseEnter={addShow} onMouseLeave={removeShow}>
+            About Me &nbsp;
+            <img src="https://discordapp.com/assets/779a770c34fcb823a598a7277301adaf.svg"/>
+          </span>
+          <div className="about-me" onMouseEnter={addShow} onMouseLeave={removeShow}>
+            <ul>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="http://github.com/AprilHGraves">Github</a></li>
+              {/* make a link to other work eventually */}
+            </ul>
+          </div>
+          
         </section>
         <section id="header-right">
-          <i class='fab fa-twitter'></i>
-          <i class='fab fa-facebook'></i>
-          <i class='fab fa-instagram'></i>
+          <a href="https://twitter.com"><i className='fab fa-twitter'></i></a>
+          <a href="https://facebook.com"><i className='fab fa-facebook'></i></a>
+          <a href="https://instagram.com"><i className='fab fa-instagram'></i></a>
           {link1}
         </section>
       </nav>
       <section id="splash-about">
-        <h1>It's time to ditch face-to-face interaction.</h1>
-        <p>Text chat app for recluses.</p>
-        {link2}
+        <h1>It's time to ditch in-person interaction.</h1>
+        <p>Text chat application for recluses that's free, slightly secure, and is designed to work on your browser.<br/>Stop going outside everyday and hassling with people. Simplify your life.</p>
+        <div>
+          <a href="https://discordapp.com" className="center left">Go to Discord</a>
+          {link2}
+        </div>
       </section>
       <div id="splash-graphic">
         <img className="animate-float" id="splash-disk" src="https://discordapp.com/assets/215346366a9a7d50924fc245ddb048d2.svg"></img>
@@ -75,7 +105,7 @@ const Splash = (props) => {
         <div>
           <h3>Product</h3>
           <a href="http://discordapp.com">Based on Discord</a>
-          <a href="#">Heroku Hosting</a>
+          <a href="https://heroku.com">Hosted on Heroku</a>
         </div>
         <div>
           <h3>Developers</h3>

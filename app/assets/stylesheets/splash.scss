@@ -24,14 +24,46 @@
 
     #header-middle {
       display:flex;
+      align-items: center;
       padding-left: 15px;
       width: 75%;
       font-size: 14px;
-      button {
+      button, span {
         border: none;
         background-color: inherit;
         color: lightgray;
         margin: 0 10px;
+      }
+      img {
+        width: 7px;
+        height: 6px;
+        filter: brightness(80%);
+        display: inline-block;
+      }
+      button:hover {
+        color: white;
+      }
+      .about-me {
+        display: none;
+        position: absolute;
+        top: 30px;
+        left: 360px;
+        z-index: 4;
+        ul {
+          position: relative;
+          top: 30px;
+          width: 100px;
+          padding: 5px;
+          background-color: white;
+          color: gray;
+          li {
+            margin: 10px;
+          }
+
+        }
+      }
+      .show {
+        display: inline-block;
       }
     }
 
@@ -47,7 +79,7 @@
         font-size: 18px;
         font-weight: 700;
       }
-      a {
+      a:last-of-type {
         border: 2px solid lightgray;
         border-radius: 20px;
         padding: 4px 10px;
@@ -66,7 +98,7 @@
   #splash-about {
     position: absolute;
     top: 15%;
-    left: 33%;
+    left: 32.25%;
     margin: 0 auto;
     z-index: 2;
     h1 {
@@ -76,31 +108,46 @@
       text-align: center;
     }
     p {
-      margin-top: 25px;
+      margin-top: 15px;
       color: gray;
       text-align: center;
+      line-height: 24px;
     }
-    [id*="center-"] {
-      position: relative;
-      background-color: #7289da;
-      color: white;
-      top: 30px;
-      left: 31.5%;
-      padding: 15px 75px;
-      border: 0;
-      font-size: 16px;
-    }
-    #center-button {
-      top: 40px;
-      font-family: inherit;
-      font-size: 14px;
-    }
+    div {
+      margin: 30px auto;
+      width: 530px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .center {
+        position: relative;
+        background-color: #7289da;
+        color: white;       
+        padding: 13px 50px;
+        width: 145px;
+        border: 0;
+        border-radius: 3px;
+        font-size: 16px;
+        text-align: center;
+      }
+      .center:hover {
+        top: 2px;
+      }
+      .left {
+        background-color: white;
+        color: black; 
+      }
+      .button {
+        font-family: inherit;
+      }
+    }    
   }
 
   #splash-graphic {
     position: relative;
-    width: 72%;
+    width: 1325px;
     height: 800px;
+    margin: 0 auto;
     @keyframes float {
       0% { transform: translate3d(0,-5px,0); }
       100% { transform: translate3d(0,5px,0); }
@@ -116,14 +163,13 @@
       position: absolute;
       width: 95px;
       height: 95px;
-      top: 397px;
-      right: 60px;
+      top: 50%;
+      right: 24.5%;
     }
     img[id="splash-image"] {
       position: absolute;
       display: block;
       top: 243px;
-      left: 263px;
     }    
     img[id*="splash-coin"] {
       position: absolute;
@@ -131,22 +177,22 @@
       height: 80x;
     }
     img[id="splash-coin-1"] {
-      top: 270px;
-      right: 245px;     
+      top: 34%;
+      right: 38%;     
     }
     img[id="splash-bomb"] {
       position: absolute;
       z-index: 2;
       width: 92px;
       height: 82px;
-      top: 470px;
-      left: 438px;
+      top: 58%;
+      left: 14%;
       animation-delay: 1.4s;
     }
     img[id="splash-coin-2"] {
       z-index: 3;
-      top: 500px;
-      left: 490px;
+      top: 63%;
+      left: 18%;
     } 
   }
 
@@ -214,6 +260,10 @@
       font-size: 16px;
       font-family: inherit;
       height: 15px;
+    }
+    a:hover {
+      position: relative;
+      bottom: 1px;
     }
 
   }
