@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     editUser: (user) => dispatch(editUser(user)),
-    deleteAccount: (user) => dispatch(deleteUser(user))
+    deleteAccount: (user) => dispatch(deleteUser(user)),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserForm)

@@ -10,7 +10,15 @@ class Api::SessionsController < ApplicationController
         login(@user)
         render 'api/users/show'
     else
-        render json: ["Password does not match"], status: 401
+      pw_error = "This field is required" if params[:user][:password] == ""
+      email_error = "This field is required" if params[:user][:email] == ""
+      if pw_error && email_error
+        render json: {email: email_error, password: pw_error}, status: 401
+      elsif email_error
+        render json: {email: email_error}, status: 401
+      else
+        render json: {password: "Password does not match"}, status: 401
+      end
     end
 
   end

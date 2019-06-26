@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status:422
+      render json: @user.errors, status:422
     end
   end
 
@@ -23,8 +23,6 @@ class Api::UsersController < ApplicationController
       else
         render json: @user.errors.full_messages, status:422 
       end
-    else
-      render json: ["invalid user"], status:401
     end
   end
 
@@ -34,8 +32,6 @@ class Api::UsersController < ApplicationController
       current_user.destroy
       session[:session_token] = nil
       render :show
-    else
-      render json: ["user not found"], status:401
     end
   end
 

@@ -14,6 +14,10 @@ class UserForm extends React.Component {
     this.showErrors = this.showErrors.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     this.props.formCallback(this.state)
@@ -26,12 +30,23 @@ class UserForm extends React.Component {
     }
   }
 
-  showErrors() {
-    let errors = this.props.errors;
-    if (errors) {
-      return <ul>
-        {errors.map((err, i) => <li key={i}>{err}</li>)}
-      </ul>
+  showErrors(key) {
+    let errors = this.props.errors[key];
+    const label = document.getElementById(`${key}-label`);
+    const input = document.getElementById(`${key}-input`);
+    if (errors) {      
+      label.classList.add("red-text")
+      input.classList.add("red-border")
+      if (errors[0] === "can't be blank") {   
+        return <span>- This field is required</span>
+      } else if (errors[0] === "has already been taken") {
+        return <span>- You already have an account</span>
+      } else {
+        return <span>- {errors}</span>
+      }
+    } else if (label && input) {
+      label.classList.remove("red-text");
+      input.classList.remove("red-border");
     }
   }
 
@@ -51,27 +66,35 @@ class UserForm extends React.Component {
         
         <section>
           <h1>{formType === "login" ? "Welcome Back!" : "Create an account"}</h1>
-          {formType === "login" && <p>We're so excited to see you again!</p>}
-          {this.showErrors()}
+          {formType === "login" && <p>We're not excited to see you again.</p>}
           
           <form onSubmit={this.handleSubmit}>
-            <label>EMAIL
-              <input type="text" value={this.state.email} onChange={this.changeInput("email")} />
+            <label id="email-label">EMAIL {this.showErrors("email")}
+              <input id="email-input" type="email" value={this.state.email} onChange={this.changeInput("email")} />
             </label>
 
             { formType === "register" && (
-              <label>USERNAME
-                <input type="text" value={this.state.username} onChange={this.changeInput("username")} />
+              <label id="username-label">USERNAME {this.showErrors("username")}
+                <input id="username-input" type="text" value={this.state.username} onChange={this.changeInput("username")} />
               </label>
             ) }
 
-            <label>PASSWORD
-              <input type="password" value={this.state.password} onChange={this.changeInput("password")} />
+            <label id="password-label">PASSWORD {this.showErrors("password")}
+              <input id="password-input" type="password" value={this.state.password} onChange={this.changeInput("password")} />
             </label>
+
+            { formType === "login" && <Link to="/register">Forgot your password?</Link> }
 
             <input type="submit" value={this.props.formType === "login" ? "Login" : "Continue"} />
           </form>
           { link }
+          {formType === "register" && (
+            <p id="policy-notice">
+              By registering, you agree to Discord's &nbsp;
+              <a href="https://discordapp.com/terms">Terms of Service</a>&nbsp;and&nbsp;
+              <a href="https://discordapp.com/privacy">Privacy Policy</a>.
+            </p>
+          )}
         </section>  
       </div>
       

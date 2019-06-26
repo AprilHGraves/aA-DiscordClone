@@ -29,6 +29,7 @@
     left: 450px;
     background-color: #36393f;
     width: 485px;
+    border-radius: 5px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     box-sizing: border-box;
     padding: 40px 40px;
@@ -41,7 +42,7 @@
     }
     p {
       color: gray;
-      font-size: 16px;
+      font-size: 14px;
       margin-top: 10px;
       
     }
@@ -56,42 +57,70 @@
         color: lightgray;
         display:block;
         font-size: 12px;
-        font-weight: 700;
-        margin: 15px auto;
+        font-weight: 700;        
+        margin: 5px auto;
+        margin-top: 25px;
+        span {
+          font-size: 12px;
+          font-style: italic;
+          font-weight: 400;
+        }
       }
+      .red-text {
+        color: red;
+      }
+      
       input {
         box-sizing:border-box;
         width: 99%;
         height: 35px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 7px;
         color: white;
         background-color: rgba(0,0,0,.1);
-        border-color: rgba(0,0,0,.3);
+        border: 1px solid rgba(0,0,0,.3);
+        border-radius: 3px;
         padding: 10px;
       }
       input:hover {
-        border-color: black;
+        border: 1px solid black;
       }
+
       input:focus {
-        border-color: #7289da;
-        outline: none;
+        border: 1px solid #7289da;
       }
 
       input[type="submit"] {
-        margin-top: 30px;
+        margin-top: 22px;
         background-color: #7289da;
         color: white;
-        padding: 15px 76px;
+        padding: 13px 76px;
         border: 0;
         font-size: 16px;
         height: auto;
         text-align: center;
       }
+      input[type="submit"]:hover {
+        background-color: #677bc5;
+      }
+      .red-border {
+        border: 1px solid red;
+      }
     }
 
     a {
       color: #7289da;
+      font-size: 14px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #policy-notice {
+      font-size: 12px;
+      text-align: left;
+      margin-top: 20px;
+      a {
+        font-size: 12px;
+      }
     }
 
   }
