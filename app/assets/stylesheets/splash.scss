@@ -61,7 +61,6 @@
         border-color: white;
       }
     }
-
   }
 
   #splash-about {
@@ -69,6 +68,7 @@
     top: 15%;
     left: 33%;
     margin: 0 auto;
+    z-index: 2;
     h1 {
       color: white;
       font-size: 36px;
@@ -95,7 +95,6 @@
       font-family: inherit;
       font-size: 14px;
     }
-
   }
 
   #splash-graphic {
@@ -105,6 +104,13 @@
     @keyframes float {
       0% { transform: translate3d(0,-5px,0); }
       100% { transform: translate3d(0,5px,0); }
+    }
+    .animate-float {
+      animation-name: float;
+      animation-delay: .5s;
+      animation-duration: 1.5s;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
     }
     img[id="splash-disk"] {
       position: absolute;
@@ -118,26 +124,15 @@
       display: block;
       top: 243px;
       left: 263px;
-    }
-
-    .animate-float {
-      animation-name: float;
-      animation-delay: .5s;
-      animation-duration: 1.5s;
-      animation-direction: alternate;
-      animation-iteration-count: infinite;
-    }
-    
+    }    
     img[id*="splash-coin"] {
       position: absolute;
       width: 80px;
       height: 80x;
     }
-    
     img[id="splash-coin-1"] {
       top: 270px;
-      right: 245px;
-      
+      right: 245px;     
     }
     img[id="splash-bomb"] {
       position: absolute;
@@ -146,16 +141,13 @@
       height: 82px;
       top: 470px;
       left: 438px;
-      animation-delay: s;
+      animation-delay: 1.4s;
     }
     img[id="splash-coin-2"] {
       z-index: 3;
       top: 500px;
       left: 490px;
-    }
-
-    
-    
+    } 
   }
 
   hr {
@@ -181,7 +173,6 @@
         font-size: 14px;
         font-weight: 400;
       }
-      
       span,a {
         color: gray;
         display:block;
@@ -189,12 +180,8 @@
       a:hover {
         color: white;
         cursor: pointer;
-      }
-
-      
+      }    
     }
-    
-
   }
 
 
