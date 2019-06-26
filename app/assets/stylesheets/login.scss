@@ -23,17 +23,26 @@
     }
   }
 
+  .login {
+      top: 265px;
+    }
+
+    .register {
+      top: 230px;
+    }
+
   section {
     position: absolute;
-    top: 265px;
     left: 450px;
     background-color: #36393f;
-    width: 485px;
+    width: 480px;
     border-radius: 5px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     box-sizing: border-box;
     padding: 40px 40px;
     
+    
+
     h1 {
       color: white;
       text-align: center;

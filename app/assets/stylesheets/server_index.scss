@@ -1,0 +1,59 @@
+#server-index {
+  background-color: #202225;
+  width: 70px;
+  height: 949px;
+ 
+  li {
+    background-color: pink;
+    border-radius: 50%;
+    // overflow: hidden;
+    margin: 10px auto;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    p {
+      display: none;
+      background-color: black;
+      color: white;
+      position: absolute;
+      top: 10px;
+      left: 60px;
+      height: 20px;
+      padding: 7px;
+      font-size: 14px;
+      border-radius: 3px;
+      //TO DO: improve tag appearance
+    }
+  }
+
+  li:first-of-type {
+    background-color: #7289da;
+    border-radius: 35%;
+    img {
+      position: relative;
+      margin: 5px auto;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @keyframes expand {
+    0% { border-radius: 50%; }
+    100% { border-radius: 35% }
+  }
+
+  .animate-hover:hover {
+    animation-name: expand;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+
+  .active {
+    border: 1px solid red;
+  }
+
+  .show-name {
+    display: inline-block;
+  }
+}

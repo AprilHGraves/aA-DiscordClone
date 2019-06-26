@@ -13,9 +13,16 @@
  *= require_self
  */
 
+
  @import "./reset.scss"; 
+ body {
+   font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;;
+ }
+
  @import "./splash.scss";
  @import "./login.scss";
+ @import "./main_page.scss";
+ @import "./server_index.scss";
 
 
 

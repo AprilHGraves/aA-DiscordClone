@@ -64,7 +64,7 @@ class UserForm extends React.Component {
           <img src={window.logoTxtImg} className="logo-txt" />
         </div>
         
-        <section>
+        <section className={formType}>
           <h1>{formType === "login" ? "Welcome Back!" : "Create an account"}</h1>
           {formType === "login" && <p>We're not excited to see you again.</p>}
           

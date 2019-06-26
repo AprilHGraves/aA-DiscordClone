@@ -1,16 +1,15 @@
 import React from 'react';
-import ServerIndex from './server/server_index';
 import ChannelIndexContainer from './channel/channel_index_container';
+import ServerIndexContainer from './server/server_index_container';
+import ChannelShowContainer from './channel/channel_show_container';
 
 const MainPage = (props) => {
 
   return (
-    <section>
-      {/* server index */}
-      <ServerIndex />
+    <section id="main-page">
+      <ServerIndexContainer />
       <ChannelIndexContainer />
-      {/* channel index */}
-      {/* channel main */}
+      <ChannelShowContainer />
     </section>
   )
 };

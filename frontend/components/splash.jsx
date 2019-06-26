@@ -82,7 +82,7 @@ const Splash = (props) => {
       </nav>
       <section id="splash-about">
         <h1>It's time to ditch in-person interaction.</h1>
-        <p>Text chat application for recluses that's free, slightly secure, and is designed to work on your browser.<br/>Stop going outside everyday and hassling with people. Simplify your life.</p>
+        <p>Text chat application for recluses that's free, slightly secure, and designed to work on your browser.<br/>Stop going outside everyday and hassling with people. Simplify your life.</p>
         <div>
           <a href="https://discordapp.com" className="center left">Go to Discord</a>
           {link2}

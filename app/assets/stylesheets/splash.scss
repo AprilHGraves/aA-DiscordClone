@@ -103,13 +103,14 @@
   #splash-about {
     position: absolute;
     top: 15%;
-    left: 32.25%;
-    margin: 0 auto;
+    // left: 32.25%;
+    width: 80%;
+    margin: 0 10%;
     z-index: 2;
     h1 {
       color: white;
       font-size: 36px;
-      font-weight: 700px;
+      font-weight: 700;
       text-align: center;
     }
     p {
@@ -150,7 +151,7 @@
 
   #splash-graphic {
     position: relative;
-    width: 1325px;
+    max-width: 1325px;
     height: 800px;
     margin: 0 auto;
     @keyframes float {
