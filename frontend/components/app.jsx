@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SplashContainer from './splash_container';
-import LoginFormContainer from './user/login_form_container';
-import RegisterFormContainer from './user/register_form_container';
+import LoginFormContainer from './user_form/login_form_container';
+import RegisterFormContainer from './user_form/register_form_container';
 import MainPage from './main_page';
 
 const App = () => (
