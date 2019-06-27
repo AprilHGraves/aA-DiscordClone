@@ -49,10 +49,27 @@ class ServerIndex extends React.Component {
           {/* Example code for later iterating over servers and showing them */}
           <li id="aName" className="animate-hover" onClick={this.activate("aName")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <Link to="/channels/aName">
-              <img src={window.logo2Img} />
+              <img src="https://i.imgur.com/dnsY3cX.jpg" />
             </Link>
             <p>Pretend Server</p>
           </li>
+          {/* for testing scrolling */}
+          {/* <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li> */}
+
           <li id="show-server-form" className="animate-hover" onClick={this.showServerForm} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <span>+</span>
             <p>Add a Server</p>

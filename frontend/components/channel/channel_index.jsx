@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import EditFormContainer from '../user/edit_form_container';
+import UserSettingsContainer from '../settings/user_settings_container';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
@@ -10,11 +10,22 @@ class ChannelIndex extends React.Component {
     };
     this.showSettings = this.showSettings.bind(this);
     this.logout = this.logout.bind(this);
+    this.closeSettings = this.closeSettings.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.savedHeight) {
+      // TODO save scrolls for each server in state ui.scrollY
+    }
   }
 
   showSettings(event) {
     event.preventDefault();
-    this.setState({showSettings: !this.state.showSettings})
+    this.setState({showSettings: true});
+  }
+
+  closeSettings() {
+    this.setState({showSettings: false});
   }
 
   logout(event) {
@@ -24,25 +35,57 @@ class ChannelIndex extends React.Component {
 
   settings() {
     if (this.state.showSettings) {
-      return (
-        <section className="user-settings">
-          <nav>
-            <button onClick={this.logout}>Log Out</button>
-          </nav>
-          <EditFormContainer/>
-        </section>
-        
-      )
+      return <UserSettingsContainer closeSettings={this.closeSettings}/>
+    }
+  }
+
+  showName(show) {
+    return event => {
+      const id = event.currentTarget.id;
+      const el = document.querySelector(`#${id} p`);
+      if (show) {
+        el.classList.add("show-name");
+      } else {
+        el.classList.remove("show-name");
+      }
     }
   }
   
-
   render() {
+    const tag = this.props.user.tag;
+    const tagIdxStart = tag.indexOf("#");
+    const tagNum = tag.slice(tagIdxStart);
     return (
-      <section>
+      <section id="channel-index">
+        <div id="channel-top">
 
-        <section>
-          <button onClick={this.showSettings}>User Settings</button>
+        </div>
+        <div id="channel-box" className="scrollable">
+          <div>
+
+          </div>
+          <ul>
+            <li>a</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>a</li>
+          </ul>
+        </div>
+        <section id="user-bar">
+          <img src="https://i.imgur.com/AfO0Cmi.jpg" />
+          <div>
+            <p>{this.props.user.username}</p>
+            <p>{tagNum}</p>
+          </div>
+          <button id="cog" onClick={this.showSettings} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+            <i className='fas fa-cog'/>
+            <p>User Settings</p>
+          </button>
         </section>
         {this.settings()}
       </section>

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
-    padding: 17px 110px;
+    padding: 15px 110px;
 
     #header-left {
       display: flex;
@@ -27,7 +27,7 @@
       align-items: center;
       padding-left: 15px;
       width: 75%;
-      font-size: 14px;
+      font-size: 12px;
       button, span {
         border: none;
         background-color: inherit;
@@ -76,7 +76,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-right: 83px;    
+      margin-right: 81px;    
       color: lightgray;
       text-align: center;
       i {
@@ -87,11 +87,11 @@
       a:last-of-type {
         border: 2px solid lightgray;
         border-radius: 20px;
-        padding: 4px 10px;
-        padding-top: 6px;
+        padding: 6px 10px;
+        padding-top: 4px;
         height: 18px;
         width: 45px;
-        font-size: 14px;
+        font-size: 13px;
       }
       a:hover {
         color: white;
@@ -109,7 +109,7 @@
     z-index: 2;
     h1 {
       color: white;
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 700;
       text-align: center;
     }
@@ -133,7 +133,7 @@
         width: 145px;
         border: 0;
         border-radius: 3px;
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
       }
       .center:hover {
@@ -210,11 +210,12 @@
   #splash-info {
     width: 83%;
     margin: 30px auto;
-    margin-top: 125px;
+    margin-top: 225px;
     display: flex;
     justify-content: space-between;
     img {
       border: 0;
+      margin-top: 11px;
       width: 35px;
       height: 35px;
     }
@@ -222,12 +223,13 @@
       h3 {
         color: white;
         margin-bottom: 15px;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
       }
       span,a {
         color: gray;
         display:block;
+        font-size: 12px;
       }
       a:hover {
         color: white;
@@ -249,7 +251,7 @@
       h2 {
         color: white;
         font-weight: 400;
-        font-size: 28px;
+        font-size: 25px;
         margin-bottom: 5px;
       }
       p {
@@ -261,10 +263,12 @@
     a {
       background-color: #7289da;
       color: white;
-      padding: 15px 15px;
+      padding: 17px 17px;
+      padding-top: 13px;
       border: 0;
-      font-size: 16px;
+      font-size: 14px;
       font-family: inherit;
+      border-radius: 3px;
       height: 15px;
     }
     a:hover {

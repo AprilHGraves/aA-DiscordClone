@@ -1,0 +1,83 @@
+#channel-index {
+  background-color: #2f3136;
+  color: #8e9297;
+  width: 240px;
+  height: 949px;
+  #channel-top {
+    height: 5%;
+    border-bottom: 1px solid rgba(0,0,0,.3);
+  }
+  #channel-box {
+    height: 89%;
+    div {
+      height: 190px;
+      border-bottom: 1px solid rgba(0,0,0,.3); // TODO: remove later
+    }
+
+  }
+
+  #user-bar {
+    background-color: rgba(32,34,37,.3);
+    height: 5.75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      margin-right: 10px;
+      position: relative;
+      padding: 3px;
+      border-radius: 3px;
+      i {
+        color: lightgray;
+        width: 25px;
+        text-align: center;
+        margin: 5px auto;
+      }
+      p {
+        display: none;
+        position: absolute;
+        background-color: black;
+        text-align: center;
+        color: white;
+        border-radius: 3px;
+        padding: 7px 0px;
+        left: -35px;
+        bottom: 40px;
+        width: 100px;
+        font-size: 12px;
+      }
+    }
+    button:hover {
+      background-color: rgba(0,0,0,.3);
+    }
+    .show-name {
+      display: inline-block;
+    }
+    
+    img {
+      border-radius: 50%;
+      position: relative;
+      margin-left: 12px;
+      margin-right: 10px;
+      width: 32px;
+      height: 32px;
+    }
+    div {
+      width: 150px;
+      p:first-of-type {
+        color: white;
+        font-size: 12px;
+      }
+      p:last-of-type {
+        font-size: 10px;
+      }
+    }
+    
+  }
+}
+#user-settings {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  
+}

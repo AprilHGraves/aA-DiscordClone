@@ -18,10 +18,16 @@ class Api::UsersController < ApplicationController
   def update
     if current_user && params[:id].to_i == current_user.id
       @user = current_user
-      if @user.update_attributes(user_params)
-        render :show 
+      errors = {}
+      if params["oldPW"].length > 0 || params["newPW"].length > 0
+        @user.change_password!(params["oldPW"], params["newPW"])
+        errors = @user.errors.messages.dup
+      end
+      if @user.update_attributes(user_params) && errors.empty?
+        render :show
       else
-        render json: @user.errors.full_messages, status:422 
+        all_errors = @user.errors.messages.merge(errors)
+        render json: all_errors, status:422 
       end
     end
   end

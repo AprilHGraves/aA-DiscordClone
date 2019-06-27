@@ -18,6 +18,21 @@ class User < ApplicationRecord
     self.password_digest = BCrypt::Password.create(pw)
   end
 
+  def change_password!(old_pw, new_pw)
+    if new_pw.instance_of?(String) && new_pw.length > 0 
+      if is_password?(old_pw)
+        self.password_digest = BCrypt::Password.create(new_pw)
+        self.save
+        return true
+      else
+        errors.add(:old_password, "Password does not match")
+      end
+    else
+      errors.add(:new_password, "This is invalid")
+    end
+    nil
+  end
+
   def is_password?(pw)
     BCrypt::Password.new(self.password_digest).is_password?(pw)
   end

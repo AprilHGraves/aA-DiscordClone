@@ -23,10 +23,50 @@
   overflow-y: scroll;
  }
 
+ .scrollable::-webkit-scrollbar {
+   width: 5px;
+ }
+
+ .scrollable::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  border-radius: 10px;
+ }
+
+ form {   
+  label {
+    font-weight: 700;
+    span {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+  input {
+    box-sizing:border-box;
+    color: white;
+    background-color: rgba(0,0,0,.1);
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 3px;
+    padding: 10px;
+  }
+  input:hover {
+    border: 1px solid black;
+  }
+  input:focus {
+    border: 1px solid #7289da;
+  }  
+  .red-border {
+    border: 1px solid red;
+  }
+}
+
  @import "./splash.scss";
  @import "./login.scss";
  @import "./main_page.scss";
  @import "./server_index.scss";
+ @import "./channel_index.scss";
+ @import "./channel_show.scss";
+ @import "./user_settings.scss";
 
 
 

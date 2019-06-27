@@ -7,7 +7,7 @@ import RegisterFormContainer from './user/register_form_container';
 import MainPage from './main_page';
 
 const App = () => (
-  <div>
+  <div id="app">
     
     
     <Switch>

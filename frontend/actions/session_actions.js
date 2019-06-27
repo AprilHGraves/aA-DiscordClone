@@ -24,8 +24,8 @@ export const signup = user => dispatch => (
     .then(user => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const editUser = user => dispatch => (
-  ApiUtil.patchUser(user)
+export const editUser = (id, user, oldPW, newPW) => dispatch => (
+  ApiUtil.patchUser(id, user, oldPW, newPW)
     .then(user => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 

@@ -1,16 +1,15 @@
 import { connect } from "react-redux";
-import { logout } from "../../actions/session_actions";
 import ChannelIndex from "./channel_index";
 
 
 const mapStateToProps = (state) => {
   return {
+    user: state.entities.users[state.session.id]
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout()),
   }
 }
 

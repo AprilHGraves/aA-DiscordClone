@@ -8,18 +8,20 @@
   width: 90px;
   height: 949px;
   li {
-    background-color: pink;
     border-radius: 50%;
     margin: 10px auto;
-    margin-right: 15px;
+    margin-right: 25px;
     width: 50px;
     height: 50px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     p {
       display: none;
       background-color: black;
       color: white;
       position: absolute;
-      padding-bottom: -200px;
       left: 70px;
       height: 20px;
       padding: 7px;
@@ -32,20 +34,15 @@
   li:first-of-type {
     background-color: #7289da;
     border-radius: 35%;
-    overflow-x: visible;
     img {
       position: relative;
       margin: 5px auto;
-      top: 5px;
       width: 40px;
       height: 40px;
     }
   }
   li:last-of-type {
     background-color:#292b2f;
-    display: flex;
-    justify-content: center;
-    align-content: center;
     span {
       font-size: 36px;
       color: #43b581;
@@ -53,6 +50,7 @@
   }
   li:last-of-type:hover {
     background-color: #43b581;
+    cursor: pointer;
     span {
       color: white;
     }

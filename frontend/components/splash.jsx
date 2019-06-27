@@ -123,15 +123,16 @@ const Splash = (props) => {
         </div>
         <div>
           <h3>Technologies</h3>
-          <span>Ruby on Rails</span>
           <span>JS / Javascript</span>
-          <span>React, Redux</span>
           <span>PostgreSQL</span>
+          <span>React, Redux</span>
+          <span>Ruby on Rails</span>
         </div>
         <div>
           <h3>Assets</h3>
-          <a href="http://fontawesome.com">Font Awesome</a>
           <a href="http://discordapp.com">Discord Images</a>
+          <a href="http://fontawesome.com">Font Awesome</a>
+          <a href="https://fonts.google.com/">Google Fonts</a>
         </div>
       </section>
       <hr />
