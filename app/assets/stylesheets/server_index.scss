@@ -1,14 +1,17 @@
+#server-index-container {
+  width: 70px;
+  overflow: hidden;
+}
+
 #server-index {
   background-color: #202225;
-  width: 70px;
+  width: 90px;
   height: 949px;
- 
   li {
     background-color: pink;
     border-radius: 50%;
-    // overflow: hidden;
     margin: 10px auto;
-    position: relative;
+    margin-right: 15px;
     width: 50px;
     height: 50px;
     p {
@@ -16,24 +19,42 @@
       background-color: black;
       color: white;
       position: absolute;
-      top: 10px;
-      left: 60px;
+      padding-bottom: -200px;
+      left: 70px;
       height: 20px;
       padding: 7px;
       font-size: 14px;
       border-radius: 3px;
-      //TO DO: improve tag appearance
+      //TO DO: improve tag appearance and fix positioning
     }
   }
 
   li:first-of-type {
     background-color: #7289da;
     border-radius: 35%;
+    overflow-x: visible;
     img {
       position: relative;
       margin: 5px auto;
+      top: 5px;
       width: 40px;
       height: 40px;
+    }
+  }
+  li:last-of-type {
+    background-color:#292b2f;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    span {
+      font-size: 36px;
+      color: #43b581;
+    }
+  }
+  li:last-of-type:hover {
+    background-color: #43b581;
+    span {
+      color: white;
     }
   }
 
@@ -50,10 +71,11 @@
   }
 
   .active {
-    border: 1px solid red;
+    outline: 1px solid red;
   }
 
   .show-name {
     display: inline-block;
+    
   }
 }

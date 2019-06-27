@@ -19,6 +19,10 @@
    font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;;
  }
 
+ .scrollable {
+  overflow-y: scroll;
+ }
+
  @import "./splash.scss";
  @import "./login.scss";
  @import "./main_page.scss";

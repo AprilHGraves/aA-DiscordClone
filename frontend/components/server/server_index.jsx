@@ -32,23 +32,34 @@ class ServerIndex extends React.Component {
     }
   }
 
+  showServerForm() {
+    
+  }
+
   render() {
     return (
-      <ul id="server-index">
-        <li id="Home" onClick={this.activate("Home")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
-          <Link to="/channels/@me">
-            <img src={window.logo2Img} alt="Home" />
-          </Link>
-          <p>Home</p>
-        </li>
-        {/* Example code for later iterating over servers and showing them
-        <li id="aName" className="animate-hover" onClick={this.activate("aName")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
-          <Link to="/channels/aName">
-            <img src={window.logo2Img} alt="aName" />
-          </Link>
-          <p>Pretend Server</p>
-        </li> */}
-      </ul>
+      <div id="server-index-container" className="scroll-container">
+        <ul id="server-index" className="scrollable">
+          <li id="Home" onClick={this.activate("Home")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+            <Link to="/channels/@me">
+              <img src={window.logo2Img} />
+            </Link>
+            <p>Home</p>
+          </li>
+          {/* Example code for later iterating over servers and showing them */}
+          <li id="aName" className="animate-hover" onClick={this.activate("aName")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+            <Link to="/channels/aName">
+              <img src={window.logo2Img} />
+            </Link>
+            <p>Pretend Server</p>
+          </li>
+          <li id="show-server-form" className="animate-hover" onClick={this.showServerForm} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+            <span>+</span>
+            <p>Add a Server</p>
+          </li>
+        </ul>
+      </div>
+      
     )
   }
 }
