@@ -2,6 +2,11 @@ class Api::ServersController < ApplicationController
 
   before_action :require_login
 
+  def index
+    @servers = current_user.servers
+    render json: @servers
+  end
+
   def show
     @server = Server.find_by(id: params[:id])
     render :show

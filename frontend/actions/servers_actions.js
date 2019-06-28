@@ -2,6 +2,7 @@ import * as ApiUtil from '../util/server_api_util';
 import { receiveErrors } from "./errors_actions";
 
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
+export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
 export const REMOVE_SERVER = "REMOVE_SERVER";
 
 const receiveServer = server => ({
@@ -9,12 +10,21 @@ const receiveServer = server => ({
   server
 });
 
+const receiveServers = servers => ({
+  type: RECEIVE_SERVERS,
+  servers
+});
 
 //remove server from state.entities.servers
 const removeServer = serverId => ({
   type: REMOVE_SERVER,
   serverId
 });
+
+export const getServers = () => dispatch => (
+  ApiUtil.getServers()
+    .then(servers => dispatch(receiveServers(servers)))
+);
 
 export const postServer = server => dispatch => (
   ApiUtil.postServer(server)

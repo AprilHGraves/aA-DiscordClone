@@ -10,6 +10,10 @@ class ServerIndex extends React.Component {
     this.activate = this.activate.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getServers();
+  }
+
   activate(id) {
     return event => {
       const oldNode = document.getElementById(this.state.active);
@@ -40,19 +44,29 @@ class ServerIndex extends React.Component {
     return (
       <div id="server-index-container" className="scroll-container">
         <ul id="server-index" className="scrollable">
-          <li id="Home" onClick={this.activate("Home")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <li key="Home" id="Home" onClick={this.activate("Home")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <Link to="/channels/@me">
               <img src={window.logo2Img} />
             </Link>
             <p>Home</p>
           </li>
-          {/* Example code for later iterating over servers and showing them */}
-          <li id="aName" className="animate-hover" onClick={this.activate("aName")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
-            <Link to="/channels/aName">
-              <img src="https://i.imgur.com/dnsY3cX.jpg" />
-            </Link>
-            <p>Pretend Server</p>
-          </li>
+          {this.props.servers.map(server => {
+            return (
+              //put a letter in front and use id to ensure correct format for finding it using css selector (one word, starts with letter)
+              <li key={server.id} id={`a${server.id}`}
+                className="animate-hover" 
+                onClick={this.activate(`a${server.id}`)}
+                onMouseEnter={this.showName(true)}
+                onMouseLeave={this.showName(false)}
+              >
+                <Link to={`/channels/${server.id}`}>
+                  <img src="https://i.imgur.com/dnsY3cX.jpg" />
+                </Link>
+                <p>{server.name}</p>
+
+              </li>
+            )
+          })}
           {/* for testing scrolling */}
           {/* <li></li>
           <li></li>

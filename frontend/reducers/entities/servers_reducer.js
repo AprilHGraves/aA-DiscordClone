@@ -1,4 +1,4 @@
-import { RECEIVE_SERVER, REMOVE_SERVER } from "../../actions/session_actions";
+import { RECEIVE_SERVER, RECEIVE_SERVERS, REMOVE_SERVER } from "../../actions/servers_actions";
 
 
 const serversReducer = (state = {}, action) => {
@@ -6,6 +6,8 @@ const serversReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_SERVER:
       return Object.assign({}, state, { [action.server.id]: action.server})
+    case RECEIVE_SERVERS:
+      return action.servers
     case REMOVE_SERVER:
       const newObj = Object.assign({}, state);
       delete newObj[action.serverId];
