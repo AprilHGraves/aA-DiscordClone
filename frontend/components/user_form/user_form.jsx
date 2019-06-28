@@ -12,6 +12,7 @@ class UserForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeInput = this.changeInput.bind(this);
     this.showErrors = this.showErrors.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillUnmount() {
@@ -56,8 +57,8 @@ class UserForm extends React.Component {
       email: "demo_user@comcast.net",
       password: "demodemo",
     }
-    this.props.login(demoUser)
-      .then(() => props.history.push(`/channels/@me`));
+    this.props.formCallback(demoUser)
+      .then(() => this.props.history.push(`/channels/@me`));
   };
 
   render() {
