@@ -12,14 +12,14 @@ export const patchUser = (id, user, oldPW, newPW) => {
     url: `/api/users/${id}`,
     data: { user, oldPW, newPW }
   })
-}
+};
 
 export const deleteUser = user => {
   return $.ajax({
-    method: `DELETE`,
+    method: 'DELETE',
     url: `/api/users/${user.id}`
   })
-}
+};
 
 export const postSession = user => {
   return $.ajax({
@@ -27,11 +27,11 @@ export const postSession = user => {
     url: 'api/session',
     data: { user }
   })
-}
+};
 
 export const deleteSession = () => {
   return $.ajax({
     method: "DELETE",
     url: '/api/session'
   })
-}
+};

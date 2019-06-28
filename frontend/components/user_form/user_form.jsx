@@ -50,6 +50,16 @@ class UserForm extends React.Component {
     }
   }
 
+  demoLogin(event) {
+    event.preventDefault();
+    const demoUser = {
+      email: "demo_user@comcast.net",
+      password: "demodemo",
+    }
+    this.props.login(demoUser)
+      .then(() => props.history.push(`/channels/@me`));
+  };
+
   render() {
     const formType = this.props.formType;
     const link = formType === "login" ? (
@@ -59,10 +69,10 @@ class UserForm extends React.Component {
     );
     return (
       <div id="login-page">
-        <div id="login-logo">
+        <Link id="login-logo" to="/">
           <img src={window.logoImg} className="logo" />
           <img src={window.logoTxtImg} className="logo-txt" />
-        </div>
+        </Link>
         
         <section className={formType}>
           <h1>{formType === "login" ? "Welcome Back!" : "Create an account"}</h1>
@@ -83,7 +93,7 @@ class UserForm extends React.Component {
               <input id="password-input" type="password" value={this.state.password} onChange={this.changeInput("password")} />
             </label>
 
-            { formType === "login" && <Link to="/register">Forgot your password?</Link> }
+            { formType === "login" && <button id="demo-login" onClick={this.demoLogin}>Demo Login</button> }
 
             <input type="submit" value={this.props.formType === "login" ? "Login" : "Continue"} />
           </form>

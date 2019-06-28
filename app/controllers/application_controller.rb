@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   def not_found
     redirect_to root
   end
+
+  def require_login
+    redirect_to root unless current_user
+  end
 end

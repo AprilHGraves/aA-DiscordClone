@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import UserForm from "./user_form";
-import { login, RECEIVE_ERRORS } from "../../actions/session_actions";
-
+import { login } from "../../actions/session_actions";
+import { clearErrors } from "../../actions/errors_actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     formCallback: (user) => dispatch(login(user)),
-    clearErrors: () => dispatch({ type: RECEIVE_ERRORS, errors: {} })
+    clearErrors: () => dispatch(clearErrors())
   }
 }
 

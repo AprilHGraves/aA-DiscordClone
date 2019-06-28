@@ -89,11 +89,11 @@
       color: red;
     }
     
-    a {
+    a, #demo-login {
       color: #7289da;
       font-size: 14px;
     }
-    a:hover {
+    a:hover, #demo-login:hover {
       text-decoration: underline;
     }
     #policy-notice {

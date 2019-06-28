@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_173309) do
+ActiveRecord::Schema.define(version: 2019_06_28_143542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "server_invites", force: :cascade do |t|
+    t.string "code", null: false
+    t.integer "uses", null: false
+    t.integer "max_uses"
+    t.datetime "expire_date"
+    t.integer "server_id", null: false
+    t.integer "inviter_id", null: false
+    t.integer "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_server_invites_on_channel_id"
+    t.index ["code"], name: "index_server_invites_on_code", unique: true
+    t.index ["inviter_id"], name: "index_server_invites_on_inviter_id"
+    t.index ["server_id"], name: "index_server_invites_on_server_id"
+  end
+
+  create_table "server_memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "nickname"
+    t.integer "server_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_server_memberships_on_server_id"
+    t.index ["user_id", "server_id"], name: "index_server_memberships_on_user_id_and_server_id", unique: true
+  end
+
+  create_table "servers", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_servers_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false

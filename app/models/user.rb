@@ -7,6 +7,25 @@ class User < ApplicationRecord
   validates :tag, :email, :session_token, uniqueness:true
   validates :password, length: {minimum:1, allow_nil:true, message: "can't be blank"}
 
+
+  has_many :owned_servers,
+    primary_key: :id,
+    foreign_key: :owner_id,
+    class_name: :Server
+
+  has_many :server_memberships,
+    dependent: :destroy,
+    class_name: :ServerMembership
+
+  has_many :servers,
+    through: :server_memberships,
+    source: :server
+
+  has_many :invites,
+    class_name: :ServerInvite,
+    foreign_key: :inviter_id,
+    dependent: :destroy
+
   def self.find_by_credentials(email, pw)
     user = User.find_by(email: email)
     return user if user && user.is_password?(pw)
