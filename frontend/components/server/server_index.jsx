@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ServerAddContainer from './server_add_container';
 
 class ServerIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: "Home"
+      active: "aHome",
+      showServerAdd: false
     };
     this.activate = this.activate.bind(this);
+    this.showComponent = this.showComponent.bind(this);
+    this.closeComponent = this.closeComponent.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +24,7 @@ class ServerIndex extends React.Component {
       oldNode.classList.remove("active");
       const newNode = document.getElementById(id);
       newNode.classList.add("active");
+      this.props.focusServer(id.slice(1));
       this.setState({ active: id });
     }
   }
@@ -36,15 +41,31 @@ class ServerIndex extends React.Component {
     }
   }
 
-  showServerForm() {
-    
+  showComponent(key) {
+    return event => {
+      event.preventDefault();
+      this.setState({ [key]: true });
+    }
+  }
+
+  closeComponent(key) {
+    return () => {
+      this.setState({ [key]: false });
+    }
+  }
+
+  anotherServer() {
+    if (this.state.showServerAdd) {
+      return <ServerAddContainer closeComponent={this.closeComponent("showServerAdd")} />
+    }
   }
 
   render() {
     return (
       <div id="server-index-container" className="scroll-container">
+        {this.anotherServer()}
         <ul id="server-index" className="scrollable">
-          <li key="Home" id="Home" onClick={this.activate("Home")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <li key="Home" id="aHome" onClick={this.activate("aHome")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <Link to="/channels/@me">
               <img src={window.logo2Img} />
             </Link>
@@ -84,7 +105,7 @@ class ServerIndex extends React.Component {
           <li></li>
           <li></li> */}
 
-          <li id="show-server-form" className="animate-hover" onClick={this.showServerForm} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <li id="show-server-form" className="animate-hover" onClick={this.showComponent("showServerAdd").bind(this)} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <span>+</span>
             <p>Add a Server</p>
           </li>

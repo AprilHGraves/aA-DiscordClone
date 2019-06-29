@@ -5,6 +5,13 @@ export const getServers = () => {
   })
 };
 
+export const getServerByLink = link => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/servers/link',
+    data: { link }
+  })
+}
 export const postServer = server => {
   return $.ajax({
     method: 'POST',
@@ -32,7 +39,7 @@ export const postServerMembership = server => {
   return $.ajax({
     method: 'POST',
     url: '/api/server_memberships',
-    data: { server }
+    data: { server_id: server.id }
   })
 }
 

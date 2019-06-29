@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :tag, :email, :session_token, uniqueness:true
   validates :password, length: {minimum:1, allow_nil:true, message: "can't be blank"}
 
+  has_one_attached :photo
 
   has_many :owned_servers,
     primary_key: :id,

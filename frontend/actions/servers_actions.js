@@ -21,6 +21,13 @@ const removeServer = serverId => ({
   serverId
 });
 
+export const joinServerByLink = (link) => dispatch => (
+  ApiUtil.getServerByLink(link)
+    .then(server => {
+      dispatch(joinServer(server));
+    }, errors => dispatch(receiveErrors(errors.responseJSON)))
+);
+
 export const getServers = () => dispatch => (
   ApiUtil.getServers()
     .then(servers => dispatch(receiveServers(servers)))

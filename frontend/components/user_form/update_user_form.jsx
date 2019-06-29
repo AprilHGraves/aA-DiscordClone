@@ -93,7 +93,7 @@ class UpdateUserForm extends React.Component {
 
   showEditForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="form-type-1">
         <div>
           <img src="https://i.imgur.com/AfO0Cmi.jpg" />
           <section>

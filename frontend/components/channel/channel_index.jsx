@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import UserSettingsContainer from '../settings/user_settings_container';
+import ServerAdd from '../server/server_add';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
@@ -8,9 +9,9 @@ class ChannelIndex extends React.Component {
     this.state = {
       showSettings: false
     };
-    this.showSettings = this.showSettings.bind(this);
+    this.showComponent = this.showComponent.bind(this);
     this.logout = this.logout.bind(this);
-    this.closeSettings = this.closeSettings.bind(this);
+    this.closeComponent = this.closeComponent.bind(this);
   }
 
   componentDidMount() {
@@ -19,13 +20,17 @@ class ChannelIndex extends React.Component {
     }
   }
 
-  showSettings(event) {
-    event.preventDefault();
-    this.setState({showSettings: true});
+  showComponent(key) {
+    return event => {
+      event.preventDefault();
+      this.setState({[key]: true});
+    }
   }
 
-  closeSettings() {
-    this.setState({showSettings: false});
+  closeComponent(key) {
+    return () => {
+      this.setState({[key]: false});
+    }
   }
 
   logout(event) {
@@ -35,7 +40,7 @@ class ChannelIndex extends React.Component {
 
   settings() {
     if (this.state.showSettings) {
-      return <UserSettingsContainer closeSettings={this.closeSettings}/>
+      return <UserSettingsContainer closeSettings={this.closeComponent("showSettings")}/>
     }
   }
 
@@ -58,7 +63,7 @@ class ChannelIndex extends React.Component {
     return (
       <section id="channel-index">
         <div id="channel-top">
-
+          <h1>{this.props.server.name}</h1>
         </div>
         <div id="channel-box" className="scrollable">
           <div>
@@ -82,7 +87,7 @@ class ChannelIndex extends React.Component {
             <p>{this.props.user.username}</p>
             <p>{tagNum}</p>
           </div>
-          <button id="cog" onClick={this.showSettings} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <button id="cog" onClick={this.showComponent("showSettings")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <i className='fas fa-cog'/>
             <p>User Settings</p>
           </button>

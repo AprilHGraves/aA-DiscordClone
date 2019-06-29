@@ -1,0 +1,160 @@
+#add-server-box {
+  background-color: white;
+  box-sizing: border-box;
+  position: relative;
+  width: 535px;
+  height: 420px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;  
+  h1 {
+    color: #7289da;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  #add-options div {
+    margin-top: 35px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    #show-create, #show-join {
+      height: 280px;
+      width: 218px;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 3px;
+    }
+    #show-create {
+      background-image: image-url("create-server.png");
+      margin-right: 15px;
+    }
+    #show-join {
+      background-image: image-url("join-server.png");
+    }
+    #or {
+      position: absolute;
+      left: 200px;
+      top: 120px;
+      background-image: image-url("or.png");
+      height: 51px;
+      width: 51px;
+    }
+  }
+  p {
+    text-align: center;
+    margin: 10px 45px;
+    color: rgba(0,0,0,.4)
+  }
+
+  
+
+  input {
+    border-bottom: 2px solid rgba(0,0,0,.07);
+  }
+  input:hover {
+    border-bottom: 2px solid rgba(0,0,0,.3);
+  }
+  input:focus {
+    border-bottom: 2px solid #7289da;
+  }
+  #create-server {
+    label {
+      font-size: 10px;
+      color: rgba(0,0,0,.6);
+      
+      input {
+        margin-top: 10px;
+        width: 250px;
+        font-weight: 400;
+        color: black;
+        font-size: 14px;
+      }
+    }
+    #center {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      #name-container {
+        width: 300px;
+        margin-left: 50px;
+        .red-text {
+          color: red;
+        }
+      }
+      #blue-circle {
+        width: 133px;
+        height: 133px;
+        border-radius: 50%;
+        background-color: #7289da;
+        border: 5px solid lightgray;
+        margin-right: 88px;
+      }
+    }
+    #form-bottom > input[type="submit"] {
+      background-color: #7289da;
+    }
+    #form-bottom > input[type="submit"]:hover {
+      background-color: #677bc5;
+    }
+    
+    
+  }
+  #join-server {
+    span.red-text {
+      color: red;
+    }
+    h1 {
+      color: #64b164;
+    }
+
+    p:last-of-type {
+      color: #677bc5;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    label {
+      margin: 0 0 30px 80px;
+      font-size: 10px;
+      color: rgba(0,0,0,.3);    
+    }
+
+    form > input {
+      width: 400px;
+      margin: 75px 80px;
+      margin-bottom: 0px;
+    }
+
+    #form-bottom > input[type="submit"] {
+      background-color: #64b164;
+    }
+    #form-bottom > input[type="submit"]:hover {
+      background-color: #549654;
+    }
+
+  }
+  #form-bottom {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    padding: 15px 37px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,.07);
+    button {
+      color: rgba(0,0,0,.4);
+    }
+    input[type="submit"] {
+      color: white;
+      padding: 9px 20px;
+      border: 0;
+      font-size: 16px;
+      height: auto;
+      text-align: center;      
+    }
+  }
+  
+}

@@ -79,7 +79,7 @@ class UserForm extends React.Component {
           <h1>{formType === "login" ? "Welcome Back!" : "Create an account"}</h1>
           {formType === "login" && <p>We're not excited to see you again.</p>}
           
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="form-type-1">
             <label id="email-label">EMAIL {this.showErrors("email")}
               <input id="email-input" type="email" value={this.state.email} onChange={this.changeInput("email")} />
             </label>

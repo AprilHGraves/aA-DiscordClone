@@ -1,6 +1,6 @@
 #channel-show {
   background-color: #36393f;
-  width: 83.25%;
+  max-width: 83.25%;
   height: 949px;
 
   #show-top {
@@ -13,13 +13,13 @@
 
   #show-bottom {
     height: 94.9%;
-    width: 100%;
+    width: 100%; // TODO fix scaling to prevent need for horizontal scroll
     display: flex;
     justify-content: space-between;
 
     #message-box {
       height: 100%;
-      width: 1303px;
+      width: 1304px;
       #message-center {
         height: 89.75%;
         width: 99.5%;
