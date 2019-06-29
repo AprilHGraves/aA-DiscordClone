@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     getServers: () => dispatch(getServers()),
-    getUsers: () => dispatch(getUsers()),
     focusServer: (id) => dispatch(focusServer(id))
   }
 }

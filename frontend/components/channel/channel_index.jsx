@@ -1,13 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import UserSettingsContainer from '../settings/user_settings_container';
-import ServerAdd from '../server/server_add';
+import ServerDropdownContainer from '../server/server_dropdown_container';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSettings: false
+      showSettings: false,
+      showServerDropdown: false
     };
     this.showComponent = this.showComponent.bind(this);
     this.logout = this.logout.bind(this);
@@ -44,6 +45,12 @@ class ChannelIndex extends React.Component {
     }
   }
 
+  serverDropdown() {
+    if (this.state.showServerDropdown) {
+      return <ServerDropdownContainer server={this.props.server} closeComponent={this.closeComponent("showServerDropdown")}/>
+    }
+  }
+
   showName(show) {
     return event => {
       const id = event.currentTarget.id;
@@ -62,12 +69,21 @@ class ChannelIndex extends React.Component {
     const tagNum = tag.slice(tagIdxStart);
     return (
       <section id="channel-index">
-        <div id="channel-top">
-          <h1>{this.props.server.name}</h1>
-        </div>
+        {this.props.server.name !== "Home" ? (
+          <button id="channel-top" onClick={this.showComponent("showServerDropdown")}>
+            <h1>{this.props.server.name}</h1>
+            <img src="https://discordapp.com/assets/779a770c34fcb823a598a7277301adaf.svg" />
+          </button>
+        ):(
+          <div id="channel-top">
+            <h1>Home</h1>
+          </div>
+        )}
+        {this.serverDropdown()}
+        
         <div id="channel-box" className="scrollable">
           <div>
-
+            {}
           </div>
           <ul>
             <li>a</li><li>a</li><li>a</li><li>a</li>

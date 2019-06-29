@@ -16,7 +16,6 @@ class ServerIndex extends React.Component {
 
   componentDidMount() {
     this.props.getServers();
-    this.props.getUsers();
   }
 
   activate(id) {
@@ -55,16 +54,10 @@ class ServerIndex extends React.Component {
     }
   }
 
-  anotherServer() {
-    if (this.state.showServerAdd) {
-      return <ServerAddContainer closeComponent={this.closeComponent("showServerAdd")} />
-    }
-  }
-
   render() {
     return (
       <div id="server-index-container" className="scroll-container">
-        {this.anotherServer()}
+        {this.state.showServerAdd && <ServerAddContainer closeComponent={this.closeComponent("showServerAdd")} />}
         <ul id="server-index" className="scrollable">
           <li key="Home" id="aHome" onClick={this.activate("aHome")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
             <Link to="/channels/@me">
