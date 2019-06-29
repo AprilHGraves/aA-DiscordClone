@@ -82,7 +82,7 @@ class ChannelIndex extends React.Component {
           </ul>
         </div>
         <section id="user-bar">
-          <img src="https://i.imgur.com/AfO0Cmi.jpg" />
+          <img src={this.props.user.image_url} />
           <div>
             <p>{this.props.user.username}</p>
             <p>{tagNum}</p>

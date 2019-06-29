@@ -18,7 +18,8 @@
           "id": <%= current_user.id %>,
           "username": "<%= current_user.username %>",
           "tag": "<%= current_user.tag %>",
-          "email": "<%= current_user.email %>"
+          "email": "<%= current_user.email %>",
+          "image_url": "<%= current_user.photo && url_for(current_user.photo) || image_url('logo2.png') %>"
           
         });
       </script>

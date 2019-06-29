@@ -39,7 +39,7 @@ export const postServer = server => dispatch => (
 );
 
 export const updateServer = server => dispatch => (
-  ApiUtil.updateServer(server)
+  ApiUtil.patchServer(server)
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 

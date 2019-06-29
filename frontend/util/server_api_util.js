@@ -20,7 +20,7 @@ export const postServer = server => {
   })
 };
 
-export const patchUser = (id, server) => {
+export const patchServer = (id, server) => {
   return $.ajax({
     method: 'PATCH',
     url: `/api/servers/${id}`,

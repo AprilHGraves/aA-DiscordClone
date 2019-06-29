@@ -95,7 +95,7 @@ class UpdateUserForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className="form-type-1">
         <div>
-          <img src="https://i.imgur.com/AfO0Cmi.jpg" />
+          <img src={this.props.user.image_url} />
           <section>
             <label id="username-label">USERNAME {this.showErrors("username")}
               <input id="username-input" type="text" value={this.state.username} onChange={this.changeInput("username")} />
@@ -136,7 +136,7 @@ class UpdateUserForm extends React.Component {
     const tagNum = tag.slice(tagIdxStart);
     return (
       <section id="show-user-info">
-        <img src="https://i.imgur.com/AfO0Cmi.jpg"/>
+        <img src={this.props.user.image_url}/>
         <div id="show-user-info-center">
           <div>
             <h2>USERNAME</h2>
