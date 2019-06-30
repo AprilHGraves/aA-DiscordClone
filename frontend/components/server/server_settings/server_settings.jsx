@@ -12,6 +12,7 @@ class ServerSettings extends React.Component {
     this.closeSettings = this.closeSettings.bind(this);
     this.unsavedChangesPresent = this.unsavedChangesPresent.bind(this);
     this.noUnsavedChanges = this.noUnsavedChanges.bind(this);
+    this.delServer = this.delServer.bind(this);
   }
 
   closeSettings(event) {
@@ -47,11 +48,6 @@ class ServerSettings extends React.Component {
         screen.classList.remove("shake");
         alertbox.classList.remove("redden");
       }, 1000);
-
-      // const alertBox = document.querySelector(".unsaved-changes");
-      // TODO bonus
-      //turn alert red
-      //shake screen
     }
   }
 
@@ -87,7 +83,8 @@ class ServerSettings extends React.Component {
   }
 
   delServer() {
-    this.props.destroyServer(this.props.server.id)
+    this.props.closeComponent();
+    this.props.destroyServer(this.props.server.id);
   }
 
   render() {

@@ -54,8 +54,9 @@ export const updateServer = (id, server) => dispatch => (
 
 export const destroyServer = serverId => dispatch => (
   deleteServer(serverId)
-    .then(serverId => {
-      dispatch(removeServer(serverId));
+    .then(payload => {
+      debugger;
+      dispatch(removeServer(payload.serverId));
       focusServer("@me");
     })
 );

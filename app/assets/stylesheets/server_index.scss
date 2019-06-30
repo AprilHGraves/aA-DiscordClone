@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    
     p {
       display: none;
       background-color: black;
@@ -28,8 +29,17 @@
       font-size: 14px;
       border-radius: 3px;
       z-index: 3;
-      //TO DO: improve tag appearance and fix positioning
     }
+  }
+  li:hover::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    height: 20px;
+    width: 15px;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: white;
   }
 
   li:first-of-type {
@@ -69,12 +79,20 @@
     animation-iteration-count: 1;
   }
 
-  .active-server {
-    outline: 1px solid red;
+  .active-server:before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    height: 45px;
+    width: 15px;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: white;
   }
 
   .show-name {
     display: inline-block;
     
   }
+  
 }
