@@ -1,0 +1,49 @@
+#game-bg {
+  background-image: image-url("invitation_bg.png");
+}
+
+#invalid-invite {
+  top: 280px;
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  div:first-of-type {
+    background-image: image-url("poop.png");
+    width: 200px;
+    height: 110px;
+  }
+  h1 {
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+  }
+  p {
+    color: gray;
+    font-size: 14px;
+    margin-top: 10px;
+    
+  }
+  p:first-of-type {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  a {
+    margin-top: 22px;
+    background-color: #7289da;
+    color: white;
+    padding: 13px 76px;
+    font-size: 16px;
+    width: 400px;
+    text-align: center;
+    border-radius: 3px;
+  }
+  a:hover {
+    background-color: #677bc5;  
+  }
+}
+

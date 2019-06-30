@@ -35,11 +35,9 @@ class ServerAdd extends React.Component {
 
   showErrors(key) {
     let errors = this.props.errors[key];
-    if (this.props.errors.user_id) {
-      errors = "(You are already a member.)";
-    }
     const label = document.getElementById(`${key}-label`);
     if (errors) {
+      debugger;
       label.classList.add("red-text");
       if (errors[0] === "can't be blank") {
         return <span className="red-text">- This field is required</span>

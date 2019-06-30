@@ -1,4 +1,6 @@
-import * as ApiUtil from '../util/server_api_util';
+import { getServers, postServer, patchServer, deleteServer} from '../util/server_api_util';
+import { getServerByLink } from '../util/server_invite_api_util';
+import { postServerMembership, deleteServerMembership } from '../util/server_membership_api_util';
 import { receiveErrors } from "./errors_actions";
 
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
@@ -22,38 +24,38 @@ const removeServer = serverId => ({
 });
 
 export const joinServerByLink = (link) => dispatch => (
-  ApiUtil.getServerByLink(link)
+  getServerByLink(link)
     .then(server => {
       dispatch(joinServer(server));
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const getServers = () => dispatch => (
-  ApiUtil.getServers()
+export const fetchServers = () => dispatch => (
+  getServers()
     .then(servers => dispatch(receiveServers(servers)))
 );
 
-export const postServer = server => dispatch => (
-  ApiUtil.postServer(server)
+export const createServer = server => dispatch => (
+  postServer(server)
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const updateServer = server => dispatch => (
-  ApiUtil.patchServer(server)
+  patchServer(server)
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const deleteServer = server => dispatch => (
-  ApiUtil.deleteServer(server)
+export const destroyServer = server => dispatch => (
+  deleteServer(server)
     .then(serverId => dispatch(removeServer(serverId)))
 );
 
 export const joinServer = server => dispatch => (
-  ApiUtil.postServerMembership(server)
+  postServerMembership(server)
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const leaveServer = server => dispatch => (
-  ApiUtil.deleteServerMembership(server)
+  deleteServerMembership(server)
     .then(payload => dispatch(removeServer(payload.serverId)))
 );

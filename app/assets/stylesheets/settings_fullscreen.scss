@@ -1,0 +1,34 @@
+.settings-fullscreen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: #36393f;
+  .settings-left {
+    background-color: #2f3136;
+    width: 34.25%;
+    position: relative;    
+  }
+  .settings-right {
+    box-sizing: border-box;
+    width: 40%;
+    position: relative;
+    padding: 60px 40px;
+    #x-button {
+      position: absolute;
+      top: 60px;
+      right: -40px;
+      border: 2px solid gray;
+      border-radius: 50%;
+      color: white;
+      width: 32px;
+      height: 32px;
+      text-align: center;
+    }
+    #x-button:hover {
+      background-color: rgba(114,118,125,.3);
+    }
+  }  
+}

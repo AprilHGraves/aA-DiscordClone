@@ -26,9 +26,9 @@ class UserSettings extends React.Component {
 
   render() {
     return (
-      <section id="user-settings">
-        <div id="user-settings-left">
-          <section>
+      <section className="settings-fullscreen">
+        <div className="settings-left">
+          <section id="user-settings-left">
             {/* put title here in the future  */}
             <ul>
               <li><button id="logout" onClick={this.props.logout}>Log Out</button></li>
@@ -42,7 +42,7 @@ class UserSettings extends React.Component {
           </section>
           
         </div>
-        <div id="user-settings-right">
+        <div className="settings-right">
           {this.getPage()}
           <button id="x-button" onClick={this.closeSettings}>X</button>
         </div>

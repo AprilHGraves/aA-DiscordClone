@@ -7,21 +7,6 @@ class Api::ServersController < ApplicationController
     render :index
   end
 
-  def show
-    if params[:id] == "link"
-      server_invite = ServerInvite.find_by(code: params[:link])
-      if server_invite
-        @server = server_invite.server
-        render :show
-      else
-        render json: {inviteLink: "(The instant invite is invalid or has expired.)"}, status:404
-      end
-    else
-      @server = Server.find_by(id: params[:id])
-      render :show
-    end
-  end
-
   def create
     @server = Server.new(server_params)
     @server.owner_id = current_user.id

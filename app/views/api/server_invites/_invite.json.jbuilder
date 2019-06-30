@@ -1,0 +1,1 @@
+json.extract! invite, :id, :code, :uses, :expire_date, :inviter_id, :server_id, :channel_id, :created_at

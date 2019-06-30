@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import ServerAdd from "./server_add";
 import { clearErrors } from "../../actions/errors_actions";
-import { joinServer, joinServerByLink, postServer } from "../../actions/servers_actions";
+import { joinServer, joinServerByLink, createServer } from "../../actions/servers_actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postServer: (server) => dispatch(postServer(server)),
+    postServer: (server) => dispatch(createServer(server)),
     joinServer: (server) => dispatch(joinServer(server)),
     clearErrors: () => dispatch(clearErrors()),
     joinServerByLink: link => dispatch(joinServerByLink(link))

@@ -1,19 +1,18 @@
 import { connect } from "react-redux";
 import UserForm from "./user_form";
-import { signup } from "../../actions/session_actions";
-import { clearErrors } from "../../actions/errors_actions";
-
+import { login } from "../../../actions/session_actions";
+import { clearErrors } from "../../../actions/errors_actions";
 
 const mapStateToProps = (state) => {
   return {
     errors: state.errors,
-    formType: 'register'
+    formType: 'login'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    formCallback: (user) => dispatch(signup(user)),
+    formCallback: (user) => dispatch(login(user)),
     clearErrors: () => dispatch(clearErrors())
   }
 }

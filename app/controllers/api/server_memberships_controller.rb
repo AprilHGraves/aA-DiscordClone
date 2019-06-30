@@ -13,6 +13,15 @@ class Api::ServerMembershipsController < ApplicationController
     end
   end
 
+  def patch
+    @sm = ServerMembership.find_by(id: params[:id])
+    if @sm.update_attributes(nickname: params[:nickname])
+      render :show
+    else
+      render json: @sm.errors, status:422
+    end
+  end
+
   def destroy
     sm = ServerMembership.find_by(id: params[:id])
     if sm

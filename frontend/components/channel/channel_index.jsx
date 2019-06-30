@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import UserSettingsContainer from '../settings/user_settings_container';
+import UserSettingsContainer from '../user/user_settings/user_settings_container';
 import ServerDropdownContainer from '../server/server_dropdown_container';
 
 class ChannelIndex extends React.Component {

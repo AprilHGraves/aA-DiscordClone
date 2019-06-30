@@ -19,4 +19,12 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to root unless current_user
   end
+
+  def invite_valid?(invite)
+    if (invite.max_uses && invite.uses >= invite.max_uses) || (invite.expire_date && Time.now > invite.expire_date)
+      invite.destroy
+      return false
+    end
+    true
+  end
 end

@@ -1,200 +1,167 @@
-#user-settings {
+#user-settings-left {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
+  top: 50px;
+  right: 25px;
+  width: 175px;
+  height: 720px;
+  box-sizing: border-box;
   display: flex;
-  background-color: #36393f;
-  #user-settings-left {
-    background-color: #2f3136;
-    width: 34.25%;
-    position: relative;
-    section {
-      position: absolute;
-      top: 50px;
-      right: 25px;
-      width: 175px;
-      height: 720px;
-      box-sizing: border-box;
+  flex-direction: column;
+  justify-content: flex-end;     
+  color: rgba(255,255,255,.5);
+  ul {
+    width: 100%;
+    li {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 12px 0px;
+      font-size: 14px;
+    }
+  }
+  button#logout {
+    color: red;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  button#logout:hover {
+    background-color: rgba(255,0,0,.1);
+  }
+  i {
+    margin-right: 10px;
+    font-size: 18px
+  }
+  i:last-of-type {
+    font-weight: 700;
+  }
+  a:hover {
+    color: white;
+  }
+}
+
+#my-account {
+  h1 {
+    color: white;
+    margin-bottom: 24px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #update-user-form {
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 7px;
+    img {
+      width: 99px;
+      height: 99px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    #show-user-info {
+      background-color: rgba(0,0,0,.2);
+      padding: 20px 23px;
+      position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;     
-      color: rgba(255,255,255,.5);
-      ul {
-        width: 100%;
-        li {
-          border-top: 1px solid rgba(255,255,255,.1);
-          padding: 12px 0px;
-          font-size: 14px;
-        }
-      }
-      button#logout {
-        color: red;
-        width: 100%;
-        padding: 5px;
-        border-radius: 5px;
-      }
-      button#logout:hover {
-        background-color: rgba(255,0,0,.1);
-      }
-      i {
-        margin-right: 10px;
-        font-size: 18px
-      }
-      i:last-of-type {
+      h2 {
+        font-size: 12px;
+        color: rgba(255,255,255,.4);
         font-weight: 700;
       }
-      a:hover {
-        color: white;
-      }
-    }
-  }
-  #user-settings-right {
-    box-sizing: border-box;
-    width: 40%;
-    position: relative;
-    padding: 60px 40px;
-
-    h1 {
-      color: white;
-      margin-bottom: 24px;
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    #update-user-form {
-      border: 1px solid rgba(0,0,0,.3);
-      border-radius: 7px;
-      img {
-        width: 99px;
-        height: 99px;
-        border-radius: 50%;
-        margin-right: 20px;
-      }
-      #show-user-info {
-        background-color: rgba(0,0,0,.2);
-        padding: 20px 23px;
-        position: relative;
-        display: flex;
-        h2 {
-          font-size: 12px;
-          color: rgba(255,255,255,.4);
-          font-weight: 700;
-        }
-        #show-user-info-center {
-          span {
-            color: rgba(255,255,255,.7);
-            font-size: 14px;
-          }
-          div:first-of-type {
-            margin-bottom: 15px;
-            span:last-of-type {
-              color: rgba(255,255,255,.4);
-            }
-          }
-        }
-        button {
-          position: absolute;
-          background-color: #7289da;
-          color: white;
-          width: 60px;
-          height: 30px;
-          border-radius: 3px;
-          text-align: center;
-          font-size: 12px;
-          right: 20px;
-          top: 20px;
-        }
-        button:hover {
-          background-color: #667bc5;
-        }
-      }
-
-      form {
-        background-color: rgba(0,0,0,.1);
-        padding: 20px 23px;
-        padding-bottom: 0px;
-        font-size: 14px;
-        label {
-          font-size: 12px;
+      #show-user-info-center {
+        span {
+          color: rgba(255,255,255,.7);
+          font-size: 14px;
         }
         div:first-of-type {
-          display:flex;
-          button {
-            color: white;
-            font-size: 12px;
+          margin-bottom: 15px;
+          span:last-of-type {
+            color: rgba(255,255,255,.4);
           }
-          button:hover {
-            text-decoration: underline;
-          }
-
-        }
-        input {
-          width: 99%;
-          height: 40px;
-          margin-top: 7px;
-          margin-bottom: 15px
-        }
-
-        input[type="submit"] {
-          box-sizing: border-box;
-          background-color: #43b581;
-          border: 1px solid rgba(0,0,0,.1);
-          width: 60px;
-          height: 30px;
-          margin: 0px;
-          padding: 0px;
-          text-align: center;
-        }
-        input[type="submit"]:hover {
-          background-color: #3ba174;
-        }
-        .red-text {
-          color: red;
         }
       }
-        
-      form > div:last-of-type {
-        border-top: 1px solid rgba(255,255,255,.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0px;
-        margin-top: 20px;
-      }
-      form > div > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 120px;
-      }
-      form > div > button {
-        border-radius: 3px;
-        border: 1px solid darkred;
-        padding: 5px 10px;
-        color: red;
+      button {
+        position: absolute;
+        background-color: #7289da;
+        color: white;
+        width: 60px;
         height: 30px;
+        border-radius: 3px;
+        text-align: center;
+        font-size: 12px;
+        right: 20px;
+        top: 20px;
+      }
+      button:hover {
+        background-color: #667bc5;
+      }
+    }
+
+    form {
+      background-color: rgba(0,0,0,.1);
+      padding: 20px 23px;
+      padding-bottom: 0px;
+      font-size: 14px;
+      label {
         font-size: 12px;
       }
-      form > div > button:hover {
-        border: 1px solid rgb(199, 1, 1);
+      div:first-of-type {
+        display:flex;
+        button {
+          color: white;
+          font-size: 12px;
+        }
+        button:hover {
+          text-decoration: underline;
+        }
+
+      }
+      input {
+        width: 99%;
+        height: 40px;
+        margin-top: 7px;
+        margin-bottom: 15px
+      }
+
+      input[type="submit"] {
+        box-sizing: border-box;
+        background-color: #43b581;
+        border: 1px solid rgba(0,0,0,.1);
+        width: 60px;
+        height: 30px;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+      }
+      input[type="submit"]:hover {
+        background-color: #3ba174;
+      }
+      .red-text {
+        color: red;
       }
     }
-    #x-button {
-      position: absolute;
-      top: 60px;
-      right: -40px;
-      border: 2px solid gray;
-      border-radius: 50%;
-      color: white;
-      width: 32px;
-      height: 32px;
-      text-align: center;
+      
+    form > div:last-of-type {
+      border-top: 1px solid rgba(255,255,255,.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0px;
+      margin-top: 20px;
     }
-    #x-button:hover {
-      background-color: rgba(114,118,125,.3);
+    form > div > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 120px;
+    }
+    form > div > button {
+      border-radius: 3px;
+      border: 1px solid darkred;
+      padding: 5px 10px;
+      color: red;
+      height: 30px;
+      font-size: 12px;
+    }
+    form > div > button:hover {
+      border: 1px solid rgb(199, 1, 1);
     }
   }
-  
 }
