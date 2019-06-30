@@ -59,7 +59,10 @@ class ServerAdd extends React.Component {
   submitForm(event) {
     event.preventDefault();
     if (this.state.mode === "Create") {
-      this.props.postServer({name: this.state.name});
+      this.props.createServer({name: this.state.name})
+        .then((serverId) => {
+          this.props.history.push(`/channels/${serverId}`)
+        });
     } else {
       const match = this.state.inviteLink.match(/invite\/(.*)/);
       const code = match && match[1] || this.state.inviteLink;
@@ -70,8 +73,6 @@ class ServerAdd extends React.Component {
     }
     this.props.closeComponent();
   }
-
-
 
   showPage() {
     const formBottom = (

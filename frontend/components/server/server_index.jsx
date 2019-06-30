@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import ServerAddContainer from './server_add_container';
-import { changeActiveServer } from '../../util/focus_util';
 
 class ServerIndex extends React.Component {
   constructor(props) {
@@ -15,32 +14,23 @@ class ServerIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getServers()
-      .then(() => {
-        const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
-        const foundNode = document.getElementById(`a${id}`);
-        changeActiveServer(foundNode && id || "@me", this.props.focusServer);
-        const newNode = foundNode || document.getElementById("aHome");
-        newNode.classList.add("active-server");
-      });
+    this.props.getServers();
   }
 
   componentDidUpdate() {
-    
-    // ;
-    // const oldNode = document.querySelector(".active-server");
-    // if (oldNode) {
-    //   oldNode.classList.remove("active-server")
-    // }
-
-    
+    const oldNode = document.querySelector(".active-server");
+    if (oldNode) {
+      oldNode.classList.remove("active-server")
+    }
+    const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
+    const foundNode = document.getElementById(`a${id}`);
+    const newNode = foundNode || document.getElementById("aHome");
+    newNode.classList.add("active-server");            
   }
 
   activate(id) {
     return event => {
-      changeActiveServer(id, this.props.focusServer);
-      const newNode = document.getElementById(`a${id}`);
-      newNode.classList.add("active-server");
+      this.props.focusServer(id);
     }
   }
 

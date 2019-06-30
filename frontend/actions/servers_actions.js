@@ -43,6 +43,7 @@ export const createServer = server => dispatch => (
   postServer(server)
     .then(server => {
       dispatch(joinServer(server.id));
+      return server.id
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
