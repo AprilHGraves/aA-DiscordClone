@@ -1,7 +1,8 @@
 .settings-fullscreen {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
+  z-index: 5;
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,7 +10,68 @@
   .settings-left {
     background-color: #2f3136;
     width: 34.25%;
-    position: relative;    
+    position: relative;
+    .options-list {
+      position: absolute;
+      top: 50px;
+      right: 25px;
+      width: 165px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;    
+      color: rgba(255,255,255,.7);
+      ul {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        h1 {
+          color: rgba(255,255,255,.4);
+          font-size: 12px;
+          text-transform: uppercase;
+          margin-top: 10px;
+        }
+        li {
+          width: 110%;
+          margin: 3px 0px 3px -10px;
+          padding: 10px 0px;
+          padding-left: 10px;
+          font-size: 14px;
+          border-radius: 5px;
+          
+        }
+        li:hover {
+          background-color: #232529;
+          cursor: pointer;
+        }
+        .selected {
+          background-color: rgba(255,255,255,.1);
+          color: white;          
+        }
+        .selected:hover {
+          cursor: default;
+          background-color: rgba(255,255,255,.1);
+        }
+        .destroy {
+          color: red;
+          margin: 5px 0 5px -10px;
+        }
+        .destroy:hover {
+          background-color: rgba(255,0,0,.1);
+        }
+      }
+      #social-links {
+        margin-top: 20px;
+      }
+      i {
+        margin-right: 10px;
+        font-size: 18px
+      }
+      i:last-of-type {
+        font-weight: 700;
+      }
+      a:hover {
+        color: white;
+      }
+    }
   }
   .settings-right {
     box-sizing: border-box;
@@ -30,5 +92,88 @@
     #x-button:hover {
       background-color: rgba(114,118,125,.3);
     }
-  }  
+  }
+  .right-fs-box {
+    h1 {
+      color: white;
+      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
+  #unsaved-changes {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background-color: rgba(0,0,0,.4);
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    width: 95%;
+    font-size: 14px;
+    .save {
+      background-color: #43b581;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin-left: 15px;
+    }
+    .save:hover {
+      background-color: #3ba174;
+    }
+    .reset:hover {
+      text-decoration: underline;
+
+    }
+  }
+}
+
+.shake {
+  animation-name: shake-screen;
+  animation-duration: .25s;
+  animation-iteration-count: 2;
+}
+.redden {
+  animation-name: turn-red;
+  animation-duration: .25s;
+  animation-fill-mode: forwards;
+}
+@keyframes turn-red {
+  25% {
+    background-color: rgb(66, 50, 50);
+  }
+  50% {
+    background-color: rgb(95, 58, 58);
+  }
+  75% {
+    background-color: rgb(139, 60, 60);
+  }
+  100% {
+    background-color: rgb(172, 51, 51);
+  }
+}
+
+@keyframes shake-screen {
+  20% {
+    top: 5px;
+    left: 5px;
+  }
+  40%{
+    top: -5px;
+    left: -5px;
+  }
+  60% {
+    top: 5px;
+    left: -5px;
+  }
+  80% {
+    top: -5px;
+    left: 5px;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+  }
 }

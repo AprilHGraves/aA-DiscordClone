@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 import ChannelIndex from "./channel_index";
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     user: state.entities.users[state.session.id],
-    server: state.entities.servers[state.ui.focus.server] || {name: "Home"}
+    server: state.entities.servers[state.ui.focus.server] || {name: "Home"},
+    showUserSettings: ownProps.showUserSettings,
+    showServerDropdown: ownProps.showServerDropdown
   }
 }
 

@@ -4,7 +4,7 @@ import { logout } from "../../../actions/session_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    closeSettings: ownProps.closeSettings
+    closeComponent: ownProps.closeComponent
   }
 }
 

@@ -3,9 +3,10 @@ import ServerIndex from "./server_index";
 import { fetchServers } from "../../actions/servers_actions";
 import { focusServer } from "../../actions/ui_actions";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    servers: Object.values(state.entities.servers)
+    servers: Object.values(state.entities.servers),
+    showAddServer: ownProps.showAddServer
   }
 }
 

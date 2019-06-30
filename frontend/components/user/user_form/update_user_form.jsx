@@ -158,8 +158,6 @@ class UpdateUserForm extends React.Component {
       <div id="update-user-form">
         {this.state.editMode && this.showEditForm() || this.showSummary()}
       </div>
-
-
     )
   }
 }

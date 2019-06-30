@@ -17,7 +17,7 @@
  @import "./reset.scss"; 
  body {
    font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;
-   
+   color: #8e9297;
  }
 
  .scrollable {
@@ -62,11 +62,12 @@
   }
  }
 
- .form-type-1 {   
+.form-type-1 {   
   input {
     color: white;
     background-color: rgba(0,0,0,.1);
     border: 1px solid rgba(0,0,0,.3);
+    border-radius: 3px;
   }
   input:hover {
     border: 1px solid black;
@@ -82,14 +83,16 @@
  @import "./splash.scss";
  @import "./login.scss";
  @import "./main_page.scss";
- @import "./server_index.scss";
- @import "./settings_fullscreen.scss";
- @import "./channel_index.scss";
- @import "./user_settings.scss";
- @import "./add_server.scss";
- @import "./channel_show.scss";
  @import "./invite.scss";
 
-
+ @import "./server_index.scss";
+ @import "./channel_index.scss";
+ @import "./channel_show.scss";
+ 
+ @import "./settings_fullscreen.scss";
+ @import "./user_settings.scss";
+ @import "./add_server.scss";
+ @import "./server_dropdown.scss";
+ @import "./server_overview.scss";
 
 

@@ -5,7 +5,8 @@ import { joinServer, joinServerByCode, createServer } from "../../actions/server
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    errors: state.errors
+    errors: state.errors,
+    closeComponent: ownProps.closeComponent
   }
 }
 

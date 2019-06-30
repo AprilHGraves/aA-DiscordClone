@@ -1,26 +1,36 @@
 import React from 'react';
-import MyAccount from './my_account';
+import UpdateUserFormContainer from '../user_form/update_user_form_container';
 
 class UserSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: "myAccount"
+      page: "My Account"
     };
     this.closeSettings = this.closeSettings.bind(this);
   }
 
   closeSettings(event) {
     event.preventDefault();
-    this.props.closeSettings()
+    this.props.closeComponent();
+  }
+
+  switchPage(key) {
+    return event => {
+      this.setState({ page: key });
+    }
   }
 
   getPage() {
-    switch (this.state.currentPage) {
-      case "privacyAndSafety":
-        return <div>no privacy yet</div>
+    switch (this.state.page) {
+      // TODO add more user settings options
       default:
-        return <MyAccount />
+        return (
+          <section className="right-fs-box">
+            <h1>MY ACCOUNT</h1>
+            <UpdateUserFormContainer />
+          </section>
+        );
     }
   }
 
@@ -28,27 +38,27 @@ class UserSettings extends React.Component {
     return (
       <section className="settings-fullscreen">
         <div className="settings-left">
-          <section id="user-settings-left">
-            {/* put title here in the future  */}
+          <section className="options-list">
             <ul>
-              <li><button id="logout" onClick={this.props.logout}>Log Out</button></li>
-              <li>
-                <a href="https://twitter.com"><i className='fab fa-twitter'></i></a>
-                <a href="https://facebook.com"><i className='fab fa-facebook'></i></a>
-                <a href="https://instagram.com"><i className='fab fa-instagram'></i></a>
-              </li>  
+              <h1>USER SETTINGS</h1>
+              <li onClick={this.switchPage("My Account")} className="selected">My Account</li>
             </ul>
-            
-          </section>
-          
+            <ul>
+              <li onClick={this.props.logout} className="destroy">Log Out</li>
+            </ul>
+            <div id="social-links">
+              <a href="https://twitter.com"><i className='fab fa-twitter'></i></a>
+              <a href="https://facebook.com"><i className='fab fa-facebook'></i></a>
+              <a href="https://instagram.com"><i className='fab fa-instagram'></i></a>
+            </div>            
+          </section>          
         </div>
         <div className="settings-right">
           {this.getPage()}
-          <button id="x-button" onClick={this.closeSettings}>X</button>
+          <button id="x-button" onClick={this.props.closeComponent}>X</button>
         </div>
       </section>
     )
-
   }
 }
 

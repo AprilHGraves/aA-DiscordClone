@@ -5,9 +5,12 @@ import { leaveServer } from "../../actions/servers_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    server: ownProps.server,
+    server: state.entities.servers[state.ui.focus.server],
     userId: state.session.id,
     closeComponent: ownProps.closeComponent,
+    showInvitePeople: ownProps.showInvitePeople,
+    showChangeNickname: ownProps.showChangeNickname,
+    showServerSettings: ownProps.showServerSettings
   }
 }
 

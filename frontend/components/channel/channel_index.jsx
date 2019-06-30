@@ -1,54 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import UserSettingsContainer from '../user/user_settings/user_settings_container';
-import ServerDropdownContainer from '../server/server_dropdown_container';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showSettings: false,
-      showServerDropdown: false
-    };
-    this.showComponent = this.showComponent.bind(this);
-    this.logout = this.logout.bind(this);
-    this.closeComponent = this.closeComponent.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.savedHeight) {
-      // TODO save scrolls for each server in state ui.scrollY
-    }
-  }
-
-  showComponent(key) {
-    return event => {
-      event.preventDefault();
-      this.setState({[key]: true});
-    }
-  }
-
-  closeComponent(key) {
-    return () => {
-      this.setState({[key]: false});
-    }
-  }
-
-  logout(event) {
-    event.preventDefault();
-    this.props.logout();
-  }
-
-  settings() {
-    if (this.state.showSettings) {
-      return <UserSettingsContainer closeSettings={this.closeComponent("showSettings")}/>
-    }
-  }
-
-  serverDropdown() {
-    if (this.state.showServerDropdown) {
-      return <ServerDropdownContainer server={this.props.server} closeComponent={this.closeComponent("showServerDropdown")}/>
-    }
+    // TODO save scrolls for each server in state ui.scrollY
   }
 
   showName(show) {
@@ -67,11 +26,13 @@ class ChannelIndex extends React.Component {
     const tag = this.props.user.tag;
     const tagIdxStart = tag.indexOf("#");
     const tagNum = tag.slice(tagIdxStart);
+    let serverName = this.props.server.name;
+    serverName = serverName.length > 25 && serverName.slice(0,26) || serverName;
     return (
       <section id="channel-index">
         {this.props.server.name !== "Home" ? (
-          <button id="channel-top" onClick={this.showComponent("showServerDropdown")}>
-            <h1>{this.props.server.name}</h1>
+          <button id="channel-top" onClick={this.props.showServerDropdown}>
+            <h1>{serverName}</h1>
             <img src="https://discordapp.com/assets/779a770c34fcb823a598a7277301adaf.svg" />
           </button>
         ):(
@@ -79,11 +40,10 @@ class ChannelIndex extends React.Component {
             <h1>Home</h1>
           </div>
         )}
-        {this.serverDropdown()}
         
         <div id="channel-box" className="scrollable">
           <div>
-            {}
+            {/* TODO put instant invite button here if admin */}
           </div>
           <ul>
             <li>a</li><li>a</li><li>a</li><li>a</li>
@@ -103,12 +63,16 @@ class ChannelIndex extends React.Component {
             <p>{this.props.user.username}</p>
             <p>{tagNum}</p>
           </div>
-          <button id="cog" onClick={this.showComponent("showSettings")} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <button
+            id="cog"
+            onClick={this.props.showUserSettings}
+            onMouseEnter={this.showName(true)}
+            onMouseLeave={this.showName(false)}
+          >
             <i className='fas fa-cog'/>
             <p>User Settings</p>
           </button>
         </section>
-        {this.settings()}
       </section>
     )
   }

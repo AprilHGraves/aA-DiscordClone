@@ -23,39 +23,7 @@
   }
   button#channel-top:hover {
     background-color: rgba(0,0,0,.1);
-  }
-  #server-dropdown {
-    box-sizing: border-box;
-    position: absolute;
-    top: 55px;
-    margin-left: 10px;
-    width: 215px;
-    border: 1px solid rgba(0,0,0,.3);
-    background-color: #25272b;
-    border-radius: 5px;
-    ul {
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      li {
-       padding: 15px;
-      }
-      li:hover {
-        background-color: #1a1c1f;
-        color: rgba(255,255,255,.8);
-      }
-      i {
-        margin-right: 10px;
-      } 
-    }
-    ul:last-of-type {
-      border: none;
-    }
-    li#leave-server {
-      color: red;
-    }
-
-    
-  }
-  
+  }  
   
   #channel-box {
     height: 89%;
@@ -124,10 +92,4 @@
     }
     
   }
-}
-#user-settings {
-  position: absolute;
-  top: 500px;
-  left: 500px;
-  
 }

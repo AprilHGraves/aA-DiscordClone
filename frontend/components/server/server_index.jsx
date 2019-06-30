@@ -5,16 +5,13 @@ import ServerAddContainer from './server_add_container';
 class ServerIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showServerAdd: false
-    };
     this.activate = this.activate.bind(this);
-    this.showComponent = this.showComponent.bind(this);
-    this.closeComponent = this.closeComponent.bind(this);
   }
 
   componentDidMount() {
     this.props.getServers();
+    const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
+    this.props.focusServer(id);
   }
 
   componentDidUpdate() {
@@ -46,23 +43,9 @@ class ServerIndex extends React.Component {
     }
   }
 
-  showComponent(key) {
-    return event => {
-      event.preventDefault();
-      this.setState({ [key]: true });
-    }
-  }
-
-  closeComponent(key) {
-    return () => {
-      this.setState({ [key]: false });
-    }
-  }
-
   render() {
     return (
       <div id="server-index-container" className="scroll-container">
-        {this.state.showServerAdd && <ServerAddContainer closeComponent={this.closeComponent("showServerAdd")} />}
         <ul id="server-index" className="scrollable">
           <li
             key="Home"
@@ -112,7 +95,13 @@ class ServerIndex extends React.Component {
           <li></li>
           <li></li> */}
 
-          <li id="show-server-form" className="animate-hover" onClick={this.showComponent("showServerAdd").bind(this)} onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <li
+            id="show-server-form"
+            className="animate-hover"
+            onClick={this.props.showAddServer}
+            onMouseEnter={this.showName(true)}
+            onMouseLeave={this.showName(false)}
+          >
             <span>+</span>
             <p>Add a Server</p>
           </li>

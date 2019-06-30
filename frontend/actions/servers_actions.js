@@ -47,8 +47,8 @@ export const createServer = server => dispatch => (
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const updateServer = server => dispatch => (
-  patchServer(server)
+export const updateServer = (id, server) => dispatch => (
+  patchServer(id, server)
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
