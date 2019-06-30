@@ -8,11 +8,10 @@ class Api::ServerInvitesController < ApplicationController
   end
 
   def show
-    if params[:id] == "link"
-      server_invite = ServerInvite.find_by(code: params[:link])
-      if server_invite && invite_valid?(server_invite)
-        @server = server_invite.server
-        render 'api/servers/show'
+    if params[:id] == "code"
+      @invite = ServerInvite.find_by(code: params[:code])
+      if @invite && invite_valid?(@invite)
+        render :show
       else
         render json: {inviteLink: "(The instant invite is invalid or has expired.)"}, status:404
       end
@@ -34,7 +33,7 @@ class Api::ServerInvitesController < ApplicationController
     end
   end
 
-  def patch
+  def update
     @invite = ServerInvite.find_by(id: params[:id])
     if @invite
       @invite.update_attributes(uses: 1 + @invite.uses)

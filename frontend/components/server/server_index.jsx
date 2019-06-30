@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import ServerAddContainer from './server_add_container';
+import { changeActiveServer } from '../../util/focus_util';
 
 class ServerIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: "aHome",
       showServerAdd: false
     };
     this.activate = this.activate.bind(this);
@@ -15,17 +15,32 @@ class ServerIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getServers();
+    this.props.getServers()
+      .then(() => {
+        const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
+        const foundNode = document.getElementById(`a${id}`);
+        changeActiveServer(foundNode && id || "@me", this.props.focusServer);
+        const newNode = foundNode || document.getElementById("aHome");
+        newNode.classList.add("active-server");
+      });
+  }
+
+  componentDidUpdate() {
+    
+    // ;
+    // const oldNode = document.querySelector(".active-server");
+    // if (oldNode) {
+    //   oldNode.classList.remove("active-server")
+    // }
+
+    
   }
 
   activate(id) {
     return event => {
-      const oldNode = document.getElementById(this.state.active);
-      oldNode.classList.remove("active");
-      const newNode = document.getElementById(id);
-      newNode.classList.add("active");
-      this.props.focusServer(id.slice(1));
-      this.setState({ active: id });
+      changeActiveServer(id, this.props.focusServer);
+      const newNode = document.getElementById(`a${id}`);
+      newNode.classList.add("active-server");
     }
   }
 
@@ -59,7 +74,13 @@ class ServerIndex extends React.Component {
       <div id="server-index-container" className="scroll-container">
         {this.state.showServerAdd && <ServerAddContainer closeComponent={this.closeComponent("showServerAdd")} />}
         <ul id="server-index" className="scrollable">
-          <li key="Home" id="aHome" onClick={this.activate("aHome")} className="active" onMouseEnter={this.showName(true)} onMouseLeave={this.showName(false)}>
+          <li
+            key="Home"
+            id="aHome"
+            onClick={this.activate("Home")} 
+            onMouseEnter={this.showName(true)}
+            onMouseLeave={this.showName(false)}
+          >
             <Link to="/channels/@me">
               <img src={window.logo2Img} />
             </Link>
@@ -68,9 +89,11 @@ class ServerIndex extends React.Component {
           {this.props.servers.map(server => {
             return (
               //put a letter in front and use id to ensure correct format for finding it using css selector (one word, starts with letter)
-              <li key={server.id} id={`a${server.id}`}
+              <li
+                key={server.id}
+                id={`a${server.id}`}
                 className="animate-hover" 
-                onClick={this.activate(`a${server.id}`)}
+                onClick={this.activate(server.id)}
                 onMouseEnter={this.showName(true)}
                 onMouseLeave={this.showName(false)}
               >
@@ -110,4 +133,4 @@ class ServerIndex extends React.Component {
   }
 }
 
-export default ServerIndex;
+export default withRouter(ServerIndex);

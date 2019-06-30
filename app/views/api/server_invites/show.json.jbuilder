@@ -1,1 +1,1 @@
-json.partial! 'api/invites/invite', invite: @invite
+json.partial! 'api/server_invites/invite', invite: @invite

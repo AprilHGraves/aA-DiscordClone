@@ -1,7 +1,8 @@
 import { getServers, postServer, patchServer, deleteServer} from '../util/server_api_util';
-import { getServerByLink } from '../util/server_invite_api_util';
-import { postServerMembership, deleteServerMembership } from '../util/server_membership_api_util';
+import { getInviteByCode, patchInviteUses } from '../util/server_invite_api_util';
+import { postServerMembership, deleteServerMembership, patchServerMembership } from '../util/server_membership_api_util';
 import { receiveErrors } from "./errors_actions";
+import { focusServer } from './ui_actions';
 
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
@@ -23,10 +24,13 @@ const removeServer = serverId => ({
   serverId
 });
 
-export const joinServerByLink = (link) => dispatch => (
-  getServerByLink(link)
-    .then(server => {
-      dispatch(joinServer(server));
+export const joinServerByCode = (code) => dispatch => (
+  getInviteByCode(code)
+    .then(invite => {
+      dispatch(
+        joinServer(invite.server_id)          
+      ).then(() => (patchInviteUses(invite.id)));
+      return invite.server_id
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
@@ -37,7 +41,9 @@ export const fetchServers = () => dispatch => (
 
 export const createServer = server => dispatch => (
   postServer(server)
-    .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
+    .then(server => {
+      dispatch(joinServer(server.id));
+    }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const updateServer = server => dispatch => (
@@ -45,17 +51,26 @@ export const updateServer = server => dispatch => (
     .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const destroyServer = server => dispatch => (
-  deleteServer(server)
-    .then(serverId => dispatch(removeServer(serverId)))
+export const destroyServer = serverId => dispatch => (
+  deleteServer(serverId)
+    .then(serverId => {
+      dispatch(removeServer(serverId));
+      focusServer("@me");
+    })
 );
 
-export const joinServer = server => dispatch => (
-  postServerMembership(server)
-    .then(server => dispatch(receiveServer(server)), errors => dispatch(receiveErrors(errors.responseJSON)))
+export const joinServer = serverId => dispatch => (
+  postServerMembership(serverId)
+    .then(server => {
+      dispatch(receiveServer(server));
+      dispatch(focusServer(server.id));
+    }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const leaveServer = server => dispatch => (
-  deleteServerMembership(server)
-    .then(payload => dispatch(removeServer(payload.serverId)))
+export const leaveServer = serverMembershipId => dispatch => (
+  deleteServerMembership(serverMembershipId)
+    .then(payload => {
+      dispatch(removeServer(payload.serverId));
+      dispatch(focusServer("@me"));
+    })
 );

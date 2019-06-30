@@ -1,8 +1,8 @@
-export const postServerMembership = server => {
+export const postServerMembership = serverId => {
   return $.ajax({
     method: 'POST',
     url: '/api/server_memberships',
-    data: { server_id: server.id }
+    data: { server_id: serverId }
   })
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ServerAdd extends React.Component {
   constructor(props) {
@@ -37,7 +38,6 @@ class ServerAdd extends React.Component {
     let errors = this.props.errors[key];
     const label = document.getElementById(`${key}-label`);
     if (errors) {
-      debugger;
       label.classList.add("red-text");
       if (errors[0] === "can't be blank") {
         return <span className="red-text">- This field is required</span>
@@ -59,12 +59,16 @@ class ServerAdd extends React.Component {
   submitForm(event) {
     event.preventDefault();
     if (this.state.mode === "Create") {
-      this.props.postServer({name: this.state.name})
-        .then(() => this.props.closeComponent());
+      this.props.postServer({name: this.state.name});
     } else {
-      this.props.joinServerByLink(this.state.inviteLink)
-        .then(() => this.props.closeComponent());
+      const match = this.state.inviteLink.match(/invite\/(.*)/);
+      const code = match && match[1] || this.state.inviteLink;
+      this.props.joinServerByCode(code)
+        .then((serverId) => {          
+          this.props.history.push(`/channels/${serverId}`);
+        });
     }
+    this.props.closeComponent();
   }
 
 
@@ -143,4 +147,4 @@ class ServerAdd extends React.Component {
   }
 }
 
-export default ServerAdd;
+export default withRouter(ServerAdd);

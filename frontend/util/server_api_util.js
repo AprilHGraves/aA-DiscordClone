@@ -21,9 +21,9 @@ export const patchServer = (id, server) => {
   })
 };
 
-export const deleteServer = server => {
+export const deleteServer = serverId => {
   return $.ajax({
     method: 'DELETE',
-    url: `/api/servers/${server.id}`
+    url: `/api/servers/${serverId}`
   })
 };

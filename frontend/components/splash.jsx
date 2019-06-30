@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Splash = (props) => {
 
@@ -149,4 +149,4 @@ const Splash = (props) => {
 
 
 
-export default withRouter(Splash);
+export default Splash;

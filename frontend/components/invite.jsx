@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { joinServerByLink } from '../actions/servers_actions';
+import { joinServerByCode } from '../actions/servers_actions';
 import { connect } from "react-redux";
 
 class Invite extends React.Component {
@@ -8,8 +8,8 @@ class Invite extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.joinServerByLink(this.props.match.params.id)
-      .then(() => this.props.history.push(`/channels/@me`));
+    this.props.joinServerByCode(this.props.match.params.id)
+      .then((serverId) => this.props.history.push(`/channels/${serverId}`));
   }
 
   render() {
@@ -32,7 +32,7 @@ class Invite extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    joinServerByLink: (link) => dispatch(joinServerByLink(link))
+    joinServerByCode: (code) => dispatch(joinServerByCode(code))
   }
 }
 

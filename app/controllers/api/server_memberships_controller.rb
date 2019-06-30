@@ -13,7 +13,7 @@ class Api::ServerMembershipsController < ApplicationController
     end
   end
 
-  def patch
+  def update
     @sm = ServerMembership.find_by(id: params[:id])
     if @sm.update_attributes(nickname: params[:nickname])
       render :show
