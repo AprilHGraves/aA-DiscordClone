@@ -4,7 +4,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import LoginFormContainer from './user/user_form/login_form_container';
 import RegisterFormContainer from './user/user_form/register_form_container';
 import MainPage from './main_page';
-import Invite from './invite';
+import Invite from './invite_page';
 import SplashContainer from './splash_container';
 
 const App = () => (

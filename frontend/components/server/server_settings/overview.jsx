@@ -34,7 +34,7 @@ class Overview extends React.Component {
     this.resetChanges = this.resetChanges.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
   }
-
+  // TODO allow user to change server image
   handleChanges() {
     this.props.unsavedChangesPresent();
   }

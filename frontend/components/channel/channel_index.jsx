@@ -42,11 +42,21 @@ class ChannelIndex extends React.Component {
         )}
         
         <div id="channel-box" className="scrollable">
-          <div>
-            {/* TODO put instant invite button here if admin */}
-          </div>
+            {this.props.server.owner_id === this.props.user.id ? (
+              <div className="sticky-box">
+                <div id="party-members"/>
+                <p>An adventure begins.<br/>Let's add some party members!</p>
+                <button onClick={this.props.showInvitePeople}>Invite People</button>
+              </div>
+            ) : (
+              <div className="sticky-box">
+                <div id="quick-switcher-picture"/>
+                <p>I took this picture off of Discord to distract you.</p>
+                <button>Lorem Ipsum</button>
+              </div>
+            )}
           <ul>
-            <li>a</li><li>a</li><li>a</li><li>a</li>
+            <li>top line</li><li>a</li><li>a</li><li>a</li>
             <li>b</li><li>a</li><li>a</li><li>a</li>
             <li>b</li><li>a</li><li>a</li><li>a</li>
             <li>b</li><li>a</li><li>a</li><li>a</li>
@@ -54,7 +64,7 @@ class ChannelIndex extends React.Component {
             <li>b</li><li>a</li><li>a</li><li>a</li>
             <li>b</li><li>a</li><li>a</li><li>a</li>
             <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
+            <li>b</li><li>a</li><li>a</li><li>bottom line</li>
           </ul>
         </div>
         <section id="user-bar">

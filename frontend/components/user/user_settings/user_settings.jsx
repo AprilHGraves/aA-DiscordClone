@@ -47,9 +47,9 @@ class UserSettings extends React.Component {
               <li onClick={this.props.logout} className="destroy">Log Out</li>
             </ul>
             <div id="social-links">
-              <a href="https://twitter.com"><i className='fab fa-twitter'></i></a>
-              <a href="https://facebook.com"><i className='fab fa-facebook'></i></a>
-              <a href="https://instagram.com"><i className='fab fa-instagram'></i></a>
+              <a href="https://twitter.com"><i className='fab fa-twitter'/></a>
+              <a href="https://facebook.com"><i className='fab fa-facebook'/></a>
+              <a href="https://instagram.com"><i className='fab fa-instagram'/></a>
             </div>            
           </section>          
         </div>

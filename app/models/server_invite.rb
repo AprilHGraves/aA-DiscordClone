@@ -1,5 +1,7 @@
 class ServerInvite < ApplicationRecord
 
+  attr_reader :duration
+
   before_validation :ensure_code
   validates :code, :uses, presence:true
   validates :code, uniqueness:true
@@ -10,7 +12,7 @@ class ServerInvite < ApplicationRecord
   belongs_to :server
 
   def duration=(duration)
-    self.expire_date = Time.now + duration.days
+    self.expire_date = Time.now + (duration.to_i).hours
   end
 
   def self.generate_code

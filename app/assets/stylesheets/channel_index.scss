@@ -27,7 +27,10 @@
   
   #channel-box {
     height: 89%;
-    div {
+    .sticky-box {
+      position: sticky;
+      top: 0px;
+      background-color: #2f3136;
       height: 190px;
       border-bottom: 1px solid rgba(0,0,0,.3); // TODO: remove later
     }

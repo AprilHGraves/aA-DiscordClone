@@ -3,7 +3,7 @@ class Api::ServerInvitesController < ApplicationController
   before_action :require_login
 
   def index
-    @invites = Server.find_by(id: params[:server_id]).invites
+    @invites = Server.find_by(id: params[:serverId]).invites
     render :index
   end
 
@@ -15,6 +15,15 @@ class Api::ServerInvitesController < ApplicationController
       else
         render json: {inviteLink: "(The instant invite is invalid or has expired.)"}, status:404
       end
+    elsif params[:id] == "channel"
+      @invite = current_user.invites.find_by(channel_id: params[:channelId])
+      if !@invite || !invite_valid?(@invite)
+        @invite = ServerInvite.new(duration: 24, server_id: params[:channelId], uses: 0, channel_id: params[:channelId])
+        # delete server_id db column later and grab server via association through channel
+        @invite.inviter_id = current_user.id
+        @invite.save
+      end
+      render :show        
     else
       @invite = ServerInvite.find_by(id: params[:id])
       render :show

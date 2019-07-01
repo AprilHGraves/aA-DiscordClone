@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Splash from "./splash";
+import Splash from "./splash_page";
 import { login } from "../actions/session_actions";
 
 

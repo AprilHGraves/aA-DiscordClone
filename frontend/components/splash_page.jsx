@@ -68,15 +68,15 @@ const Splash = (props) => {
             <ul>
               <li><a href="#">LinkedIn</a></li>
               <li><a href="http://github.com/AprilHGraves">Github</a></li>
-              {/* make a link to other work eventually */}
+              {/* TODO make a link to other work eventually */}
             </ul>
           </div>
           
         </section>
         <section id="header-right">
-          <a href="https://twitter.com"><i className='fab fa-twitter'></i></a>
-          <a href="https://facebook.com"><i className='fab fa-facebook'></i></a>
-          <a href="https://instagram.com"><i className='fab fa-instagram'></i></a>
+          <a href="https://twitter.com"><i className='fab fa-twitter'/></a>
+          <a href="https://facebook.com"><i className='fab fa-facebook'/></a>
+          <a href="https://instagram.com"><i className='fab fa-instagram'/></a>
           {link1}
         </section>
       </nav>

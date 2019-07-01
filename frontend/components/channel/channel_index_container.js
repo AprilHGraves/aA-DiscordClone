@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     user: state.entities.users[state.session.id],
     server: state.entities.servers[state.ui.focus.server] || {name: "Home"},
     showUserSettings: ownProps.showUserSettings,
-    showServerDropdown: ownProps.showServerDropdown
+    showServerDropdown: ownProps.showServerDropdown,
+    showInvitePeople: ownProps.showInvitePeople
   }
 }
 

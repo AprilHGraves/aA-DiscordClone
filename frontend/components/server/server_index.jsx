@@ -78,22 +78,6 @@ class ServerIndex extends React.Component {
               </li>
             )
           })}
-          {/* for testing scrolling */}
-          {/* <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li> */}
 
           <li
             id="show-server-form"

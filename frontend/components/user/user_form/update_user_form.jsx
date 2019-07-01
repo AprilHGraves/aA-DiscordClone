@@ -6,6 +6,8 @@ class UpdateUserForm extends React.Component {
     super(props);
     this.state = {
       id: props.user.id,
+      image_url: this.props.user.image_url,
+      picFile: "",
       username: props.user.username,
       email: props.user.email,
       oldPW: "",
@@ -19,8 +21,19 @@ class UpdateUserForm extends React.Component {
     this.switchMode = this.switchMode.bind(this);
     this.showPWFields = this.showPWFields.bind(this);
     this.showErrors = this.showErrors.bind(this);
+    this.selectFile = this.selectFile.bind(this);
+    this.fileSelector = function() {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
+      input.addEventListener("change", this.handleFileSelect.bind(this));
+      // input.addEventListener("input", this.handleFileSelect);
+      return input
+    }.call(this);
   }
 
+  // TODO fix photo upload
+  
   componentWillUnmount() {
     this.props.clearErrors();
   }
@@ -50,6 +63,9 @@ class UpdateUserForm extends React.Component {
     const userObj = {
       username: this.state.username,
       email: this.state.email
+    }
+    if (this.state.picFile) {
+      userObj.photo = this.state.picFile;
     }
     this.props.editUser(this.state.id, userObj, this.state.oldPW, this.state.newPW)
       .then(() => {this.setState({editMode: false})});
@@ -91,11 +107,61 @@ class UpdateUserForm extends React.Component {
     }
   }
 
+  handleFileSelect(event) {
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        picFile: file,
+        image_url: fileReader.result
+      });
+    };
+    fileReader.readAsDataURL(file);
+  }
+
+  selectFile(event) {
+    this.fileSelector.dispatchEvent(new MouseEvent("click"));
+  }
+
+  showImgHover(show) {
+    return (event) => {
+      const p = document.getElementById("change-avatar");
+      if (show) {
+        p.classList.add("show");
+      } else {
+        p.classList.remove("show");
+      }
+    }
+  }
+
+  switchMode(event) {
+    event.preventDefault();
+    this.props.clearErrors();
+    this.setState({
+      image_url: this.props.user.image_url,
+      picFile: "",
+      username: this.props.user.username,
+      email: this.props.user.email,
+      oldPW: "",
+      newPW: "",
+      editMode: !this.state.editMode,
+      pwMode: false
+    });
+  }
+
   showEditForm() {
     return (
       <form onSubmit={this.handleSubmit} className="form-type-1">
         <div>
-          <img src={this.props.user.image_url} />
+          <div id="user-pic"
+            style={{ backgroundImage: `url(${this.state.image_url})` }}
+            onClick={this.selectFile}
+            onMouseEnter={this.showImgHover(true)}
+            onMouseLeave={this.showImgHover(false)}
+          >
+            <p id="change-avatar">CHANGE<br/>AVATAR</p>
+            <div id="picture-icon"/>
+          </div>
           <section>
             <label id="username-label">USERNAME {this.showErrors("username")}
               <input id="username-input" type="text" value={this.state.username} onChange={this.changeInput("username")} />
@@ -117,26 +183,15 @@ class UpdateUserForm extends React.Component {
     )
   }
 
-  switchMode(event) {
-    event.preventDefault();
-    this.props.clearErrors();
-    this.setState({
-      username: this.props.user.username,
-      email: this.props.user.email,
-      oldPW: "",
-      newPW: "",
-      editMode: !this.state.editMode, 
-      pwMode: false
-    });
-  }
-
   showSummary() {
     const tag = this.props.user.tag;
     const tagIdxStart = tag.indexOf("#");
     const tagNum = tag.slice(tagIdxStart);
     return (
       <section id="show-user-info">
-        <img src={this.props.user.image_url}/>
+        <div id="user-pic"
+          style={{ backgroundImage: `url(${this.state.image_url})` }}
+        />
         <div id="show-user-info-center">
           <div>
             <h2>USERNAME</h2>

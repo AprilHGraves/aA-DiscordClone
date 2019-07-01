@@ -13,6 +13,9 @@ class ServerAdd extends React.Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
+  // TODO allow user to load picture for server
+  // TODO slide in create/join components from right side using CSS transition group
+
   componentDidMount() {
     this.inside = document.getElementById("add-server-box");
     document.addEventListener("mousedown", this.handleClickOutside);

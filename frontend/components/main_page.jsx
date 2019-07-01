@@ -7,6 +7,7 @@ import UserSettingsContainer from './user/user_settings/user_settings_container'
 import ServerAddContainer from './server/server_add_container';
 import ServerDropdownContainer from './server/server_dropdown_container';
 import ServerSettingsContainer from './server/server_settings/server_settings_container';
+import InstantInviteContainer from './invite/instant_invite_container';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class MainPage extends React.Component {
     this.showComponent = this.showComponent.bind(this);
     this.closeComponent = this.closeComponent.bind(this);
   }
+
+  // TODO implement a spinner to distract users while servers load
 
   showComponent(key) {
     return () => {
@@ -45,6 +48,8 @@ class MainPage extends React.Component {
         )
       case "Server Settings":
         return <ServerSettingsContainer closeComponent={this.closeComponent}/>
+      case "Invite People":
+        return <InstantInviteContainer closeComponent={this.closeComponent}/>
     }
   }
 
@@ -55,6 +60,7 @@ class MainPage extends React.Component {
         <ChannelIndexContainer
           showUserSettings={this.showComponent("User Settings")}
           showServerDropdown={this.showComponent("Server Dropdown")}
+          showInvitePeople={this.showComponent("Invite People")}
         />
         <ChannelShowContainer />
         {this.getComponent()}
