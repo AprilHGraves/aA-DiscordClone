@@ -7,7 +7,7 @@ const invitesReducer = (state = {}, action) => {
     case RECEIVE_INVITE:
       return Object.assign({}, state, { [action.invite.id]: action.invite })
     case RECEIVE_INVITES:
-      return action.invites
+      return Object.assign({}, state, action.invites)
     case REMOVE_INVITE:
       const newObj = Object.assign({}, state);
       delete newObj[action.inviteId];

@@ -54,8 +54,11 @@ class UserSettings extends React.Component {
           </section>          
         </div>
         <div className="settings-right">
-          {this.getPage()}
-          <button id="x-button" onClick={this.props.closeComponent}>X</button>
+
+          <div className="settings-right-box">
+            {this.getPage()}
+            <button id="x-button" onClick={this.props.closeComponent}>X</button>
+          </div>
         </div>
       </section>
     )

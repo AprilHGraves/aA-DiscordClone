@@ -1,0 +1,84 @@
+#invite-list {
+  height: 800px;
+  img {
+    width: 25px;
+    height: 25px;
+    background-color: gray;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: none;
+    border-spacing: none;
+  }
+
+  tr {
+    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  thead > tr {
+    
+    border: 0;
+    padding: 0px 20px;
+    font-size: 10px;
+    justify-content: space-around;
+    padding: 0px 20px;
+    padding-right: 10px;
+  }
+  th:first-of-type {
+  }
+  th:last-of-type {
+    margin-right: -35px;
+  }
+
+  .invite-row {
+    padding: 10px;
+    position: relative;
+  }
+  td {
+    width: 100px;
+    text-align: center;
+  }
+  td:first-of-type {
+    display: flex;
+    width: 170px;
+  }
+
+  .invite-row:hover {
+    background-color: rgba(0,0,0,.07);
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+  }
+  .white-text {
+    color: white;
+    font-size: 14px;
+  }
+  .gray-text {
+    color: rgba(255,255,255,.3)
+  }
+  .del-inv {
+    display: none;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    height: 25px;
+    width: 25px;
+    color: red;
+    background-color: #36393f;
+    border: 2px solid #292b30;
+    border-radius: 50%;
+  }
+  .del-inv:hover {
+    background-color: #53565f;
+    cursor: pointer;
+  }
+  .show-x {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+}

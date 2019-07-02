@@ -28,11 +28,33 @@
   #channel-box {
     height: 89%;
     .sticky-box {
+      box-sizing: border-box;
       position: sticky;
       top: 0px;
-      background-color: #2f3136;
+      background-color: #282b30;
       height: 190px;
       border-bottom: 1px solid rgba(0,0,0,.3); // TODO: remove later
+      padding: 5px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 12px;
+      #party-members {
+        background-image: image-url("adventure_begins");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 80px;
+        width: 170px;
+      }
+      p {
+        text-align: center;
+      }
+      button {
+        background-color: #36393f;
+        color: white;
+        padding: 7px 60px;
+      }
     }
 
   }

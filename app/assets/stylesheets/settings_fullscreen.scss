@@ -9,7 +9,7 @@
   background-color: #36393f;
   .settings-left {
     background-color: #2f3136;
-    width: 34.25%;
+    width: 34.5%;
     position: relative;
     .options-list {
       position: absolute;
@@ -74,19 +74,26 @@
     }
   }
   .settings-right {
+    width: 65.3%;
+    
+  }
+  .settings-right::-webkit-scrollbar {
+    width: 9px;
+  }
+  .settings-right-box {
     box-sizing: border-box;
-    width: 40%;
+    width: 61%;
     position: relative;
     padding: 60px 40px;
     #x-button {
-      position: absolute;
+      position: fixed;
       top: 60px;
-      right: -40px;
+      right: 445px;
       border: 2px solid gray;
       border-radius: 50%;
       color: white;
-      width: 32px;
-      height: 32px;
+      width: 33px;
+      height: 33px;
       text-align: center;
     }
     #x-button:hover {
@@ -102,8 +109,8 @@
     }
   }
   #unsaved-changes {
-    position: absolute;
-    left: 20px;
+    position: fixed;
+    right: 490px;
     bottom: 20px;
     background-color: rgba(0,0,0,.4);
     color: white;
@@ -112,7 +119,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
-    width: 95%;
+    width: 38%;
     font-size: 14px;
     .save {
       background-color: #43b581;

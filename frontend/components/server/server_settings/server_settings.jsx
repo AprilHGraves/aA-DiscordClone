@@ -1,5 +1,6 @@
 import React from 'react';
 import OverviewContainer from './overview';
+import InviteListContainer from './invite_list';
 import { setTimeout } from 'timers';
 
 class ServerSettings extends React.Component {
@@ -68,7 +69,9 @@ class ServerSettings extends React.Component {
       case "Members":
         return <div>insert members list here</div>
       case "Invites":
-        return <div>insert invites list here  </div>
+        return (
+          <InviteListContainer />
+        )
       default:
         return (
           <OverviewContainer 
@@ -111,9 +114,11 @@ class ServerSettings extends React.Component {
           </section>
 
         </div>
-        <div className="settings-right">
-          {this.getPage()}
-          <button id="x-button" onClick={this.closeSettings}>X</button>
+        <div className="settings-right scrollable">
+          <section className="settings-right-box">
+            {this.getPage()}
+            <button id="x-button" onClick={this.closeSettings}>X</button>
+          </section>
         </div>
         
       </section>

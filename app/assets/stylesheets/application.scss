@@ -22,6 +22,7 @@
 
  .scrollable {
   overflow-y: scroll;
+  overflow-x: hidden;
  }
 
  .scrollable::-webkit-scrollbar {
@@ -89,11 +90,15 @@
  @import "./channel_index.scss";
  @import "./channel_show.scss";
  
+
+
  @import "./settings_fullscreen.scss";
  @import "./user_settings.scss";
  @import "./add_server.scss";
- @import "./server_dropdown.scss";
- @import "./server_overview.scss";
  @import "./invite_box.scss";
+ @import "./server_dropdown.scss";
+ 
+ @import "./server_overview.scss";
+ @import "./invite_list.scss";
 
 

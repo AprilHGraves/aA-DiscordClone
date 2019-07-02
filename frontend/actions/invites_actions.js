@@ -1,5 +1,6 @@
 import { getInviteByUserAndChannel, getInvites, postInvite, deleteInvite } from '../util/server_invite_api_util';
 import { receiveErrors } from "./errors_actions";
+import { receiveUsers } from './users_actions';
 
 export const RECEIVE_INVITE = "RECEIVE_INVITE";
 export const RECEIVE_INVITES = "RECEIVE_INVITES";
@@ -30,7 +31,10 @@ export const fetchInviteByUserAndChannel = (channelId) => dispatch => (
 
 export const fetchInvites = (serverId) => dispatch => (
   getInvites(serverId)
-    .then(invites => dispatch(receiveInvites(invites)))
+    .then(payload => {
+      dispatch(receiveUsers(payload.users));
+      dispatch(receiveInvites(payload.invites));
+    })
 );
 
 export const createInvite = invite => dispatch => {
@@ -44,6 +48,7 @@ export const createInvite = invite => dispatch => {
 export const destroyInvite = inviteId => dispatch => (
   deleteInvite(inviteId)
     .then(payload => {
-      dispatch(removeInvite(payload.inviteId));
+      debugger;
+      dispatch(removeInvite(payload.id));
     })
 );
