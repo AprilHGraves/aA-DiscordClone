@@ -6,14 +6,6 @@ export const postUser = user => {
   })
 };
 
-export const patchUser = (id, user, oldPW, newPW) => {
-  return $.ajax({
-    method: 'PATCH',
-    url: `/api/users/${id}`,
-    data: { user, oldPW, newPW }
-  })
-};
-
 export const deleteUser = user => {
   return $.ajax({
     method: 'DELETE',

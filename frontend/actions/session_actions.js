@@ -1,5 +1,6 @@
 import * as ApiUtil from '../util/session_api_util';
 import { receiveErrors } from './errors_actions';
+import { patchUser } from '../util/user_api_util';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -19,7 +20,7 @@ export const signup = user => dispatch => (
 );
 
 export const editUser = (id, user, oldPW, newPW) => dispatch => (
-  ApiUtil.patchUser(id, user, oldPW, newPW)
+  patchUser(id, user, oldPW, newPW)
     .then(user => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 

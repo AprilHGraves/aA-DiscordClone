@@ -71,7 +71,7 @@ class ServerIndex extends React.Component {
                 onMouseLeave={this.showName(false)}
               >
                 <Link to={`/channels/${server.id}`}>
-                  <img src="https://i.imgur.com/dnsY3cX.jpg" />
+                  <img src={server.image_url} />
                 </Link>
                 <p>{server.name}</p>
 

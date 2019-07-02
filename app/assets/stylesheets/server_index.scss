@@ -17,7 +17,11 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    
+    img {
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+    }
     p {
       display: none;
       background-color: black;

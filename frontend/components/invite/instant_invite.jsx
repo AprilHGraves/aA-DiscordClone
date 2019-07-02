@@ -51,7 +51,7 @@ class InstantInvite extends React.Component {
     this.props.createInvite({
       duration: this.state.duration && Number(this.state.duration) || undefined,
       max_uses: this.state.max_uses && Number(this.state.max_uses) || undefined,
-      server_id: this.props.channelId,  // TODO adjust after column deletion
+      server_id: this.props.channelId,
       channel_id: this.props.channelId 
     }).then(invite => {
         this.setState({

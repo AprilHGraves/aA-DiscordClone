@@ -82,13 +82,18 @@
           color: red;
         }
       }
-      #blue-circle {
-        width: 133px;
-        height: 133px;
-        border-radius: 50%;
+      .photo {
+        margin-right: 100px;
+        width: 135px;
+        height: 135px;
         background-color: #7289da;
-        border: 5px solid lightgray;
-        margin-right: 88px;
+        border: 5px solid rgb(219, 219, 219);
+        #change-photo {
+          top: -16px;
+          right: -106px;
+          background-color: rgba(0,0,0,.5);
+  
+        }
       }
     }
     #form-bottom > input[type="submit"] {

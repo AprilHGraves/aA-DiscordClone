@@ -7,10 +7,21 @@ class ServerAdd extends React.Component {
     this.state = {
       mode: "Select",
       inviteLink: "",
-      name: ""
+      name: "",
+      image_url: "",
+      picFile: "",
     };
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.selectFile = this.selectFile.bind(this);
+    this.fileSelector = function () {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
+      input.addEventListener("change", this.handleFileSelect.bind(this));
+      // input.addEventListener("input", this.handleFileSelect);
+      return input
+    }.call(this);
   }
 
   // TODO allow user to load picture for server
@@ -31,12 +42,6 @@ class ServerAdd extends React.Component {
     }
   }
 
-  changeInput(key) {
-    return (event) => {
-      this.setState({ [key]: event.target.value })
-    }
-  }
-
   showErrors(key) {
     let errors = this.props.errors[key];
     const label = document.getElementById(`${key}-label`);
@@ -52,17 +57,15 @@ class ServerAdd extends React.Component {
     }
   }
 
-  modeSwitch(mode) {
-    return event => {
-      event.preventDefault();
-      this.setState({ mode })
-    }
-  }
-
   submitForm(event) {
     event.preventDefault();
     if (this.state.mode === "Create") {
-      this.props.createServer({name: this.state.name})
+      const formData = new FormData();
+      formData.append('server[name]', this.state.name);
+      if (this.state.picFile) {
+        formData.append('server[photo]', this.state.picFile);
+      }
+      this.props.createServer(formData)
         .then((serverId) => {
           this.props.history.push(`/channels/${serverId}`)
         });
@@ -76,6 +79,47 @@ class ServerAdd extends React.Component {
     }
     this.props.closeComponent();
   }
+  
+  changeInput(key) {
+    return (event) => {
+      this.setState({ [key]: event.target.value })
+    }
+  }
+
+  modeSwitch(mode) {
+    return event => {
+      event.preventDefault();
+      this.setState({ mode })
+    }
+  }
+
+  handleFileSelect(event) {
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        picFile: file,
+        image_url: fileReader.result
+      });
+    };
+    fileReader.readAsDataURL(file);
+  }
+
+  selectFile(event) {
+    this.fileSelector.dispatchEvent(new MouseEvent("click"));
+  }
+
+  showImgHover(show) {
+    return (event) => {
+      const p = document.getElementById("change-photo");
+      if (show) {
+        p.classList.add("show");
+      } else {
+        p.classList.remove("show");
+      }
+    }
+  }
+  
 
   showPage() {
     const formBottom = (
@@ -114,7 +158,17 @@ class ServerAdd extends React.Component {
                       onChange={this.changeInput("name")} />
                   </label>
                 </div>
-                <div id="blue-circle" />
+                <div className="photo"
+                  style={{ backgroundImage: `url(${this.state.image_url})` }}
+                  onClick={this.selectFile}
+                  onMouseEnter={this.showImgHover(true)}
+                  onMouseLeave={this.showImgHover(false)}
+                >
+                  <p id="change-photo" className="photo">
+                    CHANGE<br />ICON
+                  </p>
+                  <div className="photo-icon" />
+                </div>
               </div>
             {formBottom}
           </form>

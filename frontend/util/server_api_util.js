@@ -5,19 +5,23 @@ export const getServers = () => {
   })
 };
 
-export const postServer = server => {
+export const postServer = formData => {
   return $.ajax({
     method: 'POST',
     url: '/api/servers',
-    data: { server }
+    data: formData,
+    contentType: false,
+    processData: false
   })
 };
 
-export const patchServer = (id, server) => {
+export const patchServer = (id, formData) => {
   return $.ajax({
     method: 'PATCH',
     url: `/api/servers/${id}`,
-    data: { server }
+    data: formData,
+    contentType: false,
+    processData: false
   })
 };
 

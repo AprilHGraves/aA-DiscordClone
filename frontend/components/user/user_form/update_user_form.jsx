@@ -5,8 +5,7 @@ class UpdateUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.user.id,
-      image_url: this.props.user.image_url,
+      image_url: props.user.image_url,
       picFile: "",
       username: props.user.username,
       email: props.user.email,
@@ -31,8 +30,6 @@ class UpdateUserForm extends React.Component {
       return input
     }.call(this);
   }
-
-  // TODO fix photo upload
   
   componentWillUnmount() {
     this.props.clearErrors();
@@ -60,14 +57,15 @@ class UpdateUserForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const userObj = {
-      username: this.state.username,
-      email: this.state.email
-    }
+    const formData = new FormData();
+    formData.append('user[username]', this.state.username);
+    formData.append('user[email]', this.state.email);
+    formData.append('oldPW', this.state.oldPW);
+    formData.append('newPW', this.state.newPW);
     if (this.state.picFile) {
-      userObj.photo = this.state.picFile;
+      formData.append('user[photo]', this.state.picFile);
     }
-    this.props.editUser(this.state.id, userObj, this.state.oldPW, this.state.newPW)
+    this.props.editUser(this.props.user.id, formData)
       .then(() => {this.setState({editMode: false})});
   }
 
@@ -125,7 +123,7 @@ class UpdateUserForm extends React.Component {
 
   showImgHover(show) {
     return (event) => {
-      const p = document.getElementById("change-avatar");
+      const p = document.getElementById("change-photo");
       if (show) {
         p.classList.add("show");
       } else {
@@ -153,14 +151,16 @@ class UpdateUserForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className="form-type-1">
         <div>
-          <div id="user-pic"
+          <div className="photo"
             style={{ backgroundImage: `url(${this.state.image_url})` }}
             onClick={this.selectFile}
             onMouseEnter={this.showImgHover(true)}
             onMouseLeave={this.showImgHover(false)}
           >
-            <p id="change-avatar">CHANGE<br/>AVATAR</p>
-            <div id="picture-icon"/>
+            <p id="change-photo" className="photo">
+              CHANGE<br/>AVATAR
+            </p>
+            <div className="photo-icon"/>
           </div>
           <section>
             <label id="username-label">USERNAME {this.showErrors("username")}
@@ -189,7 +189,7 @@ class UpdateUserForm extends React.Component {
     const tagNum = tag.slice(tagIdxStart);
     return (
       <section id="show-user-info">
-        <div id="user-pic"
+        <div className="photo"
           style={{ backgroundImage: `url(${this.state.image_url})` }}
         />
         <div id="show-user-info-center">

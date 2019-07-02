@@ -88,7 +88,8 @@
     #x-button {
       position: fixed;
       top: 60px;
-      right: 445px;
+      // right: 445px;
+      right: 24%;
       border: 2px solid gray;
       border-radius: 50%;
       color: white;
@@ -107,6 +108,7 @@
       font-weight: 700;
       font-size: 15px;
     }
+        
   }
   #unsaved-changes {
     position: fixed;

@@ -27,33 +27,26 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       name: props.server.name,
-      image_url: props.server.image_url
+      image_url: props.server.image_url,
+      picFile: "",
     }
     this.handleChanges = debounce(this.handleChanges.bind(this), 500);
     this.changeInput = this.changeInput.bind(this);
     this.resetChanges = this.resetChanges.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
-  }
-  // TODO allow user to change server image
-  handleChanges() {
-    this.props.unsavedChangesPresent();
-  }
-
-  saveChanges() {
-    this.props.noUnsavedChanges();
-    this.props.updateServer(this.props.server.id, this.state);
-  }
-
-  resetChanges() {
-    this.props.noUnsavedChanges();
-    this.setState({name: this.props.server.name, image_url: this.props.server.image_url});
+    this.selectFile = this.selectFile.bind(this);
+    this.fileSelector = function () {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
+      input.addEventListener("change", this.handleFileSelect.bind(this));
+      // input.addEventListener("input", this.handleFileSelect);
+      return input
+    }.call(this);
   }
 
-  changeInput(key) {
-    return (event) => {
-      this.setState({[key]: event.target.value})
-      this.handleChanges();
-    }
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   showErrors(key) {
@@ -70,13 +63,80 @@ class Overview extends React.Component {
       input.classList.remove("red-border");
     }
   }
+  
+  saveChanges() {
+    this.props.noUnsavedChanges();
+    const formData = new FormData();
+    formData.append('server[name]', this.state.name);
+    if (this.state.picFile) {
+      formData.append('server[photo]', this.state.picFile);
+    }
+    this.props.updateServer(this.props.server.id, formData);
+  }
+
+  resetChanges() {
+    this.props.noUnsavedChanges();
+    this.setState({
+      name: this.props.server.name, 
+      image_url: this.props.server.image_url,
+      picFile: ""
+    });
+  }
+
+  handleChanges() {
+    this.props.unsavedChangesPresent();
+  }
+
+  changeInput(key) {
+    return (event) => {
+      this.setState({[key]: event.target.value})
+      this.handleChanges();
+    }
+  }
+
+  handleFileSelect(event) {
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        picFile: file,
+        image_url: fileReader.result
+      });
+    };
+    fileReader.readAsDataURL(file);
+  }
+
+  selectFile(event) {
+    this.fileSelector.dispatchEvent(new MouseEvent("click"));
+  }
+
+  showImgHover(show) {
+    return (event) => {
+      const p = document.getElementById("change-photo");
+      if (show) {
+        p.classList.add("show");
+      } else {
+        p.classList.remove("show");
+      }
+    }
+  }
 
   render() {
     return (
       <section className="right-fs-box">
         <h1>SERVER OVERVIEW</h1>
         <section id="server-overview" className="form-type-1">
-          <img src={this.state.image_url}/>
+          <div className="photo"
+            style={{ backgroundImage: `url(${this.state.image_url})` }}
+            onClick={this.selectFile}
+            onMouseEnter={this.showImgHover(true)}
+            onMouseLeave={this.showImgHover(false)}
+          >
+            <p id="change-photo" className="photo">
+              CHANGE<br />ICON
+            </p>
+            <div className="photo-icon" />
+          </div>
           <label>SERVER NAME
             <input id="name-input" value={this.state.name} onChange={this.changeInput("name")}/>
           </label>

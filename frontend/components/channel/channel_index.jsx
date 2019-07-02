@@ -10,6 +10,7 @@ class ChannelIndex extends React.Component {
     // TODO save scrolls for each server in state ui.scrollY
   }
 
+
   showName(show) {
     return event => {
       const id = event.currentTarget.id;
