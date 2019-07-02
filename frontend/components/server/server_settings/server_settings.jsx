@@ -1,7 +1,8 @@
 import React from 'react';
 import OverviewContainer from './overview';
 import InviteListContainer from './invite_list';
-import { setTimeout } from 'timers';
+
+import MembersList from './members_list';
 
 class ServerSettings extends React.Component {
   constructor(props) {
@@ -67,7 +68,12 @@ class ServerSettings extends React.Component {
       case "Roles":
         return <div>no roles yet</div>
       case "Members":
-        return <div>insert members list here</div>
+        return (
+          // <div>insert members list here</div>
+          <MembersList
+            server={this.props.server}
+          />
+        )
       case "Invites":
         return (
           <InviteListContainer />

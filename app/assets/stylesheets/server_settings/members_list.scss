@@ -1,0 +1,24 @@
+#members-list {
+  img {
+    width: 45px;
+    height: 45px;
+  }
+  span {
+    font-size: 10px;
+  }
+  .roles {
+    display: flex;
+    width: 170px;
+  }
+
+  .more-options {
+    display: none;
+    cursor: pointer;
+  }
+  .more-options:hover {
+    color: white;
+  }
+  .show-dots {
+    display: inline;
+  }
+}

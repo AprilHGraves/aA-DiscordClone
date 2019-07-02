@@ -86,7 +86,7 @@ class InviteList extends React.Component {
       return (
         <tr 
           key={invite.id}
-          className="invite-row"
+          className="tr-hover-row"
           onMouseEnter={this.showInviteX(true)}
           onMouseLeave={this.showInviteX(false)}
         >
@@ -105,7 +105,9 @@ class InviteList extends React.Component {
           <td>
             <p className="white-text">
               {invite.expire_date ? (
-                <span id={`${expireDate}`} className="tic">{this.getTime(expireDate, nowDate)}</span>
+                <span id={`${expireDate}`} className="tic">
+                  {this.getTime(expireDate, nowDate)}
+                </span>
               ) : (
                 <span>∞</span>
               )}
@@ -128,7 +130,7 @@ class InviteList extends React.Component {
     return (
       <section className="right-fs-box">
         <h1>INVITES</h1>
-        <section id="invite-list">
+        <section id="invite-list" className="settings-table-1">
           <span className="gray-text">
             Here's a list of all active invite links. You can revoke any one.
           </span>

@@ -13,8 +13,8 @@
  *= require_self
  */
 
-
  @import "./reset.scss"; 
+
  body {
    font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;
    color: #8e9297;
@@ -129,24 +129,31 @@ button {
   
 }
 
- @import "./splash_page.scss";
- @import "./login_page.scss";
- @import "./main_page.scss";
- @import "./invite_page.scss";
+ @import "./dropdowns/server_dropdown.scss";
 
- @import "./server_index.scss";
- @import "./channel_index.scss";
- @import "./channel_show.scss";
+ @import "./main_containers/channel_index.scss";
+ @import "./main_containers/channel_show.scss";
+ @import "./main_containers/server_index.scss";
  
+ @import "./overlay_portion/add_server.scss";
+ @import "./overlay_portion/invite_box.scss";
 
+ @import "./pages/splash_page.scss";
+ @import "./pages/login_page.scss";
+ @import "./pages/main_page.scss";
+ @import "./pages/invite_page.scss";
+ 
+ @import "./server_settings/table.scss";
+ @import "./server_settings/invite_list.scss";
+ @import "./server_settings/members_list.scss";
+ @import "./server_settings/server_overview.scss";
+
+ @import "./user_settings/user_settings.scss";
 
  @import "./settings_fullscreen.scss";
- @import "./user_settings.scss";
- @import "./add_server.scss";
- @import "./invite_box.scss";
- @import "./server_dropdown.scss";
+
+
  
- @import "./server_overview.scss";
- @import "./invite_list.scss";
+
 
 

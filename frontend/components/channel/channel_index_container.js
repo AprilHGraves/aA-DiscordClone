@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import ChannelIndex from "./channel_index";
+import { fetchServerMembershipsByServerId } from "../../actions/server_memberships_actions";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchServerMembershipsByServerId: (serverId) => dispatch(fetchServerMembershipsByServerId(serverId))  
   }
 }
 

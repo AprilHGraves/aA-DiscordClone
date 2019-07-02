@@ -1,0 +1,40 @@
+#invite-list {
+  thead > tr {
+    border: 0;
+    padding: 0px 20px;
+    font-size: 10px;
+    justify-content: space-around;
+    padding: 0px 20px;
+    padding-right: 10px;
+  }
+  th:last-of-type {
+    margin-right: -35px;
+  }
+
+  .white-text {
+    color: white;
+    font-size: 14px;
+  }
+
+  .del-inv {
+    display: none;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    height: 25px;
+    width: 25px;
+    color: red;
+    background-color: #36393f;
+    border: 2px solid #292b30;
+    border-radius: 50%;
+  }
+  .del-inv:hover {
+    background-color: #53565f;
+    cursor: pointer;
+  }
+  .show-x {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+}

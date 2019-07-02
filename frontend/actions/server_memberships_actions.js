@@ -1,4 +1,9 @@
-import { postServerMembership, deleteServerMembership, patchServerMembership } from '../util/server_membership_api_util';
+import { 
+  postServerMembership, 
+  deleteServerMembership, 
+  patchServerMembership, 
+  getServerMembershipsByServerId
+} from '../util/server_membership_api_util';
 import { patchInviteUses, getInviteByCode } from '../util/server_invite_api_util';
 import { receiveServer, removeServer } from './servers_actions';
 import { receiveUsers } from './users_actions';
@@ -24,13 +29,14 @@ const removeServerMembership = membershipId => ({
   membershipId
 });
 
-export const fetchServerMemberships = serverId => (
-  getServerMemberships(serverId)
+export const fetchServerMembershipsByServerId = serverId => dispatch => {
+  return getServerMembershipsByServerId(serverId)
     .then(payload => {
-      dispatch(receiveServerMemberships(payload.serverMemberships));      
+    
+      dispatch(receiveServerMemberships(payload.server_memberships));      
       dispatch(receiveUsers(payload.users));
-    })
-);
+    })}
+;
 
 export const joinServerByCode = (code) => dispatch => (
   getInviteByCode(code)

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import ServerAddContainer from './server_add_container';
 
 class ServerIndex extends React.Component {
   constructor(props) {
@@ -12,6 +11,9 @@ class ServerIndex extends React.Component {
     this.props.getServers();
     const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
     this.props.focusServer(id);
+    if (id !== "@me") {
+      this.props.fetchServerMembershipsByServerId(id);
+    }
   }
 
   componentDidUpdate() {
@@ -28,6 +30,9 @@ class ServerIndex extends React.Component {
   activate(id) {
     return event => {
       this.props.focusServer(id);
+      if (id !== "Home") {
+        this.props.fetchServerMembershipsByServerId(id);
+      }
     }
   }
 

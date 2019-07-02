@@ -3,12 +3,12 @@ class Api::ServerMembershipsController < ApplicationController
   before_action :require_login
  
   def index
-    @server_memberships = ServerMembership.includes(:server).where("server_id = ?", params[:server_id])
+    @server_memberships = ServerMembership.includes(:user).where("server_id = ?", params[:serverId])
     render :index
   end
 
   def create
-    @sm = ServerMembership.new(server_id: params[:server_id])
+    @sm = ServerMembership.new(server_id: params[:serverId])
     @sm.user_id = current_user.id
     if @sm.save
       render :show
@@ -30,7 +30,7 @@ class Api::ServerMembershipsController < ApplicationController
     sm = ServerMembership.find_by(id: params[:id])
     if sm
       sm.destroy
-      render json: {userId: sm.user_id, serverId: sm.server_id}
+      render json: {membershipId: sm.id, userId: sm.user_id, serverId: sm.server_id}
     end
   end
 

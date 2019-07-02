@@ -7,9 +7,9 @@ class ChannelIndex extends React.Component {
   }
 
   componentDidMount() {
-    // TODO save scrolls for each server in state ui.scrollY
+    
   }
-
+  // TODO save scrolls for each server in state ui.scrollY
 
   showName(show) {
     return event => {

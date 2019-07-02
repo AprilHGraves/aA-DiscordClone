@@ -1,8 +1,16 @@
+export const getServerMembershipsByServerId = serverId => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/server_memberships',
+    data: { serverId }
+  })
+}
+
 export const postServerMembership = serverId => {
   return $.ajax({
     method: 'POST',
     url: '/api/server_memberships',
-    data: { server_id: serverId }
+    data: { serverId }
   })
 }
 

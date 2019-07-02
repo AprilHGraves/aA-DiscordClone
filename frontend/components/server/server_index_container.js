@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import ServerIndex from "./server_index";
 import { fetchServers } from "../../actions/servers_actions";
 import { focusServer } from "../../actions/ui_actions";
+import { fetchServerMembershipsByServerId } from "../../actions/server_memberships_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     getServers: () => dispatch(fetchServers()),
-    focusServer: (id) => dispatch(focusServer(id))
+    focusServer: (id) => dispatch(focusServer(id)),
+    fetchServerMembershipsByServerId: (serverId) => dispatch(fetchServerMembershipsByServerId(serverId)) 
   }
 }
 
