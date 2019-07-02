@@ -5,11 +5,12 @@ export const selectInvitesByServer = (array, serverId) => {
 };
 
 export const selectServerMembershipByServerAndUser = (state, serverId, userId) => {
+  
   const allServerMemberships = Object.values(state.entities.server_memberships);
-  return allServerMemberships.filter(membership => membership.server_id == serverId && membership.userId == userId)
+  return allServerMemberships.find(membership => membership.server_id == serverId && membership.user_id == userId);
 };
 
-export const selectServerMembershipByServer = (state, serverId) => {
+export const selectServerMembershipsByServer = (state, serverId) => {
   const allServerMemberships = Object.values(state.entities.server_memberships);
   return allServerMemberships.filter(membership => membership.server_id == serverId)
 };

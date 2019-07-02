@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { selectServerMembershipByServer } from '../../../util/selectors';
+import { selectServerMembershipsByServer } from '../../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     server: ownProps.server,
-    server_memberships: selectServerMembershipByServer(state, ownProps.server.id),
+    server_memberships: selectServerMembershipsByServer(state, ownProps.server.id),
     users: state.entities.users
   }
 }

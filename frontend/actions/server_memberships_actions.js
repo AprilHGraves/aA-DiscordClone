@@ -25,7 +25,7 @@ const receiveServerMemberships = memberships => ({
 });
 
 const removeServerMembership = membershipId => ({
-  type: REMOVE_MEMBRECEIVE_MEMBERSHIP,
+  type: REMOVE_MEMBERSHIP,
   membershipId
 });
 

@@ -22,7 +22,8 @@ class ServerDropdown extends React.Component {
   }
 
   leave() {
-    this.props.leaveServer(this.props.server.id);
+    this.props.closeComponent();
+    this.props.leaveServer(this.props.membership.id);
   }
 
   render() {

@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     server,
     userId,
-    membershipId: selectServerMembershipByServerAndUser(state, server.id, userId),
+    membership: selectServerMembershipByServerAndUser(state, server.id, userId),
     closeComponent: ownProps.closeComponent,
     showInvitePeople: ownProps.showInvitePeople,
     showChangeNickname: ownProps.showChangeNickname,
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    leaveServer: (server) => dispatch(leaveServer(server)),
+    leaveServer: (membershipId) => dispatch(leaveServer(membershipId)),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ServerDropdown)
