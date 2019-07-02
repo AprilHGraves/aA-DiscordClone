@@ -50,6 +50,7 @@ class ServerIndex extends React.Component {
           <li
             key="Home"
             id="aHome"
+            className="animate-hover"
             onClick={this.activate("Home")} 
             onMouseEnter={this.showName(true)}
             onMouseLeave={this.showName(false)}
@@ -71,7 +72,11 @@ class ServerIndex extends React.Component {
                 onMouseLeave={this.showName(false)}
               >
                 <Link to={`/channels/${server.id}`}>
-                  <img src={server.image_url} />
+                  {server.image_url ? (
+                    <img src={server.image_url} />
+                  ) : (
+                    <div className="image-missing">{server.name[0]}</div>
+                  )}
                 </Link>
                 <p>{server.name}</p>
 

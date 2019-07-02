@@ -53,7 +53,7 @@ class ChannelIndex extends React.Component {
               <div className="sticky-box">
                 <div id="quick-switcher-picture"/>
                 <p>I took this picture off of Discord to distract you.</p>
-                <button>Lorem Ipsum</button>
+                <button>No Switcher Yet</button>
               </div>
             )}
           <ul>

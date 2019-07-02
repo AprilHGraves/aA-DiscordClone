@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { joinServerByCode } from '../actions/servers_actions';
+import { joinServerByCode } from '../actions/server_memberships_actions';
 import { connect } from "react-redux";
 
 class Invite extends React.Component {

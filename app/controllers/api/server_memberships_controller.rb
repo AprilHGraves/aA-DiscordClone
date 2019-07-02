@@ -2,14 +2,18 @@ class Api::ServerMembershipsController < ApplicationController
 
   before_action :require_login
  
+  def index
+    @server_memberships = ServerMembership.includes(:server).where("server_id = ?", params[:server_id])
+    render :index
+  end
+
   def create
-    sm = ServerMembership.new(server_id: params[:server_id])
-    sm.user_id = current_user.id
-    if sm.save
-      @server = Server.find_by(id: sm.server_id)
-      render 'api/servers/show'
+    @sm = ServerMembership.new(server_id: params[:server_id])
+    @sm.user_id = current_user.id
+    if @sm.save
+      render :show
     else
-      render json: sm.errors, status:422
+      render json: @sm.errors, status:422
     end
   end
 

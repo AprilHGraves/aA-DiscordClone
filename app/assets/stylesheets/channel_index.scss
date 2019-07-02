@@ -40,12 +40,18 @@
       justify-content: space-around;
       align-items: center;
       font-size: 12px;
+      #party-members, #quick-switcher-picture {  
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 90px;
+        width: 170px;
+        margin: 0 auto;
+      }
       #party-members {
         background-image: image-url("adventure_begins");
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 80px;
-        width: 170px;
+      }
+      #quick-switcher-picture {
+        background-image: image-url("switcher_picture");
       }
       p {
         text-align: center;
@@ -69,7 +75,6 @@
       margin-right: 10px;
       position: relative;
       padding: 3px;
-      border-radius: 3px;
       i {
         color: lightgray;
         width: 25px;

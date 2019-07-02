@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import UpdateUserForm from "./update_user_form";
-import { editUser, deleteUser } from "../../../actions/session_actions";
+import { editUser, destroyUser } from "../../../actions/users_actions";
 import { clearErrors } from "../../../actions/errors_actions";
 
 const mapStateToProps = (state) => {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     editUser: (id, user, oldPW, newPW) => dispatch(editUser(id, user, oldPW, newPW)),
-    deleteAccount: (user) => dispatch(deleteUser(user)),
+    deleteAccount: (user) => dispatch(destroyUser(user)),
     clearErrors: () => dispatch(clearErrors())
   }
 }

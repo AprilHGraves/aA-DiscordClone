@@ -28,7 +28,6 @@ class Api::UsersController < ApplicationController
     if current_user && params[:id].to_i == current_user.id
       @user = current_user
       errors = {}
-      byebug
       if params["oldPW"] && params["oldPW"].length > 1 || params["newPW"] && params["newPW"].length > 1
         @user.change_password!(params["oldPW"], params["newPW"])
         errors = @user.errors.messages.dup

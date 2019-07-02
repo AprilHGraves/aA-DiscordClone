@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ServerDropdown from "../server/server_dropdown";
-import { leaveServer } from "../../actions/servers_actions";
+import { leaveServer } from "../../actions/server_memberships_actions";
 
 
 const mapStateToProps = (state, ownProps) => {

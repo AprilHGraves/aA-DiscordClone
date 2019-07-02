@@ -127,7 +127,7 @@ class Overview extends React.Component {
         <h1>SERVER OVERVIEW</h1>
         <section id="server-overview" className="form-type-1">
           <div className="photo"
-            style={{ backgroundImage: `url(${this.state.image_url})` }}
+            style={this.state.image_url && { backgroundImage: `url(${this.state.image_url})` }}
             onClick={this.selectFile}
             onMouseEnter={this.showImgHover(true)}
             onMouseLeave={this.showImgHover(false)}

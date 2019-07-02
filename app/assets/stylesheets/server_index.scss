@@ -17,10 +17,19 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    img {
-      border-radius: 50%;
+    background-color: #282b30;
+    img, .image-missing {   
+      border-radius: 35%;
       height: 50px;
       width: 50px;
+    }
+    .image-missing {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .image-missing:hover {
+      color: white;
     }
     p {
       display: none;
@@ -35,6 +44,9 @@
       z-index: 3;
     }
   }
+  li:hover {
+    background-color:#7289da;
+  }
   li:hover::before {
     content: "";
     position: absolute;
@@ -45,15 +57,13 @@
     border-radius: 15px;
     background-color: white;
   }
-
   li:first-of-type {
-    background-color: #7289da;
-    border-radius: 35%;
     img {
+      background-color: transparent;
       position: relative;
       margin: 5px auto;
       width: 40px;
-      height: 40px;
+      height: 40px; 
     }
   }
   li:last-of-type {
@@ -72,7 +82,7 @@
   }
 
   @keyframes expand {
-    0% { border-radius: 50%; }
+    0% { border-radius: default; }
     100% { border-radius: 35% }
   }
 
@@ -81,6 +91,12 @@
     animation-duration: .5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+  }
+
+  .active-server {
+    border-radius: 35%;
+    background-color: #7289da;
+    color: white;
   }
 
   .active-server:before {

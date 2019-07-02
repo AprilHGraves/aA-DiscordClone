@@ -1,0 +1,1 @@
+json.extract! sm, :id, :server_id, :user_id, :nickname

@@ -1,7 +1,9 @@
-export const getUsers = () => {
+
+export const postUser = user => {
   return $.ajax({
-    method: 'GET',
-    url: '/api/users'
+    method: 'POST',
+    url: '/api/users',
+    data: { user }
   })
 };
 
@@ -12,5 +14,12 @@ export const patchUser = (id, formData) => {
     data: formData,
     contentType: false,
     processData: false
+  })
+};
+
+export const deleteUser = user => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/users/${user.id}`
   })
 };

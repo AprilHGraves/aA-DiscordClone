@@ -1,10 +1,10 @@
 import React from 'react';
-import ServerSettingsContainer from './server_settings/server_settings_container';
 
 class ServerDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.leave = this.leave.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +19,10 @@ class ServerDropdown extends React.Component {
     if (this.inside && !this.inside.contains(event.target)) {
       this.props.closeComponent();
     }
+  }
+
+  leave() {
+    this.props.leaveServer(this.props.server.id);
   }
 
   render() {
@@ -42,7 +46,7 @@ class ServerDropdown extends React.Component {
         </ul>
         {!isOwner && (
           <ul>
-            <li id="leave-server">
+            <li id="leave-server" onClick={this.leave}>
               <i className="fas fa-sign-out-alt" />Leave Server
             </li>
           </ul>

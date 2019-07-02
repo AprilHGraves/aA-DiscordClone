@@ -48,7 +48,6 @@ export const createInvite = invite => dispatch => {
 export const destroyInvite = inviteId => dispatch => (
   deleteInvite(inviteId)
     .then(payload => {
-      debugger;
       dispatch(removeInvite(payload.id));
     })
 );

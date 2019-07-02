@@ -67,17 +67,20 @@ class ServerAdd extends React.Component {
       }
       this.props.createServer(formData)
         .then((serverId) => {
-          this.props.history.push(`/channels/${serverId}`)
+          this.props.closeComponent();
+          this.props.history.push(`/channels/${serverId}`);
+
         });
     } else {
       const match = this.state.inviteLink.match(/invite\/(.*)/);
       const code = match && match[1] || this.state.inviteLink;
       this.props.joinServerByCode(code)
-        .then((serverId) => {          
+        .then((serverId) => { 
+          this.props.closeComponent();       
           this.props.history.push(`/channels/${serverId}`);
         });
     }
-    this.props.closeComponent();
+ 
   }
   
   changeInput(key) {
