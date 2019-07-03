@@ -21,4 +21,6 @@ class Server < ApplicationRecord
     class_name: :ServerInvite,
     dependent: :destroy
 
+  has_many :channels,
+    dependent: :destroy
 end

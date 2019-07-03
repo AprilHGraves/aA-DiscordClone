@@ -36,7 +36,7 @@ class ChangeNickname extends React.Component {
 
 
   componentDidMount() {
-    this.inside = document.getElementById("invite-box");
+    this.inside = document.getElementById("change-nickname");
     document.addEventListener("mousedown", this.handleClickOutside);    
   }
   componentWillUnmount() {
