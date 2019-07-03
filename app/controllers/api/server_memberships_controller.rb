@@ -34,4 +34,8 @@ class Api::ServerMembershipsController < ApplicationController
     end
   end
 
+  def membership_params
+    params.permit(:nickname)
+  end
+
 end

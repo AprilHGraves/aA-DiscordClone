@@ -8,6 +8,7 @@ import ServerAddContainer from './server/server_add_container';
 import ServerDropdownContainer from './server/server_dropdown_container';
 import ServerSettingsContainer from './server/server_settings/server_settings_container';
 import InstantInviteContainer from './invite/instant_invite_container';
+import ChangeNicknameContainer from './user/change_nickname';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -44,6 +45,12 @@ class MainPage extends React.Component {
             showInvitePeople={this.showComponent("Invite People")}
             showChangeNickname={this.showComponent("Change Nickname")}
             showServerSettings={this.showComponent("Server Settings")}
+          />
+        )
+      case "Change Nickname":
+        return (
+          <ChangeNicknameContainer
+            closeComponent={this.closeComponent}
           />
         )
       case "Server Settings":

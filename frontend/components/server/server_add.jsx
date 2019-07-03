@@ -126,7 +126,7 @@ class ServerAdd extends React.Component {
 
   showPage() {
     const formBottom = (
-      <div id="form-bottom">
+      <div className="form-bottom">
         <button onClick={this.modeSwitch("Select")}><i className='fas fa-arrow-left' />&nbsp;Back</button>
         <input type="submit" value={this.state.mode} />
       </div>

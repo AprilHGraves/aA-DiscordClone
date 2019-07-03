@@ -98,7 +98,7 @@ class InstantInvite extends React.Component {
     }
     return (
       <section className="transparent-background">
-        <section id="invite-box">
+        <section id="invite-box" className="small-box-type-1">
           <h1>
             {this.state.editMode ? (
               "SERVER INVITE LINK SETTINGS"
@@ -132,7 +132,7 @@ class InstantInvite extends React.Component {
                   <option value="100">100 uses</option>
                 </select>
               </label>
-              <div id="invite-bottom">
+              <div id="form-bottom">
                 <button onClick={this.modeSwitch}>Cancel</button>
                 <input type="submit" value="Generate a New Link"/>
               </div>

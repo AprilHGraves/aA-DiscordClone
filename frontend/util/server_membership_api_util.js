@@ -15,7 +15,7 @@ export const postServerMembership = serverId => {
 }
 
 export const deleteServerMembership = membershipId => {
-  debugger;
+  
   return $.ajax({
     method: 'DELETE',
     url: `/api/server_memberships/${membershipId}`

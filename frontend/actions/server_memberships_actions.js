@@ -66,9 +66,9 @@ export const leaveServer = serverMembershipId => dispatch => (
     })
 );
 
-export const changeNickname = (id, nickname) => dispatch => (
-  patchServerMembership(id, nickname)
-    .then(serverMembership => {
-      dispatch(receiveServerMembership(serverMembership));      
+export const changeNickname = (id, nickname) => dispatch => {
+  return patchServerMembership(id, nickname)
+    .then(payload => {
+      dispatch(receiveServerMembership(payload.server_membership));      
     })
-);
+  };

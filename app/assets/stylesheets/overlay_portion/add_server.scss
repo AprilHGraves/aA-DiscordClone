@@ -96,12 +96,7 @@
         }
       }
     }
-    #form-bottom > input[type="submit"] {
-      background-color: #7289da;
-    }
-    #form-bottom > input[type="submit"]:hover {
-      background-color: #677bc5;
-    }
+    
     
     
   }
@@ -139,26 +134,34 @@
     }
 
   }
-  #form-bottom {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    display: flex;
-    padding: 15px 37px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0,0,0,.07);
-    button {
-      color: rgba(0,0,0,.4);
-    }
-    input[type="submit"] {
-      color: white;
-      padding: 9px 20px;
-      border: 0;
-      font-size: 16px;
-      height: auto;
-      text-align: center;      
-    }
+  
+}
+
+.form-bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  padding: 15px 37px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0,0,0,.07);
+  button {
+    color: rgba(0,0,0,.4);
   }
+  input[type="submit"] {
+    color: white;
+    padding: 9px 20px;
+    border: 0;
+    font-size: 16px;
+    height: auto;
+    text-align: center;      
+  }
+}
+.form-bottom > input[type="submit"] {
+  background-color: #7289da;
+}
+.form-bottom > input[type="submit"]:hover {
+  background-color: #677bc5;
 }

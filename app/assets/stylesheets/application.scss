@@ -15,6 +15,9 @@
 
  @import "./reset.scss"; 
 
+
+ // TODO prevent scroll
+ 
  body {
    font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;
    color: #8e9297;
@@ -135,8 +138,10 @@ button {
  @import "./main_containers/channel_show.scss";
  @import "./main_containers/server_index.scss";
  
+ @import "./overlay_portion/small_dark_box.scss";
  @import "./overlay_portion/add_server.scss";
  @import "./overlay_portion/invite_box.scss";
+ @import "./overlay_portion//change_nickname.scss";
 
  @import "./pages/splash_page.scss";
  @import "./pages/login_page.scss";
