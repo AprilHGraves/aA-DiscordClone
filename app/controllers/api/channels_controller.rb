@@ -1,6 +1,12 @@
-class Api::ServersController < ApplicationController
+class Api::ChannelsController < ApplicationController
 
   before_action :require_login
+
+
+  def index
+    @channels = Channel.where("server_id = ?", params[:server_id])
+    render :index
+  end
 
   def create
     @channel = Channel.new(channel_params)

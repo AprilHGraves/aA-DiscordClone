@@ -5,9 +5,8 @@ import { selectInvitesByServer } from '../../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   const serverId = state.ui.focus.server;
-  const allInvites = Object.values(state.entities.invites);
   return {
-    invites: selectInvitesByServer(allInvites, serverId),
+    invites: selectInvitesByServer(state, serverId),
     users: state.entities.users,
     serverId
   }

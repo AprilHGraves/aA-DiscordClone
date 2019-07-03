@@ -3,6 +3,7 @@ import { getServers, postServer, patchServer, deleteServer} from '../util/server
 import { joinServer } from './server_memberships_actions';
 import { focusServer } from './ui_actions';
 import { receiveErrors } from "./errors_actions";
+import { createChannel, receiveChannels } from './channels_actions';
 
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
@@ -26,13 +27,20 @@ export const removeServer = serverId => ({
 
 export const fetchServers = () => dispatch => (
   getServers()
-    .then(servers => dispatch(receiveServers(servers)))
+    .then(payload => {
+      dispatch(receiveServers(payload.servers));
+      dispatch(receiveChannels(payload.channels));      
+    })
 );
 
 export const createServer = server => dispatch => (
   postServer(server)
     .then(server => {
       dispatch(joinServer(server.id));
+      dispatch(createChannel({
+        name: "general",
+        server_id: server.id
+      }));
       return server.id
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );

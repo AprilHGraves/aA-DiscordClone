@@ -1,9 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.activate = this.activate.bind(this);
   }
 
   componentDidMount() {
@@ -11,6 +12,25 @@ class ChannelIndex extends React.Component {
   }
   // TODO save scrolls for each server in state ui.scrollY
 
+  componentDidUpdate() {
+
+    // const oldNode = document.querySelector(".active-channel");
+    // if (oldNode) {
+    //   oldNode.classList.remove("active-channel")
+    // }
+    // const id = this.props.location.pathname.match(/channels\/(.*)\/(.*)/)[2];
+    // const foundNode = document.getElementById(`a${id}`);
+    // if (foundNode) {
+    //   newNode.classList.add("active-channel");
+    // }
+  }
+
+  activate(id) {
+    return event => {
+      this.props.focusChannel(id);
+    }
+  }
+  
   showName(show) {
     return event => {
       const id = event.currentTarget.id;
@@ -21,6 +41,54 @@ class ChannelIndex extends React.Component {
         el.classList.remove("show-name");
       }
     }
+  }
+
+  hideChannels(event) {
+    // TODO code this part
+    // const ul = event.target.parent;
+    // const lis = ul.children;
+    // for (let i=0, fin=ul.length; i<fin; i++) {
+    //   lis[i].classList.add("collapse");
+    // }
+  }
+
+  showButtons(show) {
+    
+  }
+
+  getChannelUls() {
+    return (
+      <ul>
+        <h1 onClick={this.hideChannels}>TEXT CHANNELS</h1>
+        {this.props.channels.map(channel => {
+          return (
+            <li
+              key={channel.id}
+              id={`a${channel.id}`}
+              onClick={this.activate(channel.id)}
+              onMouseEnter={this.showButtons(true)}
+              onMouseLeave={this.showButtons(false)}
+            >
+              <Link to={`/channels/${this.props.server.id}/${channel.id}`}>
+                { channel.name }
+              </Link>
+              <div>
+                <i 
+                  className="fas fa-user-plus"
+                  onClick={this.props.showInvitePeople}
+                />
+                <p className="small-black-tag">Create Instant Invite</p>
+                <i 
+                  className="fas fa-cog"
+                />
+                <p className="small-black-tag">Edit Channel</p>
+              </div>
+
+            </li>
+          )
+        })}
+      </ul>
+    )
   }
   
   render() {
@@ -56,17 +124,9 @@ class ChannelIndex extends React.Component {
                 <button>No Switcher Yet</button>
               </div>
             )}
-          <ul>
-            <li>top line</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>a</li>
-            <li>b</li><li>a</li><li>a</li><li>bottom line</li>
-          </ul>
+          <div id="channel-index">
+            {this.getChannelUls()}            
+          </div>
         </div>
         <section id="user-bar">
           <img src={this.props.user.image_url} />
@@ -81,7 +141,7 @@ class ChannelIndex extends React.Component {
             onMouseLeave={this.showName(false)}
           >
             <i className='fas fa-cog'/>
-            <p>User Settings</p>
+            <p className="small-black-tag">User Settings</p>
           </button>
         </section>
       </section>

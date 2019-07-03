@@ -1,7 +1,8 @@
 
 
-export const selectInvitesByServer = (array, serverId) => {
-  return array.filter(invite => invite.server_id == serverId);
+export const selectInvitesByServer = (state, serverId) => {
+  const allInvites = Object.values(state.entities.invites);
+  return allInvites.filter(invite => invite.server_id == serverId);
 };
 
 export const selectServerMembershipByServerAndUser = (state, serverId, userId) => {
@@ -14,3 +15,8 @@ export const selectServerMembershipsByServer = (state, serverId) => {
   const allServerMemberships = Object.values(state.entities.server_memberships);
   return allServerMemberships.filter(membership => membership.server_id == serverId)
 };
+
+export const selectChannelsByServerId = (state, serverId) => {
+  const allChannels = Object.values(state.entities.channels);
+  return allChannels.filter(channel => channel.server_id == serverId)
+}

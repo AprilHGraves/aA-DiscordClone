@@ -3,7 +3,7 @@ class Api::ServersController < ApplicationController
   before_action :require_login
 
   def index
-    @servers = current_user.servers
+    @servers = current_user.servers.includes(:channels)
     render :index
   end
 

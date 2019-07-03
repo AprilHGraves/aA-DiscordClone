@@ -9,11 +9,12 @@ class ServerIndex extends React.Component {
 
   componentDidMount() {
     this.props.getServers();
-    const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
-    this.props.focusServer(id);
-    if (id !== "@me") {
-      this.props.fetchServerMembershipsByServerId(id);
+    const matches = this.props.location.pathname.match(/channels\/(.*)\/?(.*)?/);
+    this.props.focusServer(matches[1]);
+    if (matches[1] != "@me") {
+      this.props.fetchServerMembershipsByServerId(matches[1]);
     }
+    this.props.focusChannel(matches[2]);
   }
 
   componentDidUpdate() {
@@ -21,16 +22,17 @@ class ServerIndex extends React.Component {
     if (oldNode) {
       oldNode.classList.remove("active-server")
     }
-    const id = this.props.location.pathname.match(/channels\/(.*)/)[1];
+    const id = this.props.location.pathname.match(/channels\/(.*)\/?/)[1];
     const foundNode = document.getElementById(`a${id}`);
     const newNode = foundNode || document.getElementById("aHome");
-    newNode.classList.add("active-server");            
-  }
+    newNode.classList.add("active-server");
+  } 
 
   activate(id) {
     return event => {
       this.props.focusServer(id);
       if (id !== "Home") {
+        this.props.fetchChannels(id);
         this.props.fetchServerMembershipsByServerId(id);
       }
     }
