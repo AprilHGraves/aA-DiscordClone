@@ -9,12 +9,16 @@ class ServerIndex extends React.Component {
 
   componentDidMount() {
     this.props.getServers();
-    const matches = this.props.location.pathname.match(/channels\/(.*)\/?(.*)?/);
-    this.props.focusServer(matches[1]);
-    if (matches[1] != "@me") {
-      this.props.fetchServerMembershipsByServerId(matches[1]);
+    const urlMatch = this.props.location.pathname.match(/channels\/(.*)/)[1];
+    const serverId = urlMatch.match(/(\w+)\/?/)[1];
+    const channelmatch = serverId.match(/\d+\/(.*)/);
+    this.props.focusServer(serverId);
+    if (serverId != "me") {
+      this.props.fetchServerMembershipsByServerId(serverId);
     }
-    this.props.focusChannel(matches[2]);
+    if (channelmatch) {
+      this.props.focusChannel(channelmatch[1]);
+    }
   }
 
   componentDidUpdate() {
@@ -22,7 +26,7 @@ class ServerIndex extends React.Component {
     if (oldNode) {
       oldNode.classList.remove("active-server")
     }
-    const id = this.props.location.pathname.match(/channels\/(.*)\/?/)[1];
+    const id = this.props.location.pathname.match(/channels\/@?(\w+)\/?/)[1];
     const foundNode = document.getElementById(`a${id}`);
     const newNode = foundNode || document.getElementById("aHome");
     newNode.classList.add("active-server");
@@ -43,9 +47,9 @@ class ServerIndex extends React.Component {
       const id = event.currentTarget.id;
       const el = document.querySelector(`#${id} p`);
       if (show) {
-        el.classList.add("show-name");
+        el.classList.add("show-label");
       } else {
-        el.classList.remove("show-name");
+        el.classList.remove("show-label");
       }
     }
   }
@@ -68,6 +72,7 @@ class ServerIndex extends React.Component {
             <p>Home</p>
           </li>
           {this.props.servers.map(server => {
+            const assocChannel = this.props.channel_notes[server.id];
             return (
               //put a letter in front and use id to ensure correct format for finding it using css selector (one word, starts with letter)
               <li
@@ -78,7 +83,7 @@ class ServerIndex extends React.Component {
                 onMouseEnter={this.showName(true)}
                 onMouseLeave={this.showName(false)}
               >
-                <Link to={`/channels/${server.id}`}>
+                <Link to={`/channels/${server.id}/${assocChannel || ""}`}>
                   {server.image_url ? (
                     <img src={server.image_url} />
                   ) : (

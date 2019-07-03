@@ -1,6 +1,6 @@
 #channel-show {
   background-color: #36393f;
-  max-width: 83.25%;
+  min-width: 83.25%;
   height: 949px;
 
   #show-top {
@@ -9,6 +9,29 @@
     border-bottom: 1px solid rgba(0,0,0,.3);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+    }
+    .hash {
+      font-size: 28px;
+      margin-left: 15px;
+    }
+    .white-text {
+      color: white;
+    }
+    span {
+      margin: 0 5px;
+    }
+    .channel-topic {
+      border-left: 1px solid rgba(255,255,255,.1);
+      padding-left: 10px;
+    }
+    i {
+      cursor: pointer;
+      margin-right: 100px;
+    }
   }
 
   #show-bottom {
@@ -19,16 +42,30 @@
 
     #message-box {
       height: 100%;
-      width: 1304px;
+      flex: 1 1 auto;
       #message-center {
         height: 89.75%;
         width: 99.5%;
         margin: 0 auto;
-        li{
+        li {
           display: block;
           width: 97%;
-          margin: 120px auto;
+          
+          padding: 20px auto;
           border-top: 1px solid rgba(255,255,255,.1);
+        }
+        #first-message {
+          position: relative;
+        }
+        #message-overlay {
+          position: absolute;
+          bottom: 0;
+          display: flex;
+          justify-content: space-between;
+          img {
+            width: 50px;
+            height: 50px;
+          }
         }
       }
       #message-center::-webkit-scrollbar {
@@ -38,7 +75,7 @@
         background-color: #2f3136;
       }
       #message-form {
-        border-top: 1px solid rgba(255,255,255,.1);
+        border-top: 1px solid rgba(255,255,255,.02);
         width: 97%;
         height: 90px;
         margin: 0 auto;
@@ -58,9 +95,36 @@
       }
     }
     #user-list {
+      box-sizing: border-box;
       background-color: #2f3136;
       height: 100%;
       min-width: 240px;
+      font-size: 14px;
+      padding-top: 20px;
+      padding-left: 15px;
+      ul {
+        margin: 10px;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+      }
+      img {
+        background-color: gray;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
+      span {
+        margin: 0 10px;
+      }
+      i {
+        color: gold;
+      }
     }
+  }
+  .show-label {
+    display: block;
   }
 }

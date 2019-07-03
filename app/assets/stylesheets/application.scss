@@ -14,9 +14,6 @@
  */
 
  @import "./reset.scss"; 
-
-
- // TODO prevent scroll
  
  body {
    font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -148,12 +145,14 @@ button {
  @import "./pages/main_page.scss";
  @import "./pages/invite_page.scss";
  
- @import "./server_settings/table.scss";
- @import "./server_settings/invite_list.scss";
- @import "./server_settings/members_list.scss";
- @import "./server_settings/server_overview.scss";
+ @import "./settings_server/table.scss";
+ @import "./settings_server/invite_list.scss";
+ @import "./settings_server/members_list.scss";
+ @import "./settings_server/server_overview.scss";
 
- @import "./user_settings/user_settings.scss";
+ @import "./settings_channel/channel_overview.scss";
+
+ @import "./settings_user/user_settings.scss";
 
  @import "./settings_fullscreen.scss";
 

@@ -1,0 +1,23 @@
+
+#server-overview {
+
+  label {
+    font-size: 12px;
+    width: 325px;
+    color: rgba(255,255,255,.5);
+  }
+  input {
+    margin-top: 10px;
+    width: 325px;
+    padding: 10px;
+  }
+
+  #overview-image {  
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90px;
+    width: 170px;
+    margin: 0 auto;
+    background-image: image-url("https://discordapp.com/assets/bfffd518c76d3f6bc5e96eb52e4ae2cf.svg");
+  }
+}

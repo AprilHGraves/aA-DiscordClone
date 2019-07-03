@@ -53,7 +53,7 @@ export const joinServer = serverId => dispatch => (
     .then(payload => {
       dispatch(receiveServerMembership(payload.server_membership));
       dispatch(receiveServer(payload.server));
-      dispatch(focusServer(payload.server.id));
+      // dispatch(focusServer(payload.server.id)); handled by receiveserver?
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 

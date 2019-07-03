@@ -8,7 +8,8 @@ import { fetchChannels } from "../../actions/channels_actions";
 const mapStateToProps = (state, ownProps) => {
   return {
     servers: Object.values(state.entities.servers),
-    showAddServer: ownProps.showAddServer
+    showAddServer: ownProps.showAddServer,
+    channel_notes: state.ui.channel_notes
   }
 }
 

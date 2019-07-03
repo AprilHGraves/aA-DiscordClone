@@ -1,0 +1,37 @@
+#server-overview {
+  display:flex;
+  justify-content: space-between;
+  span {
+    position: relative;
+    font-size: 10px;
+    top: 100px;
+  }
+  p {
+    font-size: 14px;
+    
+    width: 150px;
+  }
+  .gray-text {
+    color: rgba(255,255,255,.3);
+  }
+  button {
+    color: white;
+    border: 1px solid rgba(255,255,255,.2);
+    padding: 10px 15px;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  button:hover {
+    border: 1px solid white;
+  }
+  label {
+    font-size: 12px;
+    width: 325px;
+    color: rgba(255,255,255,.5);
+  }
+  input {
+    margin-top: 10px;
+    width: 325px;
+    padding: 10px;
+  }
+}

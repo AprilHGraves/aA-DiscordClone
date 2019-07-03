@@ -55,7 +55,7 @@ class MembersList extends React.Component {
           </td>
           <td>
             <div className="roles">
-              roles will go here
+              {/* roles will go here */}
             </div>
           </td>
 

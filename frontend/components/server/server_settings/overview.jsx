@@ -102,6 +102,7 @@ class Overview extends React.Component {
         picFile: file,
         image_url: fileReader.result
       });
+      this.handleChanges();
     };
     fileReader.readAsDataURL(file);
   }
@@ -136,6 +137,11 @@ class Overview extends React.Component {
               CHANGE<br />ICON
             </p>
             <div className="photo-icon" />
+            <span className="gray-text">Minimum Size: none</span>
+          </div>
+          <div>
+            <p className="gray-text">We recommend that you pick a good image</p>
+            <button onClick={this.selectFile}>Upload Image</button>
           </div>
           <label>SERVER NAME
             <input id="name-input" value={this.state.name} onChange={this.changeInput("name")}/>

@@ -14,79 +14,99 @@ class ChannelIndex extends React.Component {
 
   componentDidUpdate() {
 
-    // const oldNode = document.querySelector(".active-channel");
-    // if (oldNode) {
-    //   oldNode.classList.remove("active-channel")
-    // }
-    // const id = this.props.location.pathname.match(/channels\/(.*)\/(.*)/)[2];
-    // const foundNode = document.getElementById(`a${id}`);
-    // if (foundNode) {
-    //   newNode.classList.add("active-channel");
-    // }
-  }
-
-  activate(id) {
-    return event => {
-      this.props.focusChannel(id);
+    const oldNode = document.querySelector(".active-channel");
+    if (oldNode) {
+      oldNode.classList.remove("active-channel");
     }
-  }
-  
-  showName(show) {
-    return event => {
-      const id = event.currentTarget.id;
-      const el = document.querySelector(`#${id} p`);
-      if (show) {
-        el.classList.add("show-name");
-      } else {
-        el.classList.remove("show-name");
+    const idMatch = this.props.location.pathname.match(/channels\/(.*)\/(.*)/);
+    if (idMatch) {
+      const foundNode = document.getElementById(`a${idMatch[2]}`);
+      if (foundNode) {
+        foundNode.classList.add("active-channel");
+        const a = foundNode.children[1];
+        a.classList.remove("hidden");
       }
     }
   }
 
-  hideChannels(event) {
-    // TODO code this part
-    // const ul = event.target.parent;
-    // const lis = ul.children;
-    // for (let i=0, fin=ul.length; i<fin; i++) {
-    //   lis[i].classList.add("collapse");
-    // }
+  activate(id) {
+    const serverId = this.props.server.id;
+    return event => {
+      this.props.focusChannel(id);
+      this.props.noteChannel(serverId, id);
+    }
   }
 
-  showButtons(show) {
-    
+  showHidden(show, elType) {
+    return event => {
+      const id = event.currentTarget.id;
+      const el = document.querySelector(`#${id} ${elType}`);
+      if (show) {
+        el.classList.add("show-hidden");
+      } else {
+        el.classList.remove("show-hidden");
+      }
+    }
   }
 
   getChannelUls() {
     return (
-      <ul>
-        <h1 onClick={this.hideChannels}>TEXT CHANNELS</h1>
+      <ul id="channel-list">
+        <div id="category-label">
+          <h1>TEXT CHANNELS</h1>
+          <button
+            id="text-channels"
+            className="revealer"
+            onClick={this.props.showAddChannel}
+            onMouseEnter={this.showHidden(true, "p")}
+            onMouseLeave={this.showHidden(false, "p")}
+          >
+            <i className="fas fa-plus"/>
+            <p className="small-black-tag hidden">Create Channel</p>
+          </button>
+        </div>
         {this.props.channels.map(channel => {
           return (
             <li
               key={channel.id}
               id={`a${channel.id}`}
+              className="revealer"
               onClick={this.activate(channel.id)}
-              onMouseEnter={this.showButtons(true)}
-              onMouseLeave={this.showButtons(false)}
+              onMouseEnter={this.showHidden(true, "div")}
+              onMouseLeave={this.showHidden(false, "div")}
             >
               <Link to={`/channels/${this.props.server.id}/${channel.id}`}>
-                { channel.name }
+                <span className="hash">#</span>&nbsp;
+                { channel.name.length > 20 && `${channel.name.slice(0,20)}...` || channel.name }
               </Link>
-              <div>
-                <i 
-                  className="fas fa-user-plus"
+              <div className="channel-options hidden">
+                <i
+                  id={`plus-${channel.id}`}
+                  className="fas fa-user-plus revealer"
                   onClick={this.props.showInvitePeople}
-                />
-                <p className="small-black-tag">Create Instant Invite</p>
-                <i 
-                  className="fas fa-cog"
-                />
-                <p className="small-black-tag">Edit Channel</p>
+                  onMouseEnter={this.showHidden(true, "p")}
+                  onMouseLeave={this.showHidden(false, "p")}
+                >
+                  <p className="small-black-tag hidden">Create Instant Invite</p>
+                </i>
+                <i
+                  id={`cog-${channel.id}`}
+                  className="fas fa-cog revealer"
+                  onClick={this.props.showChannelSettings}
+                  onMouseEnter={this.showHidden(true, "p")}
+                  onMouseLeave={this.showHidden(false, "p")}
+                >
+                  <p className="small-black-tag hidden">Edit Channel</p>
+                </i>
               </div>
 
             </li>
+            
           )
         })}
+        {/* for scroll testing */}
+        {/* <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li>
+        <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> <li>test</li> */}
       </ul>
     )
   }
@@ -109,25 +129,25 @@ class ChannelIndex extends React.Component {
             <h1>Home</h1>
           </div>
         )}
-        
-        <div id="channel-box" className="scrollable">
-            {this.props.server.owner_id === this.props.user.id ? (
-              <div className="sticky-box">
-                <div id="party-members"/>
-                <p>An adventure begins.<br/>Let's add some party members!</p>
-                <button onClick={this.props.showInvitePeople}>Invite People</button>
-              </div>
-            ) : (
-              <div className="sticky-box">
-                <div id="quick-switcher-picture"/>
-                <p>I took this picture off of Discord to distract you.</p>
-                <button>No Switcher Yet</button>
-              </div>
-            )}
-          <div id="channel-index">
-            {this.getChannelUls()}            
+          {/* TODO fix tag showing and scrolling. See the server index example */}
+          <div id="channel-box">
+              {this.props.server.owner_id === this.props.user.id ? (
+                <div className="sticky-box">
+                  <div id="party-members"/>
+                  <p>An adventure begins.<br/>Let's add some party members!</p>
+                  <button onClick={this.props.showInvitePeople}>Invite People</button>
+                </div>
+              ) : (
+                <div className="sticky-box">
+                  <div id="quick-switcher-picture"/>
+                  <p>I took this picture off of Discord to distract you.</p>
+                  <button>No Switcher Yet</button>
+                </div>
+              )}
+            <div id="channel-index">
+              {this.getChannelUls()}            
+            </div>
           </div>
-        </div>
         <section id="user-bar">
           <img src={this.props.user.image_url} />
           <div>
@@ -135,13 +155,14 @@ class ChannelIndex extends React.Component {
             <p>{tagNum}</p>
           </div>
           <button
-            id="cog"
+            id="user-cog"
+            className="revealer"
             onClick={this.props.showUserSettings}
-            onMouseEnter={this.showName(true)}
-            onMouseLeave={this.showName(false)}
+            onMouseEnter={this.showHidden(true, "p")}
+            onMouseLeave={this.showHidden(false, "p")}
           >
             <i className='fas fa-cog'/>
-            <p className="small-black-tag">User Settings</p>
+            <p className="small-black-tag hidden">User Settings</p>
           </button>
         </section>
       </section>

@@ -68,6 +68,8 @@ class MainPage extends React.Component {
           showUserSettings={this.showComponent("User Settings")}
           showServerDropdown={this.showComponent("Server Dropdown")}
           showInvitePeople={this.showComponent("Invite People")}
+          showAddChannel={this.showComponent("Add Channel")}
+          showChannelSettings={this.showComponent("Channel Settings")}
         />
         <ChannelShowContainer />
         {this.getComponent()}

@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   // TODO change this to reflect the actual channel later
   return {
     server: state.entities.servers[state.ui.focus.server],
-    channelId: state.ui.focus.server,
+    channelId: state.ui.focus.channel,
     closeComponent: ownProps.closeComponent
   }
 }
