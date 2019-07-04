@@ -49,7 +49,7 @@ class ServerIndex extends React.Component {
       oldNode.classList.remove("active-server")
     }
     const id = this.props.location.pathname.match(/channels\/@?(\w+)\/?/)[1];
-    const foundNode = document.getElementById(`a${id}`);
+    const foundNode = document.getElementById(`s${id}`);
     const newNode = foundNode || document.getElementById("aHome");
     newNode.classList.add("active-server");
   }
@@ -100,7 +100,7 @@ class ServerIndex extends React.Component {
               //put a letter in front and use id to ensure correct format for finding it using css selector (one word, starts with letter)
               <li
                 key={server.id}
-                id={`a${server.id}`}
+                id={`s${server.id}`}
                 className="animate-hover" 
                 onClick={this.activate(server.id)}
                 onMouseEnter={this.showName(true)}

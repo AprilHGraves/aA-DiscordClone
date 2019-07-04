@@ -14,7 +14,7 @@ class ChannelIndex extends React.Component {
     }
     const idMatch = this.props.location.pathname.match(/channels\/(.*)\/(.*)/);
     if (idMatch) {
-      const foundNode = document.getElementById(`a${idMatch[2]}`);
+      const foundNode = document.getElementById(`c${idMatch[2]}`);
       if (foundNode) {
         foundNode.classList.add("active-channel");
         const a = foundNode.children[1];
@@ -66,7 +66,7 @@ class ChannelIndex extends React.Component {
           return (
             <li
               key={channel.id}
-              id={`a${channel.id}`}
+              id={`c${channel.id}`}
               className="revealer"
               onClick={this.activate(channel.id)}
               onMouseEnter={this.showHidden(true, "div")}
