@@ -1,12 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { destroyChannel } from "../../../actions/channels_actions";
 import ChannelInviteListContainer from './channel_invite_list_container';
 import ChannelOverviewContainer from './channel_overview';
+import { selectFirstChannelInServer } from '../../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
+  const serverId = state.ui.focus.server;
   return {
     channel: state.entities.channels[state.ui.focus.channel],
+    serverId,
+    firstChannel: selectFirstChannelInServer(state, serverId),
     closeComponent: ownProps.closeComponent
   }
 }
@@ -96,19 +101,26 @@ class ChannelSettings extends React.Component {
 
   delChannel() {
     this.props.closeComponent();
-    this.props.destroyChannel(this.props.channel.id);
+    this.props.destroyChannel(this.props.channel.id)
+      .then( () => {
+        if (this.props.firstChannel) {
+          this.props.history.push(`/channels/${this.props.serverId}/${this.props.firstChannel.id}`);
+        } else {
+          this.props.history.push(`/channels/${this.props.serverId}/`);
+        }
+      });
   }
 
 
   render() {
+    const cName = this.props.channel.name;
     return (
       <section className="settings-fullscreen">
         <div className="settings-left">
           <section className="options-list">
             <ul>
               <h1>
-                # {this.props.channel.name}
-                <span>TEXT CHANNELS</span>
+                # {cName.length > 20 && `${cName.slice(0,21)}...` || cName }
               </h1>
               <li onClick={this.switchPage("Overview")} className="selected">Overview</li>
               <li onClick={this.switchPage("Invites")}>Invites</li>
@@ -133,4 +145,4 @@ class ChannelSettings extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelSettings)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChannelSettings))

@@ -1,6 +1,7 @@
 import React from 'react';
 import OverviewContainer from './server_overview';
 import ServerInviteListContainer from './server_invite_list_container';
+import { withRouter } from 'react-router-dom';
 
 import MembersList from './members_list';
 
@@ -92,7 +93,10 @@ class ServerSettings extends React.Component {
 
   delServer() {
     this.props.closeComponent();
-    this.props.destroyServer(this.props.server.id);
+    this.props.destroyServer(this.props.server.id)
+      .then(() => {
+        this.props.history.push(`/channels/@me`);
+      })
   }
 
   render() {
@@ -132,4 +136,4 @@ class ServerSettings extends React.Component {
   }
 }
 
-export default ServerSettings;
+export default withRouter(ServerSettings);

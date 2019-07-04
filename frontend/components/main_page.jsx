@@ -10,6 +10,7 @@ import ServerSettingsContainer from './server/server_settings/server_settings_co
 import InstantInviteContainer from './invite/instant_invite_container';
 import ChangeNicknameContainer from './user/change_nickname';
 import ChannelSettingsContainer from './channel/channel_settings/channel_settings';
+import AddChannelContainer from './channel/channel_add';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -50,10 +51,10 @@ class MainPage extends React.Component {
         )
       case "Change Nickname":
         return (
-          <ChangeNicknameContainer
-            closeComponent={this.closeComponent}
-          />
+          <ChangeNicknameContainer closeComponent={this.closeComponent}/>
         )
+      case "Add Channel":
+        return <AddChannelContainer closeComponent={this.closeComponent}/>
       case "Server Settings":
         return <ServerSettingsContainer closeComponent={this.closeComponent}/>
       case "Channel Settings":

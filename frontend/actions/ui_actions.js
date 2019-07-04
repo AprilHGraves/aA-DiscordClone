@@ -1,7 +1,6 @@
 export const FOCUS_SERVER = "FOCUS_SERVER";
 export const FOCUS_CHANNEL = "FOCUS_CHANNEL";
 export const NOTE_CHANNEL = "NOTE_CHANNEL";
-export const NOTE_CHANNELS = "NOTE_CHANNELS";
 
 export const focusServer = (serverId) => ({
   type: FOCUS_SERVER,
@@ -18,9 +17,4 @@ export const focusChannel = (channelId) => ({
 export const noteChannel = (serverId, channelId) => ({
   type: NOTE_CHANNEL,
   note: { serverId, channelId }
-});
-
-export const noteChannels = (channels) => ({
-  type: NOTE_CHANNELS,
-  channels
 });

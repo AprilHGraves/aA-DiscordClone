@@ -8,7 +8,6 @@ class ChannelIndex extends React.Component {
   }
 
   componentDidUpdate() {
-
     const oldNode = document.querySelector(".active-channel");
     if (oldNode) {
       oldNode.classList.remove("active-channel");
@@ -29,7 +28,6 @@ class ChannelIndex extends React.Component {
     return event => {
       this.props.focusChannel(id);
       this.props.noteChannel(serverId, id);
-      this.props.history.push(`/channels/${serverId}/${id}`);
     }
   }
 

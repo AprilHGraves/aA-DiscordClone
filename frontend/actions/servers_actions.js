@@ -26,13 +26,13 @@ export const removeServer = serverId => ({
 });
 
 
-export const fetchServers = () => dispatch => (
-  getServers()
+export const fetchServers = (urlMatch) => dispatch => (
+  getServers(urlMatch)
     .then(payload => {
       dispatch(receiveServers(payload.servers));
       dispatch(receiveChannels(payload.channels));
       dispatch(receiveUsers(payload.users));
-      dispatch(noteChannels(payload.channels));
+      return {servers: payload.servers, channels: payload.channels, urlMatch}
     })
 );
 
@@ -59,7 +59,7 @@ export const destroyServer = serverId => dispatch => (
   deleteServer(serverId)
     .then(payload => {
       dispatch(removeServer(payload.serverId));
-      focusServer("@me");
+      dispatch(focusServer("@me"));
     })
 );
 

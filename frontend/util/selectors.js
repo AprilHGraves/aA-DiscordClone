@@ -11,7 +11,6 @@ export const selectInvitesByChannel = (state, channelId) => {
 };
 
 export const selectServerMembershipByServerAndUser = (state, serverId, userId) => {
-  
   const allServerMemberships = Object.values(state.entities.server_memberships);
   return allServerMemberships.find(membership => membership.server_id == serverId && membership.user_id == userId);
 };
@@ -25,3 +24,8 @@ export const selectChannelsByServerId = (state, serverId) => {
   const allChannels = Object.values(state.entities.channels);
   return allChannels.filter(channel => channel.server_id == serverId)
 };
+
+export const selectFirstChannelInServer = (state, serverId) => {
+  const allChannels = Object.values(state.entities.channels);
+  return allChannels.find(channel => channel.server_id == serverId)
+}

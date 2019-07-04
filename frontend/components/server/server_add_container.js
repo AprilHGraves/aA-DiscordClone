@@ -3,6 +3,7 @@ import ServerAdd from "./server_add";
 import { clearErrors } from "../../actions/errors_actions";
 import { createServer } from "../../actions/servers_actions";
 import { joinServerByCode } from "../../actions/server_memberships_actions";
+import { focusChannel } from "../../actions/ui_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createServer: (server) => dispatch(createServer(server)),
     clearErrors: () => dispatch(clearErrors()),
-    joinServerByCode: code => dispatch(joinServerByCode(code))
+    joinServerByCode: code => dispatch(joinServerByCode(code)),
   }
 }
 

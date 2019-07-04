@@ -74,9 +74,9 @@ class ServerAdd extends React.Component {
       const match = this.state.inviteLink.match(/invite\/(.*)/);
       const code = match && match[1] || this.state.inviteLink;
       this.props.joinServerByCode(code)
-        .then((serverId) => { 
-          this.props.closeComponent();       
-          this.props.history.push(`/channels/${serverId}`);
+        .then((payload) => { 
+          this.props.closeComponent();
+          this.props.history.push(`/channels/${payload.serverId}/${payload.channelId}`);
         });
     }
  

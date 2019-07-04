@@ -8,20 +8,42 @@ class ServerIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getServers();
     const urlMatch = this.props.location.pathname.match(/channels\/(.*)/)[1];
-    const serverId = urlMatch.match(/(\w+)\/?/)[1];
-    const channelmatch = serverId.match(/\d+\/(.*)/);
-    this.props.focusServer(serverId);
-    if (serverId != "me") {
-      this.props.fetchServerMembershipsByServerId(serverId);
-    }
-    if (channelmatch) {
-      this.props.focusChannel(channelmatch[1]);
-    }
+    this.props.fetchServers(urlMatch)
+      .then((payload) => {
+        const sId = payload.urlMatch.match(/(\w+)\/?/)[1];
+        const cMatch = payload.urlMatch.match(/\d+\/(.*)\/?/);
+        let serverId = "@me";
+        let channelId = "Home";
+        if (payload.servers[sId]) {
+          serverId = sId;
+          if (cMatch && payload.channels[cMatch[1]]) {
+            channelId = cMatch[1];
+          } else {
+            const channelArray = Object.values(payload.channels);
+            const firstCId = channelArray.filter(channel => channel.server_id == serverId);
+            channelId = firstCId[0] && firstCId[0].id || "";
+          }
+        }
+        this.props.focusChannel(channelId);
+        this.props.focusServer(serverId);
+        this.props.noteChannel(serverId, channelId);
+        const pathPartial = `${serverId}/${channelId}`;
+        if (serverId != "@me") {
+          this.props.fetchServerMembershipsByServerId(serverId);
+        }
+        if (payload.urlMatch != pathPartial) {
+          this.props.history.push(`/channels/${pathPartial}`);
+        }
+      });
+    this.switchActiveNode;
   }
 
   componentDidUpdate() {
+    this.switchActiveNode();
+  }
+
+  switchActiveNode() {
     const oldNode = document.querySelector(".active-server");
     if (oldNode) {
       oldNode.classList.remove("active-server")
@@ -30,7 +52,7 @@ class ServerIndex extends React.Component {
     const foundNode = document.getElementById(`a${id}`);
     const newNode = foundNode || document.getElementById("aHome");
     newNode.classList.add("active-server");
-  } 
+  }
 
   activate(id) {
     return event => {
@@ -55,6 +77,7 @@ class ServerIndex extends React.Component {
   }
 
   render() {
+    const channel_notes = this.props.channel_notes;
     return (
       <div id="server-index-container" className="scroll-container">
         <ul id="server-index" className="scrollable">
@@ -72,7 +95,7 @@ class ServerIndex extends React.Component {
             <p>Home</p>
           </li>
           {this.props.servers.map(server => {
-            const assocChannel = this.props.channel_notes[server.id];
+            const assocChannel = channel_notes[server.id];
             return (
               //put a letter in front and use id to ensure correct format for finding it using css selector (one word, starts with letter)
               <li

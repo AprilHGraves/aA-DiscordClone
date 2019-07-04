@@ -1,21 +1,7 @@
 #change-nickname {
   width: 440px;
   height: 250px;
-  .form-bottom {
-    height: 75px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 0px;
-    button {
-      color: white;
-    }
-    input[type="submit"] {
-      width: 95px;
-      padding: 15px auto;
-      font-size: 12px;
-    }
-  }
+
   button {
     margin-top: 10px;
     margin-left: 20px;
@@ -25,4 +11,21 @@
     color: white;
     text-decoration: underline;
   }
+  .form-bottom {
+    height: 75px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0px;
+    button {
+      color: white;
+      margin-top: 0px;
+    }
+    input[type="submit"] {
+      width: 95px;
+      padding: 15px auto;
+      font-size: 12px;
+    }
+  }
+  
 }

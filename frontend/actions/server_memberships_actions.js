@@ -9,6 +9,7 @@ import { receiveServer, removeServer } from './servers_actions';
 import { receiveUsers } from './users_actions';
 import { focusServer } from './ui_actions';
 import { receiveErrors } from './errors_actions';
+import { fetchChannels } from './channels_actions';
 
 export const RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
 export const RECEIVE_MEMBERSHIPS = "RECEIVE_MEMBERSHIPS";
@@ -41,19 +42,20 @@ export const fetchServerMembershipsByServerId = serverId => dispatch => {
 export const joinServerByCode = (code) => dispatch => (
   getInviteByCode(code)
     .then(invite => {
-      dispatch(
-        joinServer(invite.server_id)
-      ).then(() => (patchInviteUses(invite.id)));
-      return invite.server_id
+      return dispatch(joinServer(invite.server_id))
+        .then(() => {
+          patchInviteUses(invite.id);
+          return {serverId: invite.server_id, channelId: invite.channel_id}
+        });
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const joinServer = serverId => dispatch => (
   postServerMembership(serverId)
     .then(payload => {
-      dispatch(receiveServerMembership(payload.server_membership));
       dispatch(receiveServer(payload.server));
-      // dispatch(focusServer(payload.server.id)); handled by receiveserver?
+      dispatch(fetchChannels(payload.server.id));
+      dispatch(fetchServerMembershipsByServerId(payload.server.id));
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 

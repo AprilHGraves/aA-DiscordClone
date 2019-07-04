@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { joinServerByCode } from '../actions/server_memberships_actions';
 import { connect } from "react-redux";
+import { noteChannel } from '../actions/ui_actions';
+
+const mapDispatchToProps = dispatch => {
+  return {
+    joinServerByCode: (code) => dispatch(joinServerByCode(code)),
+    noteChannel: (sId, cId) => dispatch(noteChannel(sId, cId))
+  }
+}
 
 class Invite extends React.Component {
   constructor(props) {
@@ -9,7 +17,10 @@ class Invite extends React.Component {
   }
   componentDidMount() {
     this.props.joinServerByCode(this.props.match.params.id)
-      .then((serverId) => this.props.history.push(`/channels/${serverId}`));
+      .then((payload) => {
+        this.props.noteChannel(payload.serverId, payload.channelId);
+        this.props.history.push(`/channels/${payload.serverId}/${payload.channelId}`);
+      })
   }
 
   render() {
@@ -27,12 +38,6 @@ class Invite extends React.Component {
         </div>
       </section>      
     )
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    joinServerByCode: (code) => dispatch(joinServerByCode(code))
   }
 }
 

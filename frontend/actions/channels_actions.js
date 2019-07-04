@@ -24,7 +24,9 @@ const removeChannel = channelId => ({
 
 export const fetchChannels = (serverId) => dispatch => (
   getChannels(serverId)
-    .then(channels => dispatch(receiveChannels(channels)))
+    .then(channels => {
+      dispatch(receiveChannels(channels));
+    })
 );
 
 export const createChannel = channel => dispatch => (
@@ -44,7 +46,7 @@ export const updateChannel = (id, channel) => dispatch => (
 
 export const destroyChannel = channelId => dispatch => (
   deleteChannel(channelId)
-    .then(channelId => {
-      dispatch(removeChannel(channelId));
-    })//in component, call .then to redirect url to first of channels and focusChannel
+    .then(payload => {
+      dispatch(removeChannel(payload.channelId));
+    })
 );

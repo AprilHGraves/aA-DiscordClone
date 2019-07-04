@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import ChannelShow from "./channel_show";
 import { selectServerMembershipsByServer } from "../../util/selectors";
 
-
 const mapStateToProps = (state) => {
   const serverId = state.ui.focus.server;
   const channelId = state.ui.channel_notes[serverId];

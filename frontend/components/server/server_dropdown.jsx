@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ServerDropdown extends React.Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class ServerDropdown extends React.Component {
 
   leave() {
     this.props.closeComponent();
-    this.props.leaveServer(this.props.membership.id);
+    this.props.leaveServer(this.props.membership.id)
+      .then(() => this.props.history.push(`/channels/@me`));
   }
 
   render() {
@@ -57,4 +59,4 @@ class ServerDropdown extends React.Component {
   }
 }
 
-export default ServerDropdown;
+export default withRouter(ServerDropdown);

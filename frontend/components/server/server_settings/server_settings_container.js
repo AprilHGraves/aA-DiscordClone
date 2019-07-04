@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    destroyServer: (serverId) => dispatch(destroyServer(serverId))
+    destroyServer: (serverId) => dispatch(destroyServer(serverId)),
   }
 }
 

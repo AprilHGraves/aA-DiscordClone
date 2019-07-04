@@ -66,8 +66,18 @@ const Splash = (props) => {
           </span>
           <div className="about-me" onMouseEnter={addShow} onMouseLeave={removeShow}>
             <ul>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="http://github.com/AprilHGraves">Github</a></li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-linkedin" />&nbsp;
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="http://github.com/AprilHGraves">
+                  <i className="fab fa-github-square"/>&nbsp;
+                  Github
+                </a>
+              </li>
               {/* TODO make a link to other work eventually */}
             </ul>
           </div>

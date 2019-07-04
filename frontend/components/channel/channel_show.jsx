@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class ChannelShow extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class ChannelShow extends React.Component {
     } else {
       const el = document.getElementById("message-center");
       el.scrollTop = el.scrollHeight;
-    }
+    }    
   }
 
   handleSubmit(event) {
