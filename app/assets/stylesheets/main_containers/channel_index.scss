@@ -9,6 +9,8 @@
   bottom: 40px;
   white-space: nowrap;
   font-size: 12px;
+  font-family: Whitney,'Open Sans',Helvetica Neue,Helvetica,Arial,sans-serif;
+
 }
 
 .revealer {
@@ -124,15 +126,20 @@
       li:hover {
         background-color: rgba(0,0,0,.1);
       }
+      .fas {
+        position: relative;
+        p {
+          font-weight: 400;
+
+        }
+      }
+      i:hover {
+        cursor: pointer;
+      }
       .channel-options {
         right: 10px;
         position: absolute;
-        i {
-          position: relative;
-        }
-        i:hover {
-          cursor: pointer;
-        }
+        
         i:last-of-type {
           margin-left: 5px;
         }

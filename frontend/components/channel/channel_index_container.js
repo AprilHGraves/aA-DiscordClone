@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   const serverId = state.ui.focus.server;
   return {
     user: state.entities.users[state.session.id],
-    server: state.entities.servers[serverId] || {name: "Home"},
+    server: state.entities.servers[serverId] || {isHome: true},
     channels: selectChannelsByServerId(state, serverId),
     showUserSettings: ownProps.showUserSettings,
     showServerDropdown: ownProps.showServerDropdown,

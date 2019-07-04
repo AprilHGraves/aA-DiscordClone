@@ -11,6 +11,7 @@ class ChannelIndex extends React.Component {
     const oldNode = document.querySelector(".active-channel");
     if (oldNode) {
       oldNode.classList.remove("active-channel");
+      oldNode.children[1].classList.add("hidden");
     }
     const idMatch = this.props.location.pathname.match(/channels\/(.*)\/(.*)/);
     if (idMatch) {
@@ -48,7 +49,7 @@ class ChannelIndex extends React.Component {
     return (
       <ul id="channel-list">
         <div id="category-label">
-          <h1>TEXT CHANNELS</h1>
+          <h1>{this.props.server.isHome && "DM CONVERSATIONS" || "TEXT CHANNELS"}</h1>
           {isOwner && (
             <button
               id="text-channels"
@@ -117,11 +118,11 @@ class ChannelIndex extends React.Component {
     const tag = this.props.user.tag;
     const tagIdxStart = tag.indexOf("#");
     const tagNum = tag.slice(tagIdxStart);
-    let serverName = this.props.server.name;
+    let serverName = this.props.server.isHome && "Home" || this.props.server.name;
     serverName = serverName.length > 25 && serverName.slice(0,26) || serverName;
     return (
       <section id="channel-index">
-        {this.props.server.name !== "Home" ? (
+        {!this.props.server.isHome ? (
           <button id="channel-top" onClick={this.props.showServerDropdown}>
             <h1>{serverName}</h1>
             <img src="https://discordapp.com/assets/779a770c34fcb823a598a7277301adaf.svg" />
@@ -131,25 +132,27 @@ class ChannelIndex extends React.Component {
             <h1>Home</h1>
           </div>
         )}
-          {/* TODO fix tag showing and scrolling. See the server index example */}
-          <div id="channel-box">
-              {this.props.server.owner_id === this.props.user.id ? (
-                <div className="sticky-box">
-                  <div id="party-members"/>
-                  <p>An adventure begins.<br/>Let's add some party members!</p>
-                  <button onClick={this.props.showInvitePeople}>Invite People</button>
-                </div>
-              ) : (
-                <div className="sticky-box">
-                  <div id="quick-switcher-picture"/>
-                  <p>I took this picture off of<br/>Discord to distract you.</p>
-                  <button>No Switcher Yet</button>
-                </div>
-              )}
-            <div id="channel-index">
-              {this.getChannelUls()}            
-            </div>
+
+        {/* TODO fix tag showing and scrolling. See the server index example */}
+        <div id="channel-box">
+            {this.props.server.owner_id === this.props.user.id ? (
+              <div className="sticky-box">
+                <div id="party-members"/>
+                <p>An adventure begins.<br/>Let's add some party members!</p>
+                <button onClick={this.props.showInvitePeople}>Invite People</button>
+              </div>
+            ) : (
+              <div className="sticky-box">
+                <div id="quick-switcher-picture"/>
+                <p>I took this picture off of<br/>Discord to distract you.</p>
+                <button>No Switcher Yet</button>
+              </div>
+            )}
+          <div id="channel-index">
+            {this.getChannelUls()}            
           </div>
+        </div>
+
         <section id="user-bar">
           <img src={this.props.user.image_url} />
           <div>
