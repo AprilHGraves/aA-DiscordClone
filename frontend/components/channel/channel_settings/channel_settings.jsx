@@ -1,10 +1,23 @@
 import React from 'react';
-import OverviewContainer from './server_overview';
-import ServerInviteListContainer from './server_invite_list_container';
+import { connect } from "react-redux";
+import { destroyChannel } from "../../../actions/channels_actions";
+import ChannelInviteListContainer from './channel_invite_list_container';
+import ChannelOverviewContainer from './channel_overview';
 
-import MembersList from './members_list';
+const mapStateToProps = (state, ownProps) => {
+  return {
+    channel: state.entities.channels[state.ui.focus.channel],
+    closeComponent: ownProps.closeComponent
+  }
+}
 
-class ServerSettings extends React.Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    destroyChannel: (channelId) => dispatch(destroyChannel(channelId))
+  }
+}
+
+class ChannelSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +27,7 @@ class ServerSettings extends React.Component {
     this.closeSettings = this.closeSettings.bind(this);
     this.unsavedChangesPresent = this.unsavedChangesPresent.bind(this);
     this.noUnsavedChanges = this.noUnsavedChanges.bind(this);
-    this.delServer = this.delServer.bind(this);
+    this.delChannel = this.delChannel.bind(this);
   }
 
   closeSettings(event) {
@@ -30,13 +43,12 @@ class ServerSettings extends React.Component {
     return event => {
       if (this.state.unsavedChanges) {
         this.alertUnsavedChanges();
-        return
       } else {
         this.setState({ page: key });
+        const oldNode = document.querySelector(".selected");
+        oldNode.classList.remove("selected")
+        event.target.classList.add("selected");
       }
-      const oldNode = document.querySelector(".selected");
-      oldNode.classList.remove("selected")
-      event.target.classList.add("selected");
     }
   }
 
@@ -55,32 +67,24 @@ class ServerSettings extends React.Component {
 
   unsavedChangesPresent() {
     if (!this.state.unsavedChanges) {
-      this.setState({unsavedChanges: true});
+      this.setState({ unsavedChanges: true });
     }
   }
 
   noUnsavedChanges() {
-    this.setState({unsavedChanges: false});
+    this.setState({ unsavedChanges: false });
   }
 
   getPage() {
     switch (this.state.page) {
-      case "Roles":
-        return <div>no roles yet</div>
-      case "Members":
-        return (
-          <MembersList
-            server={this.props.server}
-          />
-        )
       case "Invites":
         return (
-          <ServerInviteListContainer />
+          <ChannelInviteListContainer />
         )
       default:
         return (
-          <OverviewContainer 
-            server={this.props.server}
+          <ChannelOverviewContainer
+            channel={this.props.channel}
             unsavedChanges={this.state.unsavedChanges}
             unsavedChangesPresent={this.unsavedChangesPresent}
             noUnsavedChanges={this.noUnsavedChanges}
@@ -90,10 +94,11 @@ class ServerSettings extends React.Component {
     }
   }
 
-  delServer() {
+  delChannel() {
     this.props.closeComponent();
-    this.props.destroyServer(this.props.server.id);
+    this.props.destroyChannel(this.props.channel.id);
   }
+
 
   render() {
     return (
@@ -101,21 +106,18 @@ class ServerSettings extends React.Component {
         <div className="settings-left">
           <section className="options-list">
             <ul>
-              <h1>{this.props.server.name}</h1>
+              <h1>
+                # {this.props.channel.name}
+                <span>TEXT CHANNELS</span>
+              </h1>
               <li onClick={this.switchPage("Overview")} className="selected">Overview</li>
-              <li onClick={this.switchPage("Roles")}>Roles</li>
-            </ul>
-            <ul>
-              <h1>USER MANAGEMENT</h1>
-              <li onClick={this.switchPage("Members")}>Members</li>
               <li onClick={this.switchPage("Invites")}>Invites</li>
             </ul>
             <ul>
-              <li onClick={this.delServer} className="destroy">
-                Delete Server
+              <li onClick={this.delChannel} className="destroy">
+                Delete Channel
               </li>
             </ul>
-
           </section>
 
         </div>
@@ -125,11 +127,10 @@ class ServerSettings extends React.Component {
             <button id="x-button" onClick={this.closeSettings}>X</button>
           </section>
         </div>
-        
+
       </section>
     )
-
   }
 }
 
-export default ServerSettings;
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelSettings)

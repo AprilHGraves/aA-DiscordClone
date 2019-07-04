@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-class Overview extends React.Component {
+class ServerOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -163,4 +163,4 @@ class Overview extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Overview)
+export default connect(mapStateToProps, mapDispatchToProps)(ServerOverview)

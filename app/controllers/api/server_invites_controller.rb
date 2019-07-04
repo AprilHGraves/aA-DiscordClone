@@ -18,7 +18,7 @@ class Api::ServerInvitesController < ApplicationController
     elsif params[:id] == "channel"
       @invite = current_user.invites.find_by(channel_id: params[:channelId])
       if !@invite || !invite_valid?(@invite)
-        @invite = ServerInvite.new(duration: 24, server_id: params[:channelId], uses: 0, channel_id: params[:channelId])
+        @invite = ServerInvite.new(duration: 24, server_id: params[:serverId], uses: 0, channel_id: params[:channelId])
         @invite.inviter_id = current_user.id
         @invite.save
       end

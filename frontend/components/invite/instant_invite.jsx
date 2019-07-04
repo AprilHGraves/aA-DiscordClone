@@ -22,7 +22,7 @@ class InstantInvite extends React.Component {
   componentDidMount() {
     this.inside = document.getElementById("invite-box");
     document.addEventListener("mousedown", this.handleClickOutside);
-    this.props.fetchInviteByUserAndChannel(this.props.channelId)
+    this.props.fetchInviteByUserAndChannel(this.props.server.id, this.props.channelId)
       .then(invite => {
         this.setState({
           inviteLink: `https://conflict-discord-clone.herokuapp.com/#/invite/${invite.code}`,
@@ -51,7 +51,7 @@ class InstantInvite extends React.Component {
     this.props.createInvite({
       duration: this.state.duration && Number(this.state.duration) || undefined,
       max_uses: this.state.max_uses && Number(this.state.max_uses) || undefined,
-      server_id: this.props.channelId,
+      server_id: this.props.server.id,
       channel_id: this.props.channelId 
     }).then(invite => {
         this.setState({

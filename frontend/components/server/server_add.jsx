@@ -24,7 +24,6 @@ class ServerAdd extends React.Component {
     }.call(this);
   }
 
-  // TODO allow user to load picture for server
   // TODO slide in create/join components from right side using CSS transition group
 
   componentDidMount() {

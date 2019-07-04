@@ -32,7 +32,7 @@ ServerMembership.create(user_id: u1.id, server_id: s2.id)
 ServerMembership.create(user_id: u2.id, server_id: s2.id)
 
 c1 = Channel.create(name: "general", server_id: s1.id)
-Channel.create(name: "the-cooking-channel", server_id: s1.id, topic: "Share your favorite recipies")
+Channel.create(name: "the-cooking-channel", server_id: s1.id, topic: "Share your favorite recipes")
 c2 = Channel.create(name: "general", server_id: s2.id, topic: "Welcome, Food Enthusiast")
 Channel.create(name: "discuss-your-kitty", server_id: s2.id)
 

@@ -5,7 +5,7 @@ import { clearErrors } from "../../actions/errors_actions";
 
 
 const mapStateToProps = (state, ownProps) => {
-  // TODO change this to reflect the actual channel later
+
   return {
     server: state.entities.servers[state.ui.focus.server],
     channelId: state.ui.focus.channel,
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchInviteByUserAndChannel: (channelId) => dispatch(fetchInviteByUserAndChannel(channelId)),
+    fetchInviteByUserAndChannel: (serverId, channelId) => dispatch(fetchInviteByUserAndChannel(serverId, channelId)),
     createInvite: (invite) => dispatch(createInvite(invite)),
     clearErrors: () => dispatch(clearErrors()),
   }

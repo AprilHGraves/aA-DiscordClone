@@ -7,11 +7,6 @@ class ChannelIndex extends React.Component {
     this.activate = this.activate.bind(this);
   }
 
-  componentDidMount() {
-    
-  }
-  // TODO save scrolls for each server in state ui.scrollY
-
   componentDidUpdate() {
 
     const oldNode = document.querySelector(".active-channel");
@@ -34,6 +29,7 @@ class ChannelIndex extends React.Component {
     return event => {
       this.props.focusChannel(id);
       this.props.noteChannel(serverId, id);
+      this.props.history.push(`/channels/${serverId}/${id}`);
     }
   }
 
@@ -50,20 +46,23 @@ class ChannelIndex extends React.Component {
   }
 
   getChannelUls() {
+    const isOwner = this.props.server.owner_id == this.props.user.id;
     return (
       <ul id="channel-list">
         <div id="category-label">
           <h1>TEXT CHANNELS</h1>
-          <button
-            id="text-channels"
-            className="revealer"
-            onClick={this.props.showAddChannel}
-            onMouseEnter={this.showHidden(true, "p")}
-            onMouseLeave={this.showHidden(false, "p")}
-          >
-            <i className="fas fa-plus"/>
-            <p className="small-black-tag hidden">Create Channel</p>
-          </button>
+          {isOwner && (
+            <button
+              id="text-channels"
+              className="revealer"
+              onClick={this.props.showAddChannel}
+              onMouseEnter={this.showHidden(true, "p")}
+              onMouseLeave={this.showHidden(false, "p")}
+            >
+              <i className="fas fa-plus"/>
+              <p className="small-black-tag hidden">Create Channel</p>
+            </button>
+          )}
         </div>
         {this.props.channels.map(channel => {
           return (
@@ -80,24 +79,29 @@ class ChannelIndex extends React.Component {
                 { channel.name.length > 20 && `${channel.name.slice(0,20)}...` || channel.name }
               </Link>
               <div className="channel-options hidden">
-                <i
-                  id={`plus-${channel.id}`}
-                  className="fas fa-user-plus revealer"
-                  onClick={this.props.showInvitePeople}
-                  onMouseEnter={this.showHidden(true, "p")}
-                  onMouseLeave={this.showHidden(false, "p")}
-                >
-                  <p className="small-black-tag hidden">Create Instant Invite</p>
-                </i>
-                <i
-                  id={`cog-${channel.id}`}
-                  className="fas fa-cog revealer"
-                  onClick={this.props.showChannelSettings}
-                  onMouseEnter={this.showHidden(true, "p")}
-                  onMouseLeave={this.showHidden(false, "p")}
-                >
-                  <p className="small-black-tag hidden">Edit Channel</p>
-                </i>
+                {isOwner && (
+                  <div>
+                    <i
+                      id={`plus-${channel.id}`}
+                      className="fas fa-user-plus revealer"
+                      onClick={this.props.showInvitePeople}
+                      onMouseEnter={this.showHidden(true, "p")}
+                      onMouseLeave={this.showHidden(false, "p")}
+                    >
+                      <p className="small-black-tag hidden">Create Instant Invite</p>
+                    </i>
+                    <i
+                      id={`cog-${channel.id}`}
+                      className="fas fa-cog revealer"
+                      onClick={this.props.showChannelSettings}
+                      onMouseEnter={this.showHidden(true, "p")}
+                      onMouseLeave={this.showHidden(false, "p")}
+                    >
+                      <p className="small-black-tag hidden">Edit Channel</p>
+                    </i>
+                  </div>
+                )}
+                
               </div>
 
             </li>
@@ -140,7 +144,7 @@ class ChannelIndex extends React.Component {
               ) : (
                 <div className="sticky-box">
                   <div id="quick-switcher-picture"/>
-                  <p>I took this picture off of Discord to distract you.</p>
+                  <p>I took this picture off of<br/>Discord to distract you.</p>
                   <button>No Switcher Yet</button>
                 </div>
               )}

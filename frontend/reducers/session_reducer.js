@@ -1,8 +1,5 @@
 import { LOGOUT_CURRENT_USER, RECEIVE_CURRENT_USER } from "../actions/session_actions";
 
-
-LOGOUT_CURRENT_USER
-
 const sessionReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {

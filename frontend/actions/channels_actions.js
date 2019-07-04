@@ -2,7 +2,7 @@
 import { receiveErrors } from "./errors_actions";
 import { getChannels, postChannel, patchChannel, deleteChannel } from "../util/channel_util";
 
-export const RECEIVE_CHANNEL = "RECEIVE_SERVER";
+export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 

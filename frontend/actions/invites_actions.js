@@ -21,8 +21,8 @@ const removeInvite = inviteId => ({
   inviteId
 });
 
-export const fetchInviteByUserAndChannel = (channelId) => dispatch => (
-  getInviteByUserAndChannel(channelId)
+export const fetchInviteByUserAndChannel = (serverId, channelId) => dispatch => (
+  getInviteByUserAndChannel(serverId, channelId)
     .then(invite => {
       dispatch(receiveInvite(invite))
       return invite

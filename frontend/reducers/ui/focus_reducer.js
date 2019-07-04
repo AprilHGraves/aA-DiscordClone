@@ -19,5 +19,5 @@ const focusReducer = (state = {}, action) => {
       return state;
   }
 }
-// TODO consider deprecate
+
 export default focusReducer;

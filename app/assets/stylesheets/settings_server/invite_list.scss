@@ -37,4 +37,22 @@
     justify-content: center;
     align-content: center;
   }
+  #no-members {
+    border-top: 1px solid rgba(255,255,255,.1);
+    margin-top: 20px;
+    div {
+      background-image: image-url("paper_plane.png");
+      background-repeat: no-repeat;
+      height: 150px;
+      width: 260px;
+      margin: 20px auto;
+      
+    }
+    text-align: center;
+    p:last-of-type {
+      margin-top: 20px;
+      font-size: 14px;
+      color: rgba(255,255,255,.3);
+    }
+  }
 }

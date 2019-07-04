@@ -1,30 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { fetchInvites, destroyInvite } from '../../../actions/invites_actions';
-import { selectInvitesByServer } from '../../../util/selectors';
-
-const mapStateToProps = (state, ownProps) => {
-  const serverId = state.ui.focus.server;
-  return {
-    invites: selectInvitesByServer(state, serverId),
-    users: state.entities.users,
-    serverId
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchInvites: (serverId) => dispatch(fetchInvites(serverId)),
-    destroyInvite: (inviteId) => dispatch(destroyInvite(inviteId))
-  }
-}
 
 class InviteList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
     this.delInv = this.delInv.bind(this);
     this.showInviteX = this.showInviteX.bind(this);
   }
@@ -77,7 +55,7 @@ class InviteList extends React.Component {
 
   getRows() {
     const users = this.props.users;
-    
+    const channels = this.props.channels;
     return this.props.invites.map(invite => {
       const user = users[invite.inviter_id];
       const expireDate = new Date(invite.expire_date);
@@ -93,7 +71,6 @@ class InviteList extends React.Component {
             <img src={user.image_url}/>
             <div>
               <p className="white-text">{user.username}</p>
-              <span className="gray-text">#channel-name</span>
             </div>
           </td>
           <td className="gray-text">{invite.code}</td>
@@ -133,7 +110,8 @@ class InviteList extends React.Component {
           <span className="gray-text">
             Here's a list of all active invite links. You can revoke any one.
           </span>
-          <table>
+          {this.props.invites.length > 0 ? (
+            <table>
             <thead>
               <tr>
                 <th className="gray-text">INVITER</th>
@@ -146,6 +124,14 @@ class InviteList extends React.Component {
               {this.getRows() }
             </tbody>
           </table>
+          ) : (
+            <section id="no-members">
+              <div/>
+              <p>NO INSTANT INVITES YET</p>
+              <p>Feeling aimless? Like a paper plane drifting through the skies? Get<br/>some friends in here by creating an instant invite link!</p>
+            </section>
+          )}
+          
         </section>
         
        
@@ -154,4 +140,4 @@ class InviteList extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InviteList)
+export default InviteList

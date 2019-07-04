@@ -11,6 +11,8 @@ class ServerInvite < ApplicationRecord
 
   belongs_to :server
 
+  belongs_to :channel
+
   def duration=(duration)
     self.expire_date = Time.now + (duration.to_i).hours
   end

@@ -13,11 +13,11 @@ export const patchInviteUses = id => {
   })
 };
 
-export const getInviteByUserAndChannel = channelId => {
+export const getInviteByUserAndChannel = (serverId, channelId) => {
   return $.ajax({
     method: 'GET',
     url: '/api/server_invites/channel',
-    data: { channelId }
+    data: { serverId, channelId }
   })
 };
 

@@ -12,7 +12,7 @@ class ChannelShow extends React.Component {
 
   componentDidMount() {
     if (this.props.savedHeight) {
-      // TODO save scrolls for each channel in state ui slice
+      // TODO save scrolls for each channel in state.ui.scrolls
     } else {
       const el = document.getElementById("message-center");
       el.scrollTop = el.scrollHeight;

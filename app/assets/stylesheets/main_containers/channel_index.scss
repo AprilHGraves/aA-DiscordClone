@@ -135,6 +135,11 @@
         i:last-of-type {
           margin-left: 5px;
         }
+
+        i:first-of-type p.small-black-tag {
+          margin-left: -10px;
+        }
+      // TODO fix label centering
       }
       .small-black-tag {
         position: absolute;
@@ -143,7 +148,8 @@
         width: max-content;
         z-index: 3;
       }
-      // TODO fix label centering
+
+      
       .active-channel {
         background-color: #46484d;
         color: white;

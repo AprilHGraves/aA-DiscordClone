@@ -1,23 +1,45 @@
 
-#server-overview {
-
+#channel-overview {
+  padding-bottom: 30px;
   label {
+    display: block;
     font-size: 12px;
-    width: 325px;
-    color: rgba(255,255,255,.5);
+    width: 100%;
+    color: rgba(255,255,255,.7);
+    margin-top: 20px;
   }
-  input {
+  input, textarea{
     margin-top: 10px;
-    width: 325px;
+    width: 100%;
     padding: 10px;
+    
+    font-size: 12px;
+  }
+  .red-text {
+    color: red;
   }
 
-  #overview-image {  
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 90px;
-    width: 170px;
-    margin: 0 auto;
-    background-image: image-url("https://discordapp.com/assets/bfffd518c76d3f6bc5e96eb52e4ae2cf.svg");
+  div {
+    position: relative;
+    span {
+      position: absolute;
+      bottom: 30px;
+      right: 10px;
+      color: white;
+    }
   }
+  textarea {
+    min-height: 125px;
+    margin-bottom: 20px;
+    
+  }
+
+  
+}
+#overview-image {  
+  background-image: url("https://discordapp.com/assets/bfffd518c76d3f6bc5e96eb52e4ae2cf.svg");
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 300px;
+  margin: 0 auto;
 }

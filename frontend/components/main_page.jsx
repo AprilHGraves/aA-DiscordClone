@@ -9,6 +9,7 @@ import ServerDropdownContainer from './server/server_dropdown_container';
 import ServerSettingsContainer from './server/server_settings/server_settings_container';
 import InstantInviteContainer from './invite/instant_invite_container';
 import ChangeNicknameContainer from './user/change_nickname';
+import ChannelSettingsContainer from './channel/channel_settings/channel_settings';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -55,6 +56,8 @@ class MainPage extends React.Component {
         )
       case "Server Settings":
         return <ServerSettingsContainer closeComponent={this.closeComponent}/>
+      case "Channel Settings":
+        return <ChannelSettingsContainer closeComponent={this.closeComponent}/>
       case "Invite People":
         return <InstantInviteContainer closeComponent={this.closeComponent}/>
     }
