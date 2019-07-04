@@ -23,6 +23,6 @@
   },
   "scripts": {
     "webpack": "webpack --watch --mode='development'",
-    "postinstall": "webpack"
+    "postinstall": "webpack --mode='production'"
   }
 }
