@@ -44,7 +44,7 @@ Conflict is a single-page Discord clone. Like Discord, people can create and joi
 * The invites displayed in the settings show their codes, creators, number of times used, max-use limit if present, and expiration countdown if present.
 * Server owners can delete invites
 * Users can join a server by using the invite link in the url or when adding a server
-![Invite Demo Gif](https://i.imgur.com/wnJaQsi.gif)
+![Invite Demo Gif](https://i.imgur.com/cFrpAkr.gif)
 
 ### Messages
 * Server members can create messages in channels
