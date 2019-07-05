@@ -1,4 +1,4 @@
-# Conflict Discord Clone Overview
+# Overview
 
 [See it on Heroku](https://conflict-discord-clone.herokuapp.com)
 
