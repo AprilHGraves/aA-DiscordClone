@@ -1,5 +1,6 @@
 import { patchUser, deleteUser, postUser } from '../util/user_api_util';
 import { receiveCurrentUser, logoutCurrentUser } from './session_actions';
+import { receiveErrors } from './errors_actions';
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 
