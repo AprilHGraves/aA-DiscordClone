@@ -1,6 +1,6 @@
 
 import { RECEIVE_MEMBERSHIP, RECEIVE_MEMBERSHIPS, REMOVE_MEMBERSHIP } from "../../actions/server_memberships_actions";
-
+import { LOGOUT_CURRENT_USER } from "../../actions/session_actions";
 
 const serverMembershipsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -13,6 +13,8 @@ const serverMembershipsReducer = (state = {}, action) => {
       const newObj = Object.assign({}, state);
       delete newObj[action.membershipId];
       return newObj
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

@@ -27,6 +27,9 @@ class User < ApplicationRecord
     foreign_key: :inviter_id,
     dependent: :destroy
 
+  has_many :messages,
+    dependent: :destroy
+
   def self.find_by_credentials(email, pw)
     user = User.find_by(email: email)
     return user if user && user.is_password?(pw)

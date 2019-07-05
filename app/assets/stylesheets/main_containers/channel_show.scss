@@ -47,26 +47,132 @@
         height: 89.75%;
         width: 99.5%;
         margin: 0 auto;
+        li > div {
+          width: 100%;
+        }
         li {
-          display: block;
-          width: 97%;
-          
-          padding: 20px auto;
-          border-top: 1px solid rgba(255,255,255,.1);
-        }
-        #first-message {
-          position: relative;
-        }
-        #message-overlay {
-          position: absolute;
-          bottom: 0;
           display: flex;
-          justify-content: space-between;
-          img {
-            width: 50px;
-            height: 50px;
+          position: relative;
+          width: 97%;
+          border-top: 1px solid rgba(255,255,255,.05);
+          padding: 20px;
+          
+          color: rgba(255,255,255,.4);
+          p {            
+            color: white;
+          }          
+          #user-username {
+            display: inline;
+            font-size: 16px;
+            font-weight: 700;
+          }
+          #user-pic {
+            width: 40px;
+            height: 40px;
+            background-color: gray;
+            border-radius: 50%;
+            margin-right: 20px;
+          }
+          #message-date {
+            font-size: 12px;            
+          }
+          .revealer {
+            position: relative;
+          }
+          .message-body {
+            font-size: 14px;
+            color: rgba(255,255,255,.7);
+            margin-top: 5px;
+          }
+          .show-message-dropdown {
+            position: absolute;
+            display: flex;
+          }
+          .show-hidden {
+            display: inline;
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+          }
+          .show-hidden:hover {
+            color: white;           
           }
         }
+        #first-message {
+          box-sizing: border-box;
+          position: relative;
+          height: 100px;
+          width: 100%;
+          border-bottom: 1px solid rgba(255,255,255,.05);
+          span {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+          }
+          #logo-overlay {
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+            justify-content: space-between;
+            img {
+              height: 100px;
+              width: 200px;
+            }
+          }
+        }
+        textarea {
+          width: 98%;
+          margin-top: 10px;
+          overflow: hidden;
+          resize: none;
+          height: 60px;
+          background-color: rgba(255,255,255,.1);
+          padding: 10px;
+          border-radius: 3px;
+          color: white;
+        }
+        form > div {
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          button {
+            color: #677bc5;
+          }
+          button:hover {
+            text-decoration: underline;
+          }
+          button:last-of-type {
+            margin-left: 20px;
+          }
+        }
+        
+        .message-dropdown {
+          flex-direction: column;
+          align-content: space-around;
+          justify-content: center;
+          height: 50px;
+          width: 50px;
+          background-color: #202225;
+          position: absolute;
+          right: 10px;
+          z-index: 3;
+          border-radius: 3px;
+          button {
+            width: 100%;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+          }
+        }
+        #edited-txt {
+          font-size: 10px;
+          color: rgba(255,255,255,.2);
+        }
+
+
+
+
       }
       #message-center::-webkit-scrollbar {
         width: 9px;

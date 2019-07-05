@@ -5,6 +5,7 @@ import { focusServer, noteChannels } from './ui_actions';
 import { receiveErrors } from "./errors_actions";
 import { createChannel, receiveChannels } from './channels_actions';
 import { receiveUsers } from './users_actions';
+import { receiveMessages } from './messages_actions';
 
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
@@ -30,8 +31,9 @@ export const fetchServers = (urlMatch) => dispatch => (
   getServers(urlMatch)
     .then(payload => {
       dispatch(receiveServers(payload.servers));
-      dispatch(receiveChannels(payload.channels));
+      dispatch(receiveChannels(payload.channels))
       dispatch(receiveUsers(payload.users));
+      dispatch(receiveMessages(payload.messages));
       return {servers: payload.servers, channels: payload.channels, urlMatch}
     })
 );

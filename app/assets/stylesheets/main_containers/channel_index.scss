@@ -145,7 +145,7 @@
         }
 
         i:first-of-type p.small-black-tag {
-          margin-left: -10px;
+          margin-left: -20px;
         }
       // TODO fix label centering
       }
@@ -197,6 +197,7 @@
     }
     
     img {
+      background-color: gray;
       border-radius: 50%;
       margin-left: 12px;
       margin-right: 10px;

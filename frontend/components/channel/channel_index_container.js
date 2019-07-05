@@ -7,6 +7,7 @@ import { selectChannelsByServerId } from "../../util/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const serverId = state.ui.focus.server;
+  const channelId = state.ui.focus.channel;
   return {
     user: state.entities.users[state.session.id],
     server: state.entities.servers[serverId] || {isHome: true},

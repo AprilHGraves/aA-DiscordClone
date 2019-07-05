@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :server_memberships, only: [:index, :create, :update, :destroy]
     resources :channels, only: [:index, :create, :update, :destroy]
     resources :server_invites, only: [:index, :show, :create, :update, :destroy]
+    resources :messages, only: [:index, :show, :create, :update, :destroy]
   end
 end

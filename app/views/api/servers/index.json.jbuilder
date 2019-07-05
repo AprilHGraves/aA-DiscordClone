@@ -18,4 +18,11 @@
       end
     end
   end
+  json.messages do
+    server.messages.each do |message|
+      json.set! message.id do
+        json.partial! 'api/messages/message', message: message
+      end
+    end
+  end
 end

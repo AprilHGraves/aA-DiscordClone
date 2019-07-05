@@ -29,3 +29,8 @@ export const selectFirstChannelInServer = (state, serverId) => {
   const allChannels = Object.values(state.entities.channels);
   return allChannels.find(channel => channel.server_id == serverId)
 }
+
+export const selectMessagesByChannel = (state, channelId) => {
+  const allMessages = Object.values(state.entities.messages);
+  return allMessages.filter(message => message.messagable_id == channelId && message.messagable_type == "Channel")
+}
