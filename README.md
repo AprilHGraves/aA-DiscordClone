@@ -5,7 +5,8 @@
 Conflict is a single-page Discord clone. Like Discord, people can create and join servers, where they can discuss a variety of topics in separate channels. Server owners can invite other users to join their servers by generating invite links, which can be customized to have a set duration or max-use limit. People can paste the invite link in the url or when adding a server to join.
  
 * Rails and Postgres backend
-* React js frontend
+* React Redux js frontend
+* jQuery for ajax calls to my API
 * AWS s3 storage for photo-hosting
 
 ![Splash Page Gif](https://i.imgur.com/O76XJ1r.gif)
