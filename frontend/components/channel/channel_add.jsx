@@ -3,13 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { clearErrors } from '../../actions/errors_actions';
 import { createChannel } from '../../actions/channels_actions';
+import { showModal } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const serverId = state.ui.focus.server;
   return {
     serverId,
-    errors: state.errors,
-    closeComponent: ownProps.closeComponent
+    errors: state.errors
   }
 }
 
@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => {
   return {
     createChannel: (channel) => dispatch(createChannel(channel)),
     clearErrors: () => dispatch(clearErrors()),
-    noteChannel: (sId, cId) => dispatch(noteChannel(sId, cId))
+    noteChannel: (sId, cId) => dispatch(noteChannel(sId, cId)),
+    closeComponent: () => dispatch(showModal(""))
   }
 }
 

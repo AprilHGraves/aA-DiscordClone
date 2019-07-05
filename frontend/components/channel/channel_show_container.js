@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     memberships: selectServerMembershipsByServer(state, serverId),
     messages: selectMessagesByChannel(state, channelId),
     server: state.entities.servers[serverId] || {id: "@me", name: ""},
-    channel: state.entities.channels[channelId] || {name: "It's Conflict Time"},
+    channel: state.entities.channels[channelId] || {name: "Conflict"},
     users: state.entities.users
   }
 }

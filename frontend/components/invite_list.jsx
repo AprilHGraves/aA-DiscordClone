@@ -31,9 +31,22 @@ class InviteList extends React.Component {
   }
 
   getTime(expireDate, nowDate) {
-    const difference = expireDate - nowDate;
-    const dateObj = new Date(difference);
-    return `${dateObj}`.match(/\w+ \d+ \d+ (.*) GMT/)[1]
+    let diffSec =(expireDate - nowDate) / 1000;
+    let hours = Math.floor(diffSec / 3600);
+    hours = hours < 10 && `0${hours}` || hours;
+    diffSec = diffSec % 3600;
+    let mins = Math.floor(diffSec / 60);
+    mins = mins < 10 && `0${mins}` || mins;
+    diffSec = diffSec % 60;
+    let sec = Math.floor(diffSec);
+    sec = sec < 10 && `0${sec}` || sec;
+    // debugger;
+    return `${hours}:${mins}:${sec}`
+
+    // const dateObj = new Date(difference/(60 * 60 * 24));
+    // debugger;
+    // const 
+    // return `${dateObj}`.match(/\w+ \d+ \d+ (.*) GMT/)[1]
   }
 
   delInv(event) {

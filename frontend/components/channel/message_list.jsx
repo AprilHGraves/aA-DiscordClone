@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { updateMessage, destroyMessage } from '../../actions/messages_actions';
+import { selectServerMembershipsByServer } from '../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     user: state.session.id,
     server: ownProps.server,
     channel: ownProps.channel,
-    messages: ownProps.messages
+    messages: ownProps.messages,
+    memberships: selectServerMembershipsByServer(state, ownProps.server.id)
   }
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -76,8 +79,7 @@ class MessageList extends React.Component {
   }
 
   convertDate(date) {
-    const diff = new Date() - new Date(date);
-    if (diff > (60 * 60 * 24 * 1000)) {
+    if (new Date().toLocaleDateString() != new Date(date).toLocaleDateString()) {
       return new Date(date).toLocaleDateString()
     } else {
       return new Date(date).toLocaleTimeString()
@@ -111,8 +113,10 @@ class MessageList extends React.Component {
 
   render() {
     const users = this.props.users;
+    const memberships = this.props.memberships;
+    const serverId = this.props.server.id;
     let myId = this.props.user;
-    const ownerId = this.props.server.owner_id;
+    let isOwner = myId == this.props.server.owner_id;
     return (
       <ul id="message-center" className="scrollable">
 
@@ -129,7 +133,8 @@ class MessageList extends React.Component {
         </li>
         {this.props.messages.map(message => {
           const user = users[message.user_id];
-          const isOwner = myId == ownerId;
+          const membership = memberships.find(m => m.server_id == serverId && m.user_id == user.id);
+          isOwner = isOwner;
           myId = myId;
           return (        
             <li key={message.id}>
@@ -142,7 +147,7 @@ class MessageList extends React.Component {
                 <p id="user-username"
                 //put left and right-click events inthe future to show profile, dropdown options
                 >
-                  {user.username}
+                  {(membership && membership.nickname) || user.username}
                 </p> &nbsp;
                 <span id="message-date">{this.convertDate(message.created_at)}</span>
 

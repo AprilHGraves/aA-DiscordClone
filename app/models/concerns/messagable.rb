@@ -3,9 +3,7 @@ module Messagable
   extend ActiveSupport::Concern
 
   included do
-    has_many :messages, as: :messagable
+    has_many :messages, as: :messagable, dependent: :destroy
   end
 
 end
-
-# TODO consider using messagable concern in the future

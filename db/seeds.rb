@@ -13,6 +13,7 @@ Server.destroy_all
 ServerMembership.destroy_all
 Channel.destroy_all
 ServerInvite.destroy_all
+Message.destroy_all
 
 u1 = User.create(email: "demo_user@comcast.net", username: "demoUser", password: "demodemo")
 u2 = User.create(email: "pwispw@aol.com", username: "Captain Obvious", password: "pw")
@@ -33,8 +34,14 @@ ServerMembership.create(user_id: u2.id, server_id: s2.id)
 
 c1 = Channel.create(name: "general", server_id: s1.id)
 Channel.create(name: "the-cooking-channel", server_id: s1.id, topic: "Share your favorite recipes")
-c2 = Channel.create(name: "general", server_id: s2.id, topic: "Welcome, Food Enthusiast")
+c2 = Channel.create(name: "general", server_id: s2.id, topic: "Welcome, Cat Enthusiast")
 Channel.create(name: "discuss-your-kitty", server_id: s2.id)
 
 ServerInvite.create(uses: 0, inviter_id: u1.id, server_id: s1.id, channel_id: c1.id)
 ServerInvite.create(uses: 0, inviter_id: u2.id, server_id: s2.id, channel_id: c2.id)
+
+Message.create(user_id: u2.id, body: "I don't even have a cat lol", messagable_id: c2.id, messagable_type: :Channel)
+Message.create(user_id: u1.id, body: "Why create this server?", messagable_id: c2.id, messagable_type: :Channel)
+Message.create(user_id: u1.id, body: "Food is glorious. Yeah?", messagable_id: c1.id, messagable_type: :Channel)
+Message.create(user_id: u2.id, body: "Ikr! I eat every day!", messagable_id: c1.id, messagable_type: :Channel)
+Message.create(user_id: u1.id, body: "You say that like you're proud of that.. -sweatdrops-", messagable_id: c1.id, messagable_type: :Channel)

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { clearErrors } from '../../actions/errors_actions';
 import { changeNickname } from '../../actions/server_memberships_actions';
 import { selectServerMembershipByServerAndUser } from '../../util/selectors';
+import { showModal } from '../../actions/ui_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,14 +13,14 @@ const mapStateToProps = (state, ownProps) => {
     user,
     membership: selectServerMembershipByServerAndUser(state, serverId, user.id),
     errors: state.errors,
-    closeComponent: ownProps.closeComponent
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     changeNickname: (id, nickname) => dispatch(changeNickname(id, nickname)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    closeComponent: () => dispatch(showModal(""))
   }
 }
 

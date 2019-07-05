@@ -15,7 +15,7 @@ class ServerIndex extends React.Component {
         const cMatch = payload.urlMatch.match(/\d+\/(.*)\/?/);
         let serverId = "@me";
         let channelId = "Home";
-        if (payload.servers[sId]) {
+        if (payload.servers && payload.servers[sId]) {
           serverId = sId;
           if (cMatch && payload.channels[cMatch[1]]) {
             channelId = cMatch[1];
@@ -36,6 +36,7 @@ class ServerIndex extends React.Component {
           this.props.history.push(`/channels/${pathPartial}`);
         }
       });
+    this.props.fetchDmConversations();
     this.switchActiveNode;
   }
 
@@ -73,6 +74,12 @@ class ServerIndex extends React.Component {
       } else {
         el.classList.remove("show-label");
       }
+    }
+  }
+
+  showModal(modalName) {
+    return (event) => {
+      this.props.showModal(modalName);
     }
   }
 
@@ -122,7 +129,7 @@ class ServerIndex extends React.Component {
           <li
             id="show-server-form"
             className="animate-hover"
-            onClick={this.props.showAddServer}
+            onClick={this.showModal("Add Server")}
             onMouseEnter={this.showName(true)}
             onMouseLeave={this.showName(false)}
           >

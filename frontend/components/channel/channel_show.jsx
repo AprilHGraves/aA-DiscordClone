@@ -20,7 +20,9 @@ class ChannelShow extends React.Component {
       // TODO save scrolls for each channel in state.ui.scrolls
     } else {
       const el = document.getElementById("message-center");
-      el.scrollTop = el.scrollHeight;
+      if (el) {
+        el.scrollTop = el.scrollHeight;
+      }
     }    
   }
 
@@ -66,23 +68,28 @@ class ChannelShow extends React.Component {
         </div>
 
         <div id="show-bottom">
-          <div id="message-box" >
-            <MessageList 
-              users={this.props.users}
-              server={this.props.server}
-              channel={this.props.channel}
-              messages={this.props.messages}
-            />
-            
-            <form id="message-form" onSubmit={this.handleSubmit}>
-              <input
-                value={this.state.body}
-                placeholder={`message ${channel.name}`}
-                onChange={this.changeInput("body")}
-              />
-            </form>
 
-          </div>
+          {this.props.server.id == "@me" && this.props.channel.name == "Conflict" ? (
+            <section>friends will go here</section>
+          ) : (
+            <div id="message-box" >
+              <MessageList 
+                users={this.props.users}
+                server={this.props.server}
+                channel={this.props.channel}
+                messages={this.props.messages}
+              />
+              
+              <form id="message-form" onSubmit={this.handleSubmit}>
+                <input
+                  value={this.state.body}
+                  placeholder={`message ${channel.name}`}
+                  onChange={this.changeInput("body")}
+                />
+              </form>
+
+            </div>
+          )}
 
           {this.props.server.id != "@me" && this.state.showMembers && (
             <MembersSidebar 
@@ -91,8 +98,8 @@ class ChannelShow extends React.Component {
               memberships={this.props.memberships}
             />
           )}
-        </div>
-        
+ 
+        </div>        
       </section>
     )
   }

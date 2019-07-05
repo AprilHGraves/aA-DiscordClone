@@ -3,8 +3,14 @@
     width: 45px;
     height: 45px;
   }
+
+  p {
+    width: 250px;
+    text-overflow: ellipsis;
+  }
   span {
     font-size: 10px;
+    text-overflow: ellipsis;
   }
   .roles {
     display: flex;

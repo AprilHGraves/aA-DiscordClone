@@ -141,9 +141,7 @@ class InstantInvite extends React.Component {
             <div>
               <div className="scrollable">
                 <ul>
-                    <li>a</li><li>a</li><li>a</li><li>a</li><li>a</li><li>a</li>
-                    <li>a</li><li>a</li><li>a</li><li>a</li><li>a</li><li>a</li>
-                    <li>a</li><li>a</li><li>a</li><li>a</li><li>a</li><li>a</li>
+                    
                 </ul>
               </div>
               <p>OR, SEND A SERVER INVITE LINK TO A FRIEND</p>

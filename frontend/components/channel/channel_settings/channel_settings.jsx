@@ -5,6 +5,7 @@ import { destroyChannel } from "../../../actions/channels_actions";
 import ChannelInviteListContainer from './channel_invite_list_container';
 import ChannelOverviewContainer from './channel_overview';
 import { selectFirstChannelInServer } from '../../../util/selectors';
+import { showModal } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const serverId = state.ui.focus.server;
@@ -12,13 +13,13 @@ const mapStateToProps = (state, ownProps) => {
     channel: state.entities.channels[state.ui.focus.channel],
     serverId,
     firstChannel: selectFirstChannelInServer(state, serverId),
-    closeComponent: ownProps.closeComponent
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    destroyChannel: (channelId) => dispatch(destroyChannel(channelId))
+    destroyChannel: (channelId) => dispatch(destroyChannel(channelId)),
+    closeComponent: () => dispatch(showModal(""))
   }
 }
 

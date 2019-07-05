@@ -44,6 +44,13 @@ class ChannelIndex extends React.Component {
     }
   }
 
+  showModal(modalName) {
+    return function(event) {
+      event.preventDefault();
+      this.props.showModal(modalName);
+    }.bind(this)
+  }
+
   getChannelUls() {
     const isOwner = this.props.server.owner_id == this.props.user.id;
     return (
@@ -54,7 +61,7 @@ class ChannelIndex extends React.Component {
             <button
               id="text-channels"
               className="revealer"
-              onClick={this.props.showAddChannel}
+              onClick={this.showModal("Add Channel")}
               onMouseEnter={this.showHidden(true, "p")}
               onMouseLeave={this.showHidden(false, "p")}
             >
@@ -83,7 +90,7 @@ class ChannelIndex extends React.Component {
                     <i
                       id={`plus-${channel.id}`}
                       className="fas fa-user-plus revealer"
-                      onClick={this.props.showInvitePeople}
+                      onClick={this.showModal("Invite People")}
                       onMouseEnter={this.showHidden(true, "p")}
                       onMouseLeave={this.showHidden(false, "p")}
                     >
@@ -92,7 +99,7 @@ class ChannelIndex extends React.Component {
                     <i
                       id={`cog-${channel.id}`}
                       className="fas fa-cog revealer"
-                      onClick={this.props.showChannelSettings}
+                      onClick={this.showModal("Channel Settings")}
                       onMouseEnter={this.showHidden(true, "p")}
                       onMouseLeave={this.showHidden(false, "p")}
                     >
@@ -123,7 +130,7 @@ class ChannelIndex extends React.Component {
     return (
       <section id="channel-index">
         {!this.props.server.isHome ? (
-          <button id="channel-top" onClick={this.props.showServerDropdown}>
+          <button id="channel-top" onClick={this.showModal("Server Dropdown")}>
             <h1>{serverName}</h1>
             <img src="https://discordapp.com/assets/779a770c34fcb823a598a7277301adaf.svg" />
           </button>
@@ -139,7 +146,7 @@ class ChannelIndex extends React.Component {
               <div className="sticky-box">
                 <div id="party-members"/>
                 <p>An adventure begins.<br/>Let's add some party members!</p>
-                <button onClick={this.props.showInvitePeople}>Invite People</button>
+                <button onClick={this.showModal("Invite People")}>Invite People</button>
               </div>
             ) : (
               <div className="sticky-box">
@@ -162,7 +169,7 @@ class ChannelIndex extends React.Component {
           <button
             id="user-cog"
             className="revealer"
-            onClick={this.props.showUserSettings}
+            onClick={this.showModal("User Settings")}
             onMouseEnter={this.showHidden(true, "p")}
             onMouseLeave={this.showHidden(false, "p")}
           >

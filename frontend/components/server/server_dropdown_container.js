@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import ServerDropdown from "../server/server_dropdown";
 import { leaveServer } from "../../actions/server_memberships_actions";
 import { selectServerMembershipByServerAndUser } from "../../util/selectors";
+import { showModal } from "../../actions/ui_actions";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -11,18 +12,17 @@ const mapStateToProps = (state, ownProps) => {
     server,
     userId,
     membership: selectServerMembershipByServerAndUser(state, server.id, userId),
-    closeComponent: ownProps.closeComponent,
-    showInvitePeople: ownProps.showInvitePeople,
-    showChangeNickname: ownProps.showChangeNickname,
-    showServerSettings: ownProps.showServerSettings
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     leaveServer: (membershipId) => dispatch(leaveServer(membershipId)),
+    showModal: (modalName) => dispatch(showModal(modalName)),
+    closeComponent: () => dispatch(showModal(""))
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(ServerDropdown)
 
 
