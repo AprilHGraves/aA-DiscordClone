@@ -18,8 +18,9 @@ class InviteList extends React.Component {
       for (let i=0, fin=secondNodes.length; i < fin; i++) {
         const node = secondNodes[i];
         const id = node.id;
-        const expireDate = new Date(id);
-        const time = this.getTime(expireDate, nowDate);
+        const expire = node.dataset.exp;
+        const expireDate = new Date(expire);
+        const time = this.getTime(expireDate, nowDate, id);
         node.innerHTML = time;
         
       }
@@ -30,9 +31,12 @@ class InviteList extends React.Component {
     clearInterval(this.tickClock);
   }
 
-  getTime(expireDate, nowDate) {
+  getTime(expireDate, nowDate, id) {
     let diffSec =(expireDate - nowDate) / 1000;
     let hours = Math.floor(diffSec / 3600);
+    if (diffSec < 0) {
+      this.props.destroyInvite(id)
+    }
     hours = hours < 10 && `0${hours}` || hours;
     diffSec = diffSec % 3600;
     let mins = Math.floor(diffSec / 60);
@@ -40,13 +44,7 @@ class InviteList extends React.Component {
     diffSec = diffSec % 60;
     let sec = Math.floor(diffSec);
     sec = sec < 10 && `0${sec}` || sec;
-    // debugger;
     return `${hours}:${mins}:${sec}`
-
-    // const dateObj = new Date(difference/(60 * 60 * 24));
-    // debugger;
-    // const 
-    // return `${dateObj}`.match(/\w+ \d+ \d+ (.*) GMT/)[1]
   }
 
   delInv(event) {
@@ -65,10 +63,17 @@ class InviteList extends React.Component {
     }
   }
 
+  getInviteUses(uses, maxUses, id) {
+    if (maxUses && uses >= maxUses) {
+      this.props.destroyInvite(id)
+    } else {
+      return maxUses && `${uses}/${maxUses}` || uses
+    }
+  }
+
 
   getRows() {
     const users = this.props.users;
-    const channels = this.props.channels;
     return this.props.invites.map(invite => {
       const user = users[invite.inviter_id];
       const expireDate = new Date(invite.expire_date);
@@ -88,14 +93,13 @@ class InviteList extends React.Component {
           </td>
           <td className="gray-text">{invite.code}</td>
           <td className="white-text">
-            {invite.uses}
-            {invite.max_uses && `/${invite.max_uses}`}
+            {this.getInviteUses(invite.uses, invite.max_uses, invite.id)}            
           </td>
           <td>
             <p className="white-text">
               {invite.expire_date ? (
-                <span id={`${expireDate}`} className="tic">
-                  {this.getTime(expireDate, nowDate)}
+                <span id={invite.id} data-exp={`${expireDate}`} className="tic">
+                  {this.getTime(expireDate, nowDate, invite.id)}
                 </span>
               ) : (
                 <span>∞</span>
