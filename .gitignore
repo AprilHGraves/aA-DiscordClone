@@ -29,3 +29,8 @@ npm-debug.log
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+docker-compose.yml
+Dockerfile.frontend
+Dockerfile.web
+entrypoint.sh
