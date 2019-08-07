@@ -79,12 +79,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  adapter: postgresql
-  host: db
-  username: postgres
-  password:
-  # database: DiscordClone_production
-  # username: DiscordClone
-  # password: <%= ENV['DISCORDCLONE_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   adapter: postgresql
+#   host: db
+#   username: postgres
+#   password:
+#   # database: DiscordClone_production
+#   # username: DiscordClone
+#   # password: <%= ENV['DISCORDCLONE_DATABASE_PASSWORD'] %>
