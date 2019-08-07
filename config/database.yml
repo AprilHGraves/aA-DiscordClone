@@ -77,14 +77,14 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: DiscordClone_production
-  username: DiscordClone
-  password: <%= ENV['DISCORDCLONE_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: DiscordClone_production
+#   username: DiscordClone
+#   password: <%= ENV['DISCORDCLONE_DATABASE_PASSWORD'] %>
   # the below lines are for docker
   # adapter: postgresql
   # host: db
