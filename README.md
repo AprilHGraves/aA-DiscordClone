@@ -61,6 +61,4 @@ Create a server with an optional image or join a server with an invite link. The
 ![Add Server Code](https://i.imgur.com/EwfpVCL.png)
 
 User model password code
-![User Model Code](https://i.imgur.com/j3jAWMv.png)
-
-
+![User Model Code](https://i.imgur.com/JLPVIA6.png)
