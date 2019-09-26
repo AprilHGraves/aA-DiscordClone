@@ -3,9 +3,10 @@ export const FOCUS_CHANNEL = "FOCUS_CHANNEL";
 export const NOTE_CHANNEL = "NOTE_CHANNEL";
 export const RECEIVE_MODAL = "RECEIVE_MODAL";
 
-export const focusServer = (serverId) => ({
+export const focusServerAndChannel = (serverId, channelId) => ({
   type: FOCUS_SERVER,
-  serverId
+  serverId,
+  channelId
 });
 
 // modify state.ui.focus.channel

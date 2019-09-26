@@ -15,7 +15,7 @@ class ChannelShow extends React.Component {
     this.changeInput = this.changeInput.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount() {    
     if (this.props.savedHeight) {
       // TODO save scrolls for each channel in state.ui.scrolls
     } else {
@@ -23,12 +23,16 @@ class ChannelShow extends React.Component {
       if (el) {
         el.scrollTop = el.scrollHeight;
       }
-    }    
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.createMessageInChannel(this.state.body, this.props.channel.id);
+    if (this.props.server.id === "@me") {
+      this.props.createMessageInDM(this.state.body, this.props.channel.id);
+    } else {
+      this.props.createMessageInChannel(this.state.body, this.props.channel.id);
+    }
     this.setState({body: ""});
   }
 
@@ -44,52 +48,69 @@ class ChannelShow extends React.Component {
 
   render() {
     const channel = this.props.channel;
+    if (this.props.server.id === "@me" && !this.props.channel.id) {
+      return (
+        <section id="channel-show">
+          <div id="show-top">
+            <div>
+              <span className="hash">#</span>
+              <span className="channel-name white-text">Welcome to Conflict</span>
+            </div>
+          </div>
+          <div className="welcome">
+            Welcome to Conflict! This was my first project using Ruby on Rails with React and Redux. Please check out the <a href='https://github.com/AprilHGraves/aA-DiscordClone'>GitHub page.</a> I put some gifs there that show off my favorite parts.
+          </div>
+        </section>
+      )
+    }
     return (
       <section id="channel-show">
+        {this.props.server.id != "@me" ? (
         <div id="show-top">
           <div>
             <span className="hash">#</span>
-            <span className="channel-name white-text">{channel.name}</span>
-            
+            <span className="channel-name white-text">{channel.name}</span>&nbsp;
             {channel.topic && (
               <span className="channel-topic">
-                &nbsp;{channel.topic}
+                {channel.topic}
               </span>
             )}
           </div>
-          <div>
-            {this.props.server.id != "@me" && (
+          <div>            
             <i 
               className="fas fa-user-friends white-text" 
               onClick={this.toggleMembersList}
             />
-            )}
-          </div>          
+          </div>
         </div>
+        ):(
+        <div id="show-top">
+          <div>
+            <span className="hash">@</span>
+            <span className="channel-name white-text">{this.props.users[this.props.channel.other_user_id].username}</span>
+          </div>
+        </div>
+        )}
 
         <div id="show-bottom">
-
-          {this.props.server.id == "@me" && this.props.channel.name == "Conflict" ? (
-            <section>friends will go here</section>
-          ) : (
-            <div id="message-box" >
-              <MessageList 
-                users={this.props.users}
-                server={this.props.server}
-                channel={this.props.channel}
-                messages={this.props.messages}
+          <div id="message-box" >
+            <MessageList 
+              users={this.props.users}
+              server={this.props.server}
+              channel={this.props.channel}
+              messages={this.props.messages}
+              memberships={this.props.memberships}
+            />
+            
+            <form id="message-form" onSubmit={this.handleSubmit}>
+              <input
+                value={this.state.body}
+                placeholder={`message ${channel.name}`}
+                onChange={this.changeInput("body")}
               />
-              
-              <form id="message-form" onSubmit={this.handleSubmit}>
-                <input
-                  value={this.state.body}
-                  placeholder={`message ${channel.name}`}
-                  onChange={this.changeInput("body")}
-                />
-              </form>
+            </form>
 
-            </div>
-          )}
+          </div>
 
           {this.props.server.id != "@me" && this.state.showMembers && (
             <MembersSidebar 

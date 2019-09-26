@@ -18,6 +18,6 @@ export const postDmMembership = (dmId, userId) => {
   return $.ajax({
     method: 'POST',
     url: 'api/dm_memberships',
-    data: { dm_id: dmId, user_id: userId }
+    data: { membership: {dm_id: dmId, user_id: userId} }
   })
 };

@@ -1,7 +1,7 @@
 import { getServers, postServer, patchServer, deleteServer} from '../util/server_api_util';
 
 import { joinServer } from './server_memberships_actions';
-import { focusServer, noteChannels } from './ui_actions';
+import { focusServerAndChannel, noteChannels } from './ui_actions';
 import { receiveErrors } from "./errors_actions";
 import { createChannel, receiveChannels } from './channels_actions';
 import { receiveUsers } from './users_actions';
@@ -61,7 +61,7 @@ export const destroyServer = serverId => dispatch => (
   deleteServer(serverId)
     .then(payload => {
       dispatch(removeServer(payload.serverId));
-      dispatch(focusServer("@me"));
+      dispatch(focusServerAndChannel("@me", "Home"));
     })
 );
 

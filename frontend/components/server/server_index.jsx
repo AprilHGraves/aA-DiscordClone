@@ -25,8 +25,7 @@ class ServerIndex extends React.Component {
             channelId = firstCId[0] && firstCId[0].id || "";
           }
         }
-        this.props.focusChannel(channelId);
-        this.props.focusServer(serverId);
+        this.props.focusServerAndChannel(serverId, channelId);
         this.props.noteChannel(serverId, channelId);
         const pathPartial = `${serverId}/${channelId}`;
         if (serverId != "@me") {
@@ -37,7 +36,7 @@ class ServerIndex extends React.Component {
         }
       });
     this.props.fetchDmConversations();
-    this.switchActiveNode;
+    this.switchActiveNode();
   }
 
   componentDidUpdate() {
@@ -57,8 +56,8 @@ class ServerIndex extends React.Component {
 
   activate(id) {
     return event => {
-      this.props.focusServer(id);
-      if (id !== "Home") {
+      this.props.focusServerAndChannel(id, "");
+      if (id !== "@me") {
         this.props.fetchChannels(id);
         this.props.fetchServerMembershipsByServerId(id);
       }
@@ -92,11 +91,11 @@ class ServerIndex extends React.Component {
             key="Home"
             id="aHome"
             className="animate-hover"
-            onClick={this.activate("Home")} 
+            onClick={this.activate("@me")} 
             onMouseEnter={this.showName(true)}
             onMouseLeave={this.showName(false)}
           >
-            <Link to="/channels/@me">
+            <Link to={`/channels/@me/${channel_notes["@me"] || ""}`}>
               <img src={window.logo2Img} />
             </Link>
             <p>Home</p>

@@ -22,17 +22,18 @@ const receiveDmConversation = (dmConversation) => {
 export const fetchDmConversations = () => dispatch => (
   getDmConversations()
     .then(payload => {
-      dispatch(receiveDmConversations(payload.dmConversations));
-      dispatch(receiveMessages(payload.messages));
       dispatch(receiveUsers(payload.users));
+      dispatch(receiveDmConversations(payload.dm_conversations));
     })
 );
 
 export const createDmConversation = (myId, theirId) => dispatch => (
   postDmConversation()
-    .then(dm_conversation => {
-      postDmMembership(dm_conversation.id, myId)
-      postDmMembership(dm_conversation.id, theirId)
-      dispatch(receiveDmConversation(dm_conversation))
+    .then(payload => {
+      const dmConversation = payload.dm_conversation;
+      postDmMembership(dmConversation.id, myId);
+      postDmMembership(dmConversation.id, theirId);
+      dispatch(receiveDmConversation(dmConversation))
+      return dmConversation
     })
 );

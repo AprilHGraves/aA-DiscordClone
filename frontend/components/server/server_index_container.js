@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import ServerIndex from "./server_index";
 import { fetchServers } from "../../actions/servers_actions";
-import { focusServer, focusChannel, noteChannel, showModal } from "../../actions/ui_actions";
+import { focusServerAndChannel, focusChannel, noteChannel, showModal } from "../../actions/ui_actions";
 import { fetchServerMembershipsByServerId } from "../../actions/server_memberships_actions";
 import { fetchChannels } from "../../actions/channels_actions";
 import { fetchDmConversations } from "../../actions/dm_conversations_actions";
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
     fetchServers: (urlMatch) => dispatch(fetchServers(urlMatch)),
     fetchDmConversations: () => dispatch(fetchDmConversations()),
     fetchChannels: (id) => dispatch(fetchChannels(id)),
-    focusServer: (id) => dispatch(focusServer(id)),
+    focusServerAndChannel: (sId, cId) => dispatch(focusServerAndChannel(sId, cId)),
     focusChannel: (id) => dispatch(focusChannel(id)),
     noteChannel: (sId, cId) => dispatch(noteChannel(sId, cId)),
     fetchServerMembershipsByServerId: (serverId) => dispatch(fetchServerMembershipsByServerId(serverId)),

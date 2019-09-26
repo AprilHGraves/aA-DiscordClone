@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       session: { id: window.currentUser.id },
       ui: {
         focus: {
-          server: "Home"
+          server: "@me"
         }
       }
     };

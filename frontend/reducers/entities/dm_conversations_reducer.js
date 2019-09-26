@@ -5,9 +5,9 @@ const dmConversationsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_DM_CONVERSATION:
-      return Object.assign({}, state, { [dm_conversation.id]: action.dm_conversation })
+      return Object.assign({}, state, { [action.dmConversation.id]: action.dmConversation })
     case RECEIVE_DM_CONVERSATIONS:
-      return Object.assign({}, state, action.dm_conversations)
+      return Object.assign({}, state, action.dmConversations)
     case LOGOUT_CURRENT_USER:
       return {};
     default:

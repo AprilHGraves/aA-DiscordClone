@@ -38,6 +38,13 @@ export const createMessageInChannel = (message, channelId)  => dispatch => (
     }, errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
+export const createMessageInDM = (message, dmId) => dispatch => (
+  postMessage(message, "DmConversation", dmId)
+    .then(message => {
+      dispatch(receiveMessage(message));
+    }, errors => dispatch(receiveErrors(errors.responseJSON)))
+);
+
 export const updateMessage = (id, message) => dispatch => (
   patchMessage(id, message)
     .then(message => {

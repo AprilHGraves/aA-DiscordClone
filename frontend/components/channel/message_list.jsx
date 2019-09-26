@@ -1,15 +1,19 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { updateMessage, destroyMessage } from '../../actions/messages_actions';
 import { selectServerMembershipsByServer } from '../../util/selectors';
+import { showModal, focusServerAndChannel } from "../../actions/ui_actions";
+import { createDmConversation } from '../../actions/dm_conversations_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.session.id,
+    userId: state.session.id,
     server: ownProps.server,
     channel: ownProps.channel,
     messages: ownProps.messages,
-    memberships: selectServerMembershipsByServer(state, ownProps.server.id)
+    memberships: ownProps.memberships,
+    dm_conversations: state.entities.dm_conversations
   }
 }
 
@@ -17,7 +21,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     updateMessage: (id, msg) => dispatch(updateMessage(id, msg)),
-    destroyMessage: (msgId) => dispatch(destroyMessage(msgId))
+    destroyMessage: (msgId) => dispatch(destroyMessage(msgId)),
+    showModal: (modalName) => dispatch(showModal(modalName)),
+    createDmConversation: (myId, theirId) => dispatch(createDmConversation(myId, theirId)),
+    focusServerAndChannel: (sId, cId) => dispatch(focusServerAndChannel(sId, cId))
   }
 }
 
@@ -35,10 +42,29 @@ class MessageList extends React.Component {
     this.cancelEditor = this.cancelEditor.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.delMessage = this.delMessage.bind(this);
+    this.openDM = this.openDM.bind(this);
   }
 
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  openDM(otherUserId) {
+    return () => {
+      const convoArray = Object.values(this.props.dm_conversations);
+      const convo = convoArray.find(ele => ele.other_user_id === otherUserId);
+      if (!convo) {
+        this.props.createDmConversation(this.props.userId, otherUserId)
+          .then((newConvo) => this.switchToDM(newConvo.id))
+      } else {
+        this.switchToDM(convo.id);
+      }
+    }
+  }
+
+  switchToDM(convoId) {
+    this.props.history.push(`/channels/@me/${convoId}`);
+    this.props.focusServerAndChannel("@me", convoId);
   }
 
   handleClickOutside(event) {
@@ -62,10 +88,6 @@ class MessageList extends React.Component {
   delMessage(event) {
     event.preventDefault();
     this.props.destroyMessage(event.target.id);
-  }
-  openEditor(event) {
-    event.preventDefault();
-    this.setState({editMsg: event.target.id, body: "" });
   }
   openEditor(body) {
     return (event) => {
@@ -115,7 +137,7 @@ class MessageList extends React.Component {
     const users = this.props.users;
     const memberships = this.props.memberships;
     const serverId = this.props.server.id;
-    let myId = this.props.user;
+    let myId = this.props.userId;
     let isOwner = myId == this.props.server.owner_id;
     return (
       <ul id="message-center" className="scrollable">
@@ -124,7 +146,7 @@ class MessageList extends React.Component {
           {this.props.server.id != "@me" ? (
             <span>Welcome to the beginning of #{this.props.channel.name} channel</span>
           ) : (
-              <span>Welcome to conflict</span>
+              <span>The Beginning of a new Direct Message conversation!</span>
             )}
           <div id="logo-overlay">
             <img src="https://discordapp.com/assets/5eed3f20bc3c75fd5ff63c60df8f679d.png" />
@@ -139,16 +161,40 @@ class MessageList extends React.Component {
           return (        
             <li key={message.id}>
  
-              <img id="user-pic"
+              <img
+                className="user-pic"
                 src={user.image_url}
               // put click left and right-click events in the future to show profile, dropdown options
               />
               <div>
-                <p id="user-username"
-                //put left and right-click events inthe future to show profile, dropdown options
-                >
-                  {(membership && membership.nickname) || user.username}
-                </p> &nbsp;
+                <div className="relative">
+                  <div id={`opt-ud${message.id}`} className="dropdown dropdown-user hidden">
+                    {myId === message.user_id ? (
+                      <button
+                        onClick={() => this.props.showModal("Change Nickname")}
+                      >
+                        Change Nickname
+                      </button>
+                    ):(
+                      <button
+                        onClick={this.openDM(message.user_id)}
+                      >
+                        Message
+                      </button>
+
+                    )}
+                  </div>
+                  <button
+                    id={`ud${message.id}`}
+                    className="user-username white-text"
+                  //put left and right-click events inthe future to show profile, dropdown options
+                    onClick={this.showMessageDropdown}
+                  >
+                    {(membership && membership.nickname) || user.username}
+                  </button>
+
+                </div>
+                &nbsp;
                 <span id="message-date">{this.convertDate(message.created_at)}</span>
 
                 {this.state.editMsg == message.id ? (
@@ -166,7 +212,7 @@ class MessageList extends React.Component {
                     
                   </form>
                 ) : (
-                  <section>
+                  <div className="relative">
                     <div
                       id={`${message.id}`}
                       className="revealer message-body"
@@ -184,30 +230,30 @@ class MessageList extends React.Component {
                       >
 
                       </i>
+                      <div id={`opt-ml${message.id}`} className="dropdown dropdown-message hidden">
+                          {myId == message.user_id && (
+
+                            <button
+                              id={message.id}
+                              onClick={this.openEditor(message.body)}
+                            >
+                              Edit
+                            </button>
+                          )}
+                          {(isOwner || myId == message.user_id) && (
+                            <button
+                              id={message.id}
+                              onClick={this.delMessage}
+                            >
+                              Delete
+                            </button>
+                          )}
+
+                        
+                      </div>
                     </div>
                     
-                    <div id={`opt-ml${message.id}`} className="message-dropdown hidden">
-                        {myId == message.user_id && (
-
-                          <button
-                            id={message.id}
-                            onClick={this.openEditor(message.body)}
-                          >
-                            Edit
-                          </button>
-                        )}
-                        {(isOwner || myId == message.user_id) && (
-                          <button
-                            id={message.id}
-                            onClick={this.delMessage}
-                          >
-                            Delete
-                          </button>
-                        )}
-
-                      
-                    </div>
-                  </section>
+                  </div>
                 )}
               </div>
             </li>
@@ -218,4 +264,4 @@ class MessageList extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageList)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MessageList))

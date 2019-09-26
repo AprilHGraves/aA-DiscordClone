@@ -11,15 +11,20 @@ class ChannelIndex extends React.Component {
     const oldNode = document.querySelector(".active-channel");
     if (oldNode) {
       oldNode.classList.remove("active-channel");
-      oldNode.children[1].classList.add("hidden");
+      const oldNodeChild = oldNode.children[1];
+      if (oldNodeChild) {
+        oldNodeChild.classList.add("hidden");
+      }
     }
     const idMatch = this.props.location.pathname.match(/channels\/(.*)\/(.*)/);
     if (idMatch) {
       const foundNode = document.getElementById(`c${idMatch[2]}`);
       if (foundNode) {
         foundNode.classList.add("active-channel");
-        const a = foundNode.children[1];
-        a.classList.remove("hidden");
+        const foundNodeChild = foundNode.children[1];
+        if (foundNodeChild) {
+          foundNodeChild.classList.remove("hidden");
+        }
       }
     }
   }
@@ -29,6 +34,7 @@ class ChannelIndex extends React.Component {
     return event => {
       this.props.focusChannel(id);
       this.props.noteChannel(serverId, id);
+      this.props.fetchMessages(serverId==="@me" ? "DmConversation":"Channel", id);
     }
   }
 
@@ -51,12 +57,40 @@ class ChannelIndex extends React.Component {
     }.bind(this)
   }
 
+  getDmConvos() {
+    const users = this.props.users;
+    return (
+      <ul id="channel-list">
+        <div id="category-label">
+          <h1>DM CONVERSATIONS</h1>
+        </div>
+        {this.props.dmConvos.map(convo => {
+          const user = users[convo.other_user_id];
+          if (!user) {return}
+          return (
+            <li
+              key={`convo-${convo.id}`}
+              className="revealer"
+              id={`c${convo.id}`}
+              onClick={this.activate(convo.id)}
+            >
+              <Link to={`/channels/@me/${convo.id}`}>
+                <img src={user.image_url}/>
+                <span>{user.username}</span>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   getChannelUls() {
     const isOwner = this.props.server.owner_id == this.props.user.id;
     return (
       <ul id="channel-list">
         <div id="category-label">
-          <h1>{this.props.server.isHome && "DM CONVERSATIONS" || "TEXT CHANNELS"}</h1>
+          <h1>TEXT CHANNELS</h1>
           {isOwner && (
             <button
               id="text-channels"
@@ -156,7 +190,7 @@ class ChannelIndex extends React.Component {
               </div>
             )}
           <div id="channel-index">
-            {this.getChannelUls()}            
+            {this.props.server.isHome ? this.getDmConvos():this.getChannelUls()}            
           </div>
         </div>
 

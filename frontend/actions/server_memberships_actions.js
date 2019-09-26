@@ -7,7 +7,7 @@ import {
 import { patchInviteUses, getInviteByCode } from '../util/server_invite_api_util';
 import { receiveServer, removeServer } from './servers_actions';
 import { receiveUsers } from './users_actions';
-import { focusServer } from './ui_actions';
+import { focusServerAndChannel } from './ui_actions';
 import { receiveErrors } from './errors_actions';
 import { fetchChannels } from './channels_actions';
 
@@ -64,7 +64,7 @@ export const leaveServer = serverMembershipId => dispatch => (
     .then(payload => {
       dispatch(removeServerMembership(payload.membershipId));
       dispatch(removeServer(payload.serverId));
-      dispatch(focusServer("@me"));
+      dispatch(focusServerAndChannel("@me", "Home"));
     })
 );
 

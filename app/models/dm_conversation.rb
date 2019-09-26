@@ -9,4 +9,5 @@ class DmConversation < ApplicationRecord
   has_many :users,
     through: :dm_memberships,
     source: :user
+    
 end
