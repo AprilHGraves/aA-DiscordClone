@@ -56,9 +56,9 @@ Conflict is a single-page Discord clone. Like Discord, people can create and joi
 
 ![Message Demo Gif](https://i.imgur.com/smz1yQM.gif)
 
-# Future Directions
-* Create Direct Messages
-* Add friends feature
-* Use socket.io to update messages in real-time
+### Code Snippets
+Create a server with an optional image or join a server with an invite link. Then switch to the server's page.
+![Add Server Code](https://i.imgur.com/EwfpVCL.png)
 
-
+User model password code
+![User Model Code](https://i.imgur.com/JLPVIA6.png)
