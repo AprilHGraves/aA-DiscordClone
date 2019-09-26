@@ -48,7 +48,9 @@ class ChannelShow extends React.Component {
 
   render() {
     const channel = this.props.channel;
-    debugger;
+    if (!this.props.server || !this.props.channel) {
+      return 
+    }
     if (this.props.server.id === "@me" && this.props.channel.name === "Conflict") {
       return (
         <section id="channel-show">
